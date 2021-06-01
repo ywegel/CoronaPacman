@@ -1,6 +1,6 @@
 package de.dickeLunten.coronaPacman;
 
-import de.dickeLunten.coronaPacman.controller.GameController;
+import de.dickeLunten.coronaPacman.controller.Controller;
 
 public class Application {
 
@@ -9,7 +9,7 @@ public class Application {
     }
 
     public Application(){
-        GameController mainController = new GameController();
+        Controller mainController = new Controller();
     }
 
 }

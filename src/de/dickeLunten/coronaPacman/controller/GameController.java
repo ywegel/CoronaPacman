@@ -1,48 +1,64 @@
 package de.dickeLunten.coronaPacman.controller;
 
-import de.dickeLunten.coronaPacman.models.Model;
-import de.dickeLunten.coronaPacman.models.panel.StartModel;
-import de.dickeLunten.coronaPacman.views.View;
-import de.dickeLunten.coronaPacman.views.panels.StartPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Scanner;
 
-import javax.swing.*;
-import java.awt.*;
+public class GameController implements KeyListener {
+    private volatile boolean isRunning;
 
-public class GameController {
-    private JFrame frame;
+    private void loop(){
+        long deltaTime = 0;
+        long startTime = 0;
+        while(isRunning){
+            updateInput();
 
-    public GameController(){
-        frame = initFrame();
-        init();
+            tick();
+            render();
+        }
     }
 
-    private void init(){
-        initStart();
+    private void updateInput(){
+        //Scanner d = new Scanner()
     }
 
-    private JFrame initFrame(){
-        JFrame frame = new JFrame("CoronaPacman");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    private void tick(){
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        //frame.setUndecorated(true); //TODO wenn undekoriert sieht man keine elemente
-        frame.setVisible(true);
-        frame.setBackground(Color.black);
-        return frame;
     }
 
-    private void initStart(){
-        StartModel startModel = new StartModel();
-        StartPanel startPanel = new StartPanel(startModel);
+    private void render(){
 
-        frame.add(startPanel);
     }
 
-    //Removes all components + panels from frame
-    private void resetFrame(){
-        frame.getContentPane().removeAll();
-        frame.repaint();
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+
+                break;
+            case KeyEvent.VK_RIGHT:
+
+                break;
+
+            case KeyEvent.VK_UP:
+
+                break;
+
+            case KeyEvent.VK_DOWN:
+
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 
 }
