@@ -1,26 +1,68 @@
 package de.dickeLunten.coronaPacman.controller;
 
-import java.awt.event.ActionListener;
+import de.dickeLunten.coronaPacman.models.entities.Corona;
+import de.dickeLunten.coronaPacman.models.entities.Player;
+import de.dickeLunten.coronaPacman.views.entities.CoronaView;
+import de.dickeLunten.coronaPacman.views.entities.PlayerView;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Scanner;
+import java.security.Key;
+import java.util.ArrayList;
 
-public class GameController implements KeyListener {
+public class GameController {
     private volatile boolean isRunning;
+
+    //Models
+    private Player playerModel;
+    private ArrayList<Corona> coronaModels;
+
+    //Views
+    private PlayerView playerView;
+    private ArrayList<CoronaView> coronaViews;
+
+    //actions/events
+    private UpAction upAction;
+    private DownAction downAction;
+    private LeftAction leftAction;
+    private RightAction rightAction;
+
+    public GameController(){
+        isRunning = true;
+        loop();
+    }
 
     private void loop(){
         long deltaTime = 0;
         long startTime = 0;
         while(isRunning){
-            updateInput();
-
             tick();
             render();
         }
     }
 
+    private void inputMapping(){
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "upAction");
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), "upAction");
+        playerView.getActionMap().put("upAction", upAction);
+
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "downAction");
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), "downAction");
+        playerView.getActionMap().put("downAction", downAction);
+
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "leftAction");
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), "leftAction");
+        playerView.getActionMap().put("leftAction", leftAction);
+
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "rightAction");
+        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), "rightAction");
+        playerView.getActionMap().put("rightAction", rightAction);
+    }
+
     private void updateInput(){
-        //Scanner d = new Scanner()
+
     }
 
     private void tick(){
@@ -31,34 +73,32 @@ public class GameController implements KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-
-                break;
-            case KeyEvent.VK_RIGHT:
-
-                break;
-
-            case KeyEvent.VK_UP:
-
-                break;
-
-            case KeyEvent.VK_DOWN:
-
-                break;
+    public class UpAction extends AbstractAction{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("1: " + e.paramString());
         }
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+    public class DownAction extends AbstractAction{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("2: " + e.paramString());
+        }
+    }
 
+    public class LeftAction extends AbstractAction{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("3: " + e.paramString());
+        }
+    }
+
+    public class RightAction extends AbstractAction{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("4: " + e.paramString());
+        }
     }
 
 }
