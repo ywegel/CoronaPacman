@@ -11,6 +11,20 @@ public class Player extends EntityModel {
         width = 10;
     }
 
+    public void moveup(){
+        y = y - 5;
+    }
+    public void movedown(){
+        y = y + 5;
+    }
+    public void moveright(){
+        x = x + 5;
+    }
+    public void moveleft(){
+        x = x - 5;
+    }
+
+
     public int getLength() {
         return length;
     }
