@@ -22,7 +22,7 @@ public class StartPanel extends JPanel {
     public StartPanel(StartModel model, ViewListener viewListener, JFrame frame){
         this.model = model;
         this.viewListener = viewListener;
-        setBackground(Color.CYAN);
+        setBackground(Color.GRAY);
         setLayout(new BorderLayout());
 
         /*        BufferedImage image = null;

@@ -26,6 +26,7 @@ public class Controller implements ViewListener {
     private ActionDown actionDown;
     private ActionLeft actionLeft;
     private ActionRight actionRight;
+    private ActionEnter actionEnter;
 
     public Controller() {
         frame = initFrame();
@@ -154,5 +155,13 @@ public class Controller implements ViewListener {
 
         }
     }
+
+    public class ActionEnter extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            onNavigate(NavigationPanels.GAME_PANEL);
+        }
+    }
+
 
 }
