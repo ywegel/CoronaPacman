@@ -1,10 +1,10 @@
 package util;
 
-public class Pair {
+public class Coord {
     private int x;
     private int y;
 
-    Pair(int x, int y){
+    Coord(int x, int y){
         this.x = x;
         this.y = y;
     }

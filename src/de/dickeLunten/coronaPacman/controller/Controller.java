@@ -52,8 +52,8 @@ public class Controller implements ViewListener {
         StartModel model = new StartModel();
         StartPanel panel = new StartPanel(model, this, frame);
 
-
-
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_ENTER"), "Enter_action");
+        panel.getActionMap().put("Enter_action", actionEnter);
         frame.add(panel);
         frame.revalidate();
         frame.repaint();

@@ -33,7 +33,7 @@ public class StartPanel extends JPanel {
         }*/
         //^das selbe wie da unten
 
-        pogImg = Data.loadImage("him.jpeg");
+        pogImg = Data.loadImage("froschi.jpg");
 
 
         JButton startBtn = new JButton("Press ENTER to start");
