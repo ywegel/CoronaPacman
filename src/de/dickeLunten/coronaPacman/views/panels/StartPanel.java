@@ -34,7 +34,8 @@ public class StartPanel extends JPanel {
         }*/
         //^das selbe wie da unten
 
-        pogImg = Data.loadImage("froschi.jpg");
+        //TODO add image and intitialize all models
+        add(model.getBackgroundImg());
 
 
         JButton startBtn = new JButton("Press ENTER to start");
