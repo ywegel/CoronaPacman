@@ -8,7 +8,6 @@ import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 enum InputAction {
@@ -25,6 +24,9 @@ public class Controller implements ViewListener {
     private ActionLeft actionLeft;
     private ActionRight actionRight;
     private ActionEnter actionEnter;
+
+    Model model;
+    View view;
 
     public Controller(View view) {
         this.view = view;

@@ -48,16 +48,13 @@ public class StartPanel extends JPanel {
         startBtn.setFont(new Font("sans", Font.PLAIN, 70));
 
 
-
-
-
         startBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modelListener.onNavigate(NavigationPanels.GAME_PANEL);
             }
         });
-       add(startBtn, BorderLayout.NORTH);
+        add(startBtn, BorderLayout.NORTH);
 
         //JLabel highscoreLabel = new JLabel("Highscores: ");
         //add(highscoreLabel, BorderLayout.NORTH);
