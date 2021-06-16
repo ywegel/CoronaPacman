@@ -1,5 +1,6 @@
 package de.dickeLunten.coronaPacman.views.panels;
 
+import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
@@ -19,9 +20,9 @@ public class StartPanel extends JPanel {
 
     private Image pogImg;
 
-    public StartPanel(StartModel model, ViewListener viewListener, JFrame frame){
+    public StartPanel(StartModel model, ModelListener modelListener) {
         this.model = model;
-        this.viewListener = viewListener;
+        this.modelListener = modelListener;
         setBackground(Color.GRAY);
         setLayout(new BorderLayout());
 
@@ -51,7 +52,7 @@ public class StartPanel extends JPanel {
         startBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.GAME_PANEL);
+                modelListener.onNavigate(NavigationPanels.GAME_PANEL);
             }
         });
        add(startBtn, BorderLayout.NORTH);
