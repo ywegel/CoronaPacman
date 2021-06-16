@@ -39,6 +39,7 @@ public class StartPanel extends JPanel {
 
 
         JButton startBtn = new JButton("Press ENTER to start");
+        //startBtn.setFont(new Font("Pac-Font", Font.PLAIN, 40));
         startBtn.setLocation(720, 5);
         startBtn.setSize(300,300);
         startBtn.setOpaque(false);
