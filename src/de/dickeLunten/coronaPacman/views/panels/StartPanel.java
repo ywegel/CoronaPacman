@@ -15,8 +15,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class StartPanel extends JPanel {
-    private StartModel model;
-    private ViewListener viewListener;
+    private final StartModel model;
+    private final ModelListener modelListener;
 
     private Image pogImg;
 

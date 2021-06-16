@@ -69,35 +69,40 @@ public class Controller implements ViewListener {
     public class ActionUp extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("up");
+            model.getPlayer().setCurrentDirection(PlayerDirection.UP);
         }
     }
 
     public class ActionDown extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("down");
+            model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
         }
     }
 
     public class ActionLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("left");
+            model.getPlayer().setCurrentDirection(PlayerDirection.LEFT);
         }
     }
 
     public class ActionRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("right");
+            model.getPlayer().setCurrentDirection(PlayerDirection.RIGHT);
         }
     }
 
     public class ActionEnter extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            onNavigate(NavigationPanels.GAME_PANEL);
+            System.out.println("Pog");
+            view.onNavigate(NavigationPanels.GAME_PANEL);
         }
     }
 

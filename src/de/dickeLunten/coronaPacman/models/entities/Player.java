@@ -84,4 +84,12 @@ public class Player extends EntityModel {
     public void setY(int y) {
         this.y = y;
     }
+
+    public PlayerDirection getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public void setCurrentDirection(PlayerDirection currentDirection) {
+        this.currentDirection = currentDirection;
+    }
 }

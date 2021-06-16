@@ -44,7 +44,7 @@ public class GameController {
     }
 
     private void inputMapping(){
-        playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "upAction");
+        /*playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "upAction");
         playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), "upAction");
         playerView.getActionMap().put("upAction", upAction);
 
@@ -58,7 +58,7 @@ public class GameController {
 
         playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "rightAction");
         playerView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), "rightAction");
-        playerView.getActionMap().put("rightAction", rightAction);
+        playerView.getActionMap().put("rightAction", rightAction);*/
     }
 
     private void updateInput(){
