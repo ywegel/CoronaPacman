@@ -16,6 +16,7 @@ public class EndPanel extends PanelView {
     private JLabel scorel;
     private JButton replayb;
     private JButton quitb;
+    private JButton exitb;
     private String score;
 
     ViewListener viewListener;
@@ -25,7 +26,7 @@ public class EndPanel extends PanelView {
         this.viewListener = viewListener;
 
         this.model = model;
-        this.setLayout(new GridLayout(2,2, 20,20));
+        this.setLayout(new GridLayout(2, 3, 20, 20));
 
         scorel = new JLabel("ScoreLabel");
         scorel.setBackground(Color.GRAY);
@@ -33,6 +34,9 @@ public class EndPanel extends PanelView {
             scorel.setText("Du bist infiziert und hast verloren >_<" + '\n' + "Wie soll es weiter gehen?");
         }
         scorel.setText("Du hast " + model.getScore() + " erreicht");
+        scorel.setFont(new Font("sans", Font.PLAIN, 70));
+        scorel.setForeground(Color.WHITE);
+
 
         replayb = new JButton("replay");
         replayb.setBackground(new Color(50, 80, 0));
@@ -45,9 +49,16 @@ public class EndPanel extends PanelView {
         quitb.setFont(new Font("sans", Font.PLAIN, 70));
         quitb.setForeground(Color.WHITE);
 
-        this.add(scorel, 0,0);
-        this.add(replayb, 1,0);
-        this.add(quitb, 1,1);
+        exitb = new JButton("exit");
+        exitb.setBackground(Color.DARK_GRAY);
+        exitb.setFont(new Font("sans", Font.PLAIN, 70));
+        exitb.setForeground(Color.WHITE);
+
+        this.add(replayb, 0, 0);
+        this.add(quitb, 0, 1);
+        this.add(exitb, 0, 1);
+        this.add(scorel, 1, 1);
+
 
         replayb.addActionListener(new ActionListener() {
             @Override
@@ -65,6 +76,12 @@ public class EndPanel extends PanelView {
             }
         });
 
+        exitb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
     }
 

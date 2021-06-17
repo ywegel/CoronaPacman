@@ -41,7 +41,21 @@ public class StartPanel extends PanelView {
             }
         });
 
+        JButton exitBtn = new JButton(("exit"));
+        exitBtn.setFont(new Font("sans", Font.PLAIN, 70));
+        exitBtn.setBackground(Color.DARK_GRAY);
+        exitBtn.setForeground(Color.WHITE);
+
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+
         add(startBtn, BorderLayout.NORTH);
+        add(exitBtn, BorderLayout.SOUTH);
 
         //JLabel highscoreLabel = new JLabel("Highscores: ");
         //add(highscoreLabel, BorderLayout.NORTH);
