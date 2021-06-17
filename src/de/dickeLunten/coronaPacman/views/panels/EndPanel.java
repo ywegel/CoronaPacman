@@ -29,19 +29,19 @@ public class EndPanel extends PanelView {
 
         scorel = new JLabel("ScoreLabel");
         scorel.setBackground(Color.GRAY);
-        if(model.getScore() == 0){
+        if (model.getScore() == 0) {
             scorel.setText("Du bist infiziert und hast verloren >_<" + '\n' + "Wie soll es weiter gehen?");
         }
         scorel.setText("Du hast " + model.getScore() + " erreicht");
 
         replayb = new JButton("replay");
-        replayb.setBackground(new Color(50,80,0));
+        replayb.setBackground(new Color(50, 80, 0));
         replayb.setFont(new Font("sans", Font.PLAIN, 70));
         replayb.setForeground(Color.WHITE);
 
 
         quitb = new JButton("quit");
-        quitb.setBackground(new Color(50,0,0));
+        quitb.setBackground(new Color(50, 0, 0));
         quitb.setFont(new Font("sans", Font.PLAIN, 70));
         quitb.setForeground(Color.WHITE);
 

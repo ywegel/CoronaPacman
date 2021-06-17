@@ -12,8 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartPanel extends PanelView {
-    private final StartModel model;
-    private final ViewListener viewListener;
+    private StartModel model;
+    private ViewListener viewListener;
 
     private Image pogImg;
 
@@ -23,21 +23,12 @@ public class StartPanel extends PanelView {
         setBackground(Color.GRAY);
         setLayout(new BorderLayout());
 
-        /*        BufferedImage image = null;
-        try {
-            image = ImageIO.read(getClass().getResource("/froschi.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        //^das selbe wie da unten
-
-        //TODO add image and intitialize all models
         add(new JLabel(new ImageIcon(model.getBackgroundImg())));
 
         JButton startBtn = new JButton("Press ENTER to start");
         //startBtn.setFont(new Font("Pac-Font", Font.PLAIN, 40));
         startBtn.setLocation(720, 5);
-        startBtn.setSize(300,300);
+        startBtn.setSize(300, 300);
         startBtn.setOpaque(false);
         startBtn.setContentAreaFilled(false);
         startBtn.setBorderPainted(false);

@@ -1,15 +1,21 @@
 package de.dickeLunten.coronaPacman.controller;
 
-import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.models.Model;
 import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
+import de.dickeLunten.coronaPacman.models.panel.EndModel;
+import de.dickeLunten.coronaPacman.models.panel.GameModel;
+import de.dickeLunten.coronaPacman.models.panel.PauseModel;
+import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import de.dickeLunten.coronaPacman.views.View;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
+import org.jetbrains.annotations.NotNull;
+import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 enum InputAction {
     ACTION_UP,
@@ -19,46 +25,34 @@ enum InputAction {
 }
 
 public class Controller implements ViewListener {
+    private volatile boolean gameIsRunning = false;
+
     private ActionUp actionUp;
     private ActionDown actionDown;
     private ActionLeft actionLeft;
     private ActionRight actionRight;
     private ActionEnter actionEnter;
 
-    Model model;
-    View view;
+    private Model model;
+    private View view;
 
-    public Controller(View view) {
-        this.view = view;
-        view.addListener(this);
-        initStartInput(view.getStartPanel());
+    public Controller() {
+        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel());
+        this.view = new View(model, this);
+        //initStartInput(view.getStartPanel());
+        view.setStartPanel(initStartInput(view.getStartPanel()));
         initGameInput(view.getGamePanel());
 
-        while (true) {
-/*
-            //move player
-            if(model.getGameModel().doesCollide()){
-                model.getPlayer().move(model.getPlayer().getCurrentDirection());
-            }
-            model.getPlayer().move();
-
-          /  model.getGameModel().move();
-
-            //p
-           if
-            player.doescollid()
-                    player.move(play.currentd)
-
-
-*/
+        while (gameIsRunning){
 
         }
     }
 
-    private void initStartInput(StartPanel panel) {
-        actionEnter = new Controller.ActionEnter();
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_RETURN"), "Enter_action");
-        panel.getActionMap().put("Enter_action", actionEnter);
+    private StartPanel initStartInput(@NotNull StartPanel panel) {
+        actionEnter = new ActionEnter();
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter_action");
+        panel.getActionMap().put("enter_action", actionEnter);
+        return panel;
     }
 
     private void initGameInput(GamePanel panel) {
@@ -67,24 +61,22 @@ public class Controller implements ViewListener {
         actionLeft = new ActionLeft();
         actionRight = new ActionRight();
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_UP"), InputAction.ACTION_UP);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
         panel.getActionMap().put(InputAction.ACTION_UP, actionUp);
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_DOWN"), InputAction.ACTION_DOWN);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), InputAction.ACTION_DOWN);
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), InputAction.ACTION_DOWN);
         panel.getActionMap().put(InputAction.ACTION_DOWN, actionDown);
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_LEFT"), InputAction.ACTION_LEFT);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), InputAction.ACTION_LEFT);
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), InputAction.ACTION_LEFT);
         panel.getActionMap().put(InputAction.ACTION_LEFT, actionLeft);
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("VK_RIGHT"), InputAction.ACTION_RIGHT);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), InputAction.ACTION_RIGHT);
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
         panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
     }
-
-
 
     public class ActionUp extends AbstractAction {
         @Override

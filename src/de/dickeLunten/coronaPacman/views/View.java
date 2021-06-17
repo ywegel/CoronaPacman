@@ -25,14 +25,11 @@ public class View implements ModelListener {
     private EndPanel endPanel;
     private ViewListener viewListener;
 
-    public View(Model model) {
+    public View(Model model, ViewListener viewListener) {
+        this.viewListener = viewListener;
         this.model = model;
         frame = initFrame();
         init();
-    }
-
-    public void addListener(ViewListener viewListener){
-        this.viewListener = viewListener;
     }
 
     private void init() {
@@ -42,6 +39,7 @@ public class View implements ModelListener {
 
     private void initPanels() {
         startPanel = new StartPanel(model.getStartModel(), viewListener);
+        System.out.println(startPanel.getActionMap().get("enter_action"));
         gamePanel = new GamePanel(model.getGameModel(),viewListener);
         pausePanel = new PausePanel(model.getPauseModel());
         endPanel = new EndPanel(model.getEndModel(), viewListener);
@@ -54,19 +52,18 @@ public class View implements ModelListener {
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        frame.setUndecorated(true); //TODO wenn undekoriert sieht man keine elemente
+        frame.setUndecorated(true);
         frame.setVisible(true);
         return frame;
     }
 
     private void initStart() {
+        startPanel.getActionMap().get("aa");
         frame.add(startPanel);
         frame.revalidate();
         frame.repaint();
     }
     private void initGamePanel() {
-        //TODO input
-        //initInput(panel);
         frame.add(gamePanel);
         frame.revalidate();
         frame.repaint();
@@ -121,4 +118,11 @@ public class View implements ModelListener {
     public EndPanel getEndPanel() {
         return endPanel;
     }
+
+    public void setStartPanel(StartPanel panel){
+        startPanel = panel;
+    }
+
+
+
 }

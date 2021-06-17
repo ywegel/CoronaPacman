@@ -15,7 +15,7 @@ public class Application {
     }
 
     public Application(){
-        Controller mainController = new Controller(new View(new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel())));
+        Controller mainController = new Controller();
 
 
     }

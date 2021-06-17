@@ -37,10 +37,22 @@ public class GameController {
     private void loop(){
         long deltaTime = 0;
         long startTime = 0;
-        while(isRunning){
+        int fps;
+/*        while(isRunning){
+            long now = System.nanoTime();
             tick();
             render();
-        }
+            if(fps % 20 >= 60){
+
+            }
+            //|---------------------|
+            //|----------|sleep-----|
+            //|---|idle-------------|
+            //|----------------|idle|
+            while (now < 1000000000/60){
+
+            }
+        }*/
     }
 
     private void inputMapping(){

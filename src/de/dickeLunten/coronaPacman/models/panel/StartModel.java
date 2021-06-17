@@ -21,6 +21,4 @@ public class StartModel {
     public Image getBackgroundImg() {
         return backgroundImg;
     }
-
-
 }

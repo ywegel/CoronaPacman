@@ -4,7 +4,9 @@ import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.Model;
 
-public abstract class EntityView implements ModelListener {
+import javax.swing.*;
+
+public abstract class EntityView extends JComponent implements ModelListener {
     @Override
     public void update() {
 

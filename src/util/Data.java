@@ -12,7 +12,4 @@ public class Data {
         URL url = ClassLoader.getSystemClassLoader().getResource(path);
         return new ImageIcon(url).getImage();
     }
-
-    //TODO static extra threaded data loader
-
 }

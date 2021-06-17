@@ -16,9 +16,6 @@ public class GameModel extends PanelModel{
     private Player player;
     private Vac[] vacs;
 
-    private PlayerView playerView;
-    private VacView[] vacViews;
-
     private HashMap<Coord, MapChunkValues> gameMap;
 
 
@@ -33,8 +30,6 @@ public class GameModel extends PanelModel{
         vacs[1] = new Vac(130, 30);
         vacs[2] = new Vac(130, 130);
         vacs[3] = new Vac(30, 130);
-
-        playerView = new PlayerView(player);
     }
 
     public boolean doesCollide() {
