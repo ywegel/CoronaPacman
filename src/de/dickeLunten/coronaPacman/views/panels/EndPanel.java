@@ -23,7 +23,7 @@ public class EndPanel extends PanelView {
         this.viewListener = viewListener;
 
         this.model = model;
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(2,2, 20,20));
 
         scorel = new JLabel("ScoreLabel");
         scorel.setBackground(Color.GRAY);
@@ -39,11 +39,13 @@ public class EndPanel extends PanelView {
 
 
         quitb = new JButton("quit");
-        quitb.setBackground(Color.GRAY);
+        quitb.setBackground(new Color(50,0,0));
+        quitb.setFont(new Font("sans", Font.PLAIN, 70));
+        quitb.setForeground(Color.WHITE);
 
-        this.add(scorel, BorderLayout.PAGE_START);
-        this.add(replayb, BorderLayout.CENTER);
-        this.add(quitb, BorderLayout.PAGE_END);
+        this.add(scorel, 0,0);
+        this.add(replayb, 1,0);
+        this.add(quitb, 1,1);
 
         replayb.addActionListener(new ActionListener() {
             @Override
