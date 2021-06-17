@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/StartModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/StartModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/EndPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/EndPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PausePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PausePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/PausePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/PausePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Coord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Coord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/MapChunkValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/MapChunkValues.java" afterDir="false" />
-    </list>
+    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="" />
     <list id="4830a887-4160-4f76-8720-5202d0bfd274" name="Changes by bundd24" comment="" />
     <list id="edb40b8e-1b60-446e-a180-c5723a8632db" name="Changes by chunky chungus" comment="" />
     <list id="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" name="Changes by dabun" comment="">
@@ -77,94 +56,18 @@
         <range start1="13" end1="15" start2="12" end2="12" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
         <range start1="16" end1="17" start2="13" end2="14" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
         <range start1="18" end1="19" start2="15" end2="16" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
-        <range start1="22" end1="23" start2="19" end2="20" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="24" end1="25" start2="21" end2="22" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
         <range start1="37" end1="39" start2="34" end2="35" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
         <range start1="49" end1="50" start2="45" end2="45" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="53" end1="54" start2="48" end2="49" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
         <range start1="56" end1="56" start2="51" end2="52" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="8" end1="8" start2="9" end2="10" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="11" end1="12" start2="13" end2="14" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="20" end1="20" start2="22" end2="23" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="21" end1="22" start2="24" end2="25" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="26" end1="26" start2="29" end2="30" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="27" end1="28" start2="31" end2="32" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="30" end1="31" start2="34" end2="35" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="34" end1="34" start2="38" end2="51" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/util/Coord.java">
-      <ranges>
-        <range start1="6" end1="7" start2="6" end2="7" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="18" end1="18" start2="18" end2="26" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="20" end1="21" start2="21" end2="21" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="32" end1="32" start2="32" end2="33" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="36" end1="36" start2="37" end2="53" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="69" end1="69" start2="86" end2="87" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="110" end1="111" start2="128" end2="132" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
-        <range start1="6" end1="7" start2="7" end2="8" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="11" end1="13" start2="12" end2="12" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/View.java">
       <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="24" end1="24" start2="25" end2="26" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="26" end1="26" start2="28" end2="29" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
-        <range start1="28" end1="29" start2="31" end2="31" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
-        <range start1="30" end1="30" start2="32" end2="36" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="37" end1="39" start2="43" end2="45" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="40" end1="41" start2="46" end2="47" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
-        <range start1="56" end1="59" start2="62" end2="63" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="63" end1="65" start2="67" end2="68" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="66" end1="68" start2="69" end2="70" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="72" end1="75" start2="74" end2="75" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="91" end1="92" start2="91" end2="91" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="11" end1="15" start2="12" end2="15" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="16" end1="18" start2="16" end2="18" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="19" end1="19" start2="19" end2="20" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="20" end1="21" start2="21" end2="22" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="22" end1="22" start2="23" end2="24" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="25" end1="26" start2="27" end2="28" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="29" end1="29" start2="31" end2="32" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java">
-      <ranges>
-        <range start1="3" end1="8" start2="3" end2="4" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="12" end1="13" start2="8" end2="9" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="14" end1="14" start2="10" end2="11" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="16" end1="16" start2="13" end2="14" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="20" end1="21" start2="18" end2="18" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="23" end1="25" start2="20" end2="22" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="27" end1="30" start2="24" end2="24" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="32" end1="35" start2="26" end2="27" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="37" end1="38" start2="29" end2="39" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="39" end1="39" start2="40" end2="41" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="41" end1="42" start2="43" end2="44" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="45" end1="46" start2="47" end2="48" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="49" end1="50" start2="51" end2="52" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="54" end1="54" start2="56" end2="59" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
+        <range start1="28" end1="28" start2="28" end2="29" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
+        <range start1="30" end1="31" start2="31" end2="31" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
+        <range start1="46" end1="47" start2="46" end2="47" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
+        <range start1="69" end1="71" start2="69" end2="70" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
+        <range start1="92" end1="93" start2="91" end2="91" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java">
@@ -172,7 +75,6 @@
         <range start1="2" end1="2" start2="2" end2="5" changelist="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" />
         <range start1="3" end1="3" start2="6" end2="7" changelist="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" />
         <range start1="7" end1="7" start2="11" end2="12" changelist="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" />
-        <range start1="8" end1="9" start2="13" end2="14" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
         <range start1="14" end1="14" start2="19" end2="21" changelist="73d7cd86-f71e-4a4b-88c4-8eaf95960f7b" />
         <range start1="15" end1="16" start2="22" end2="25" changelist="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" />
         <range start1="18" end1="19" start2="27" end2="28" changelist="21319ecd-1f06-4463-96af-958936f150b8" />
@@ -237,6 +139,14 @@
       <option name="presentableId" value="Default" />
       <updated>1623394640464</updated>
     </task>
+    <task id="LOCAL-00001" summary="17.06.21">
+      <created>1623950985145</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623950985145</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,5 +160,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="17.06.21" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.06.21" />
   </component>
 </project>
