@@ -10,9 +10,4 @@ public abstract class PanelView extends JComponent implements ModelListener {
     public void update() {
 
     }
-
-    @Override
-    public void onNavigate(NavigationPanels destination) {
-
-    }
 }

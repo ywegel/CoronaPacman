@@ -1,5 +1,6 @@
 package de.dickeLunten.coronaPacman.controller;
 
+import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.models.Model;
 import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
@@ -18,7 +19,6 @@ enum InputAction {
 }
 
 public class Controller implements ViewListener {
-
     private ActionUp actionUp;
     private ActionDown actionDown;
     private ActionLeft actionLeft;
@@ -35,6 +35,22 @@ public class Controller implements ViewListener {
         initGameInput(view.getGamePanel());
 
         while (true) {
+/*
+            //move player
+            if(model.getGameModel().doesCollide()){
+                model.getPlayer().move(model.getPlayer().getCurrentDirection());
+            }
+            model.getPlayer().move();
+
+          /  model.getGameModel().move();
+
+            //p
+           if
+            player.doescollid()
+                    player.move(play.currentd)
+
+
+*/
 
         }
     }
@@ -67,6 +83,7 @@ public class Controller implements ViewListener {
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
         panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
     }
+
 
 
     public class ActionUp extends AbstractAction {
@@ -109,5 +126,8 @@ public class Controller implements ViewListener {
         }
     }
 
-
+    @Override
+    public void onNavigate(NavigationPanels destination) {
+        view.onNavigate(destination);
+    }
 }

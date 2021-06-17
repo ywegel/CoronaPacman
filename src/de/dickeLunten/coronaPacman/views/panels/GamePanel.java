@@ -1,6 +1,7 @@
 package de.dickeLunten.coronaPacman.views.panels;
 
 import de.dickeLunten.coronaPacman.ModelListener;
+import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.GameModel;
 
@@ -13,16 +14,18 @@ public class GamePanel extends PanelView {
     private final GameModel model;
     private final ViewListener viewListener;
 
-    public GamePanel(GameModel model, ModelListener modelListener){
-        this.modelListener = modelListener;
+    public GamePanel(GameModel model, ViewListener viewListener){
+        this.viewListener = viewListener;
         this.model = model;
+
         setBackground(Color.PINK);
-        swb = new JButton("hi");
+        JButton swb = new JButton("hi");
         this.add(swb);
+
         swb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modelListener.onNavigate(NavigationPanels.END_PANEL);
+                viewListener.onNavigate(NavigationPanels.END_PANEL);
             }
         });
     }

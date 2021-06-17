@@ -9,9 +9,4 @@ public abstract class EntityView implements ModelListener {
     public void update() {
 
     }
-
-    @Override
-    public void onNavigate(NavigationPanels destination) {
-
-    }
 }

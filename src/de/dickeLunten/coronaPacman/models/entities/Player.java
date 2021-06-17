@@ -6,7 +6,7 @@ import util.Coord;
 public class Player extends EntityModel {
 
     private int length, width, x, y;
-    private ArrayList<ModelListener> modelListeners;
+    private ModelListener modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.UP;
     private Coord cords;
 
@@ -24,9 +24,7 @@ public class Player extends EntityModel {
 
 
     public void update(){
-        for(ModelListener ml:modelListeners){
-            ml.update();
-        }
+        modelListeners.update();
     }
 
     public void move() {
@@ -43,19 +41,22 @@ public class Player extends EntityModel {
         cords.setY(cords.getY() - 5);
         update();
     }
-    public void movedown(){
+    public void moveDown(){
         y = y + 5;
         update();
     }
-    public void moveright(){
+    public void moveRight(){
         x = x + 5;
         update();
     }
-    public void moveleft(){
+    public void moveLeft(){
         x = x - 5;
         update();
     }
 
+    public Coord getCoords(){
+        return cords;
+    }
 
     public int getLength() {
         return length;

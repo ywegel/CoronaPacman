@@ -67,8 +67,7 @@ public class View implements ModelListener {
     private void initGamePanel() {
         //TODO input
         //initInput(panel);
-
-        frame.add(panel);
+        frame.add(gamePanel);
         frame.revalidate();
         frame.repaint();
     }
@@ -90,7 +89,6 @@ public class View implements ModelListener {
 
     }
 
-    @Override
     public void onNavigate(NavigationPanels destination) {
         switch (destination) {
             case START_PANEL -> {

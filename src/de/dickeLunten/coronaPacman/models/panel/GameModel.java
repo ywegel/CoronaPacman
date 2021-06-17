@@ -1,11 +1,13 @@
 package de.dickeLunten.coronaPacman.models.panel;
 
 import de.dickeLunten.coronaPacman.models.entities.Player;
+import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
 import de.dickeLunten.coronaPacman.models.entities.Vac;
 import de.dickeLunten.coronaPacman.views.entities.PlayerView;
 import de.dickeLunten.coronaPacman.views.entities.VacView;
 import util.MapChunkValues;
 import util.Coord;
+import util.PlayerMovableDir;
 
 import java.util.HashMap;
 
@@ -19,18 +21,33 @@ public class GameModel extends PanelModel{
 
     private HashMap<Coord, MapChunkValues> gameMap;
 
-    public GameModel(){
+
+    public GameModel() {
 
         gameMap = new HashMap<>();
 
         player = new Player();
+
         vacs = new Vac[4];
-        vacs[0] = new Vac(30,30);
+        vacs[0] = new Vac(30, 30);
         vacs[1] = new Vac(130, 30);
         vacs[2] = new Vac(130, 130);
-        vacs[3] = new Vac(30,130);
+        vacs[3] = new Vac(30, 130);
 
         playerView = new PlayerView(player);
+    }
+
+    public boolean doesCollide() {
+        return switch (player.getCurrentDirection()) {
+            case UP -> getMovDir().isUp();
+            case DOWN -> getMovDir().isDown();
+            case LEFT -> getMovDir().isLeft();
+            case RIGHT -> getMovDir().isRight();
+        };
+    }
+
+    private PlayerMovableDir getMovDir() {
+        return gameMap.get(player.getCoords()).getPlayerMovableDir();
     }
 
     public Player getPlayer() {
