@@ -26,9 +26,9 @@ public class View implements ModelListener {
     private ViewListener viewListener;
 
     public View(Model model) {
+        this.model = model;
         frame = initFrame();
         init();
-        this.model = model;
     }
 
     public void addListener(ViewListener viewListener){
@@ -44,7 +44,7 @@ public class View implements ModelListener {
         startPanel = new StartPanel(model.getStartModel(), viewListener);
         gamePanel = new GamePanel(model.getGameModel(),viewListener);
         pausePanel = new PausePanel(model.getPauseModel());
-        endPanel = new EndPanel(model.getEndModel());
+        endPanel = new EndPanel(model.getEndModel(), viewListener);
     }
 
     private JFrame initFrame() {

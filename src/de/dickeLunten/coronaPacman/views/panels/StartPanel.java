@@ -4,19 +4,16 @@ import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
-import util.Data;
-
 
 import javax.swing.*;
+import javax.swing.text.IconView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 
-public class StartPanel extends JPanel {
+public class StartPanel extends PanelView {
     private final StartModel model;
-    private final ModelListener modelListener;
+    private final ViewListener viewListener;
 
     private Image pogImg;
 
@@ -35,8 +32,7 @@ public class StartPanel extends JPanel {
         //^das selbe wie da unten
 
         //TODO add image and intitialize all models
-        add(model.getBackgroundImg());
-
+        add(new JLabel(new ImageIcon(model.getBackgroundImg())));
 
         JButton startBtn = new JButton("Press ENTER to start");
         //startBtn.setFont(new Font("Pac-Font", Font.PLAIN, 40));

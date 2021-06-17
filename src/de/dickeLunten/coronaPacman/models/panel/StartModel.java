@@ -3,13 +3,12 @@ package de.dickeLunten.coronaPacman.models.panel;
 import util.Data;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
 public class StartModel {
     private Image backgroundImg;
-
-
 
     public StartModel(){
         backgroundImg = Data.loadImage("vvmap.png").getScaledInstance(200,200,backgroundImg.SCALE_FAST);

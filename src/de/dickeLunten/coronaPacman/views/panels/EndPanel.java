@@ -18,6 +18,8 @@ public class EndPanel extends PanelView {
     private JButton quitb;
     private String score;
 
+    ViewListener viewListener;
+
     public EndPanel(EndModel model, ViewListener viewListener) {
 
         this.viewListener = viewListener;
