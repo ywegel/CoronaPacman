@@ -9,10 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GamePanel extends JPanel {
-    private GameModel model;
-    private JButton swb;
-    private ModelListener modelListener;
+public class GamePanel extends PanelView {
+    private final GameModel model;
+    private final ViewListener viewListener;
 
     public GamePanel(GameModel model, ModelListener modelListener){
         this.modelListener = modelListener;
@@ -27,4 +26,5 @@ public class GamePanel extends JPanel {
             }
         });
     }
+
 }

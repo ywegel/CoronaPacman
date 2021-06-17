@@ -1,33 +1,27 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
 import de.dickeLunten.coronaPacman.ModelListener;
-import de.dickeLunten.coronaPacman.models.Model;
-import de.dickeLunten.coronaPacman.views.entities.EntityView;
-import de.dickeLunten.coronaPacman.views.entities.PlayerView;
-
-import java.util.ArrayList;
+import util.Coord;
 
 public class Player extends EntityModel {
 
     private int length, width, x, y;
     private ArrayList<ModelListener> modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.UP;
+    private Coord cords;
 
     public Player(){
+        cords = new Coord(0,0);
         x = 0;
         y = 0;
         length = 20;
         width = 10;
-        modelListeners = new ArrayList<ModelListener>();
     }
 
-    public void add(ModelListener modelListener){
-        modelListeners.add(modelListener);
+    public void addListener(ModelListener ml) {
+        this.modelListeners = ml;
     }
 
-    public void remove(){
-        modelListeners.remove(0);
-    }
 
     public void update(){
         for(ModelListener ml:modelListeners){
@@ -35,8 +29,18 @@ public class Player extends EntityModel {
         }
     }
 
-    public void moveup(){
+    public void move() {
+            switch(currentDirection){
+                case UP -> moveUp();
+                case DOWN -> moveDown();
+                case RIGHT -> moveRight();
+                case LEFT -> moveLeft();
+            }
+    }
+
+    public void moveUp(){
         y = y - 5;
+        cords.setY(cords.getY() - 5);
         update();
     }
     public void movedown(){

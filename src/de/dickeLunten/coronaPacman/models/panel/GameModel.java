@@ -9,7 +9,7 @@ import util.Coord;
 
 import java.util.HashMap;
 
-public class GameModel {
+public class GameModel extends PanelModel{
 
     private Player player;
     private Vac[] vacs;

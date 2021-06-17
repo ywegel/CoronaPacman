@@ -20,9 +20,9 @@ public class StartPanel extends JPanel {
 
     private Image pogImg;
 
-    public StartPanel(StartModel model, ModelListener modelListener) {
+    public StartPanel(StartModel model, ViewListener viewListener) {
         this.model = model;
-        this.modelListener = modelListener;
+        this.viewListener = viewListener;
         setBackground(Color.GRAY);
         setLayout(new BorderLayout());
 
@@ -51,7 +51,7 @@ public class StartPanel extends JPanel {
         startBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                modelListener.onNavigate(NavigationPanels.GAME_PANEL);
+                viewListener.onNavigate(NavigationPanels.GAME_PANEL);
             }
         });
         add(startBtn, BorderLayout.NORTH);

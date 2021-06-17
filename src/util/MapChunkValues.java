@@ -14,4 +14,44 @@ public class MapChunkValues {
         this.hasCorona = hasCorona;
         this.playerMovableDir = playerMovableDir;
     }
+
+    public boolean isHasDot() {
+        return hasDot;
+    }
+
+    public void setHasDot(boolean hasDot) {
+        this.hasDot = hasDot;
+    }
+
+    public boolean isHasToiletPaper() {
+        return hasToiletPaper;
+    }
+
+    public void setHasToiletPaper(boolean hasToiletPaper) {
+        this.hasToiletPaper = hasToiletPaper;
+    }
+
+    public boolean isHasVac() {
+        return hasVac;
+    }
+
+    public void setHasVac(boolean hasVac) {
+        this.hasVac = hasVac;
+    }
+
+    public boolean isHasCorona() {
+        return hasCorona;
+    }
+
+    public void setHasCorona(boolean hasCorona) {
+        this.hasCorona = hasCorona;
+    }
+
+    public PlayerMovableDir getPlayerMovableDir() {
+        return playerMovableDir;
+    }
+
+    public void setPlayerMovableDir(PlayerMovableDir playerMovableDir) {
+        this.playerMovableDir = playerMovableDir;
+    }
 }

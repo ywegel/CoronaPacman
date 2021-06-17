@@ -30,6 +30,7 @@ public class Controller implements ViewListener {
 
     public Controller(View view) {
         this.view = view;
+        view.addListener(this);
         initStartInput(view.getStartPanel());
         initGameInput(view.getGamePanel());
 

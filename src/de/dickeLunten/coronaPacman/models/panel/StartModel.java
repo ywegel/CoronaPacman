@@ -4,7 +4,7 @@ import util.Data;
 
 import java.awt.*;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class StartModel {
     private Image backgroundImg;

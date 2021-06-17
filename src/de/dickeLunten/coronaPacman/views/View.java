@@ -1,6 +1,7 @@
 package de.dickeLunten.coronaPacman.views;
 
 import de.dickeLunten.coronaPacman.ModelListener;
+import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.Controller;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.Model;
@@ -22,11 +23,16 @@ public class View implements ModelListener {
     private GamePanel gamePanel;
     private PausePanel pausePanel;
     private EndPanel endPanel;
+    private ViewListener viewListener;
 
     public View(Model model) {
         frame = initFrame();
         init();
         this.model = model;
+    }
+
+    public void addListener(ViewListener viewListener){
+        this.viewListener = viewListener;
     }
 
     private void init() {
@@ -35,8 +41,8 @@ public class View implements ModelListener {
     }
 
     private void initPanels() {
-        startPanel = new StartPanel(model.getStartModel(), this);
-        gamePanel = new GamePanel(model.getGameModel(),this);
+        startPanel = new StartPanel(model.getStartModel(), viewListener);
+        gamePanel = new GamePanel(model.getGameModel(),viewListener);
         pausePanel = new PausePanel(model.getPauseModel());
         endPanel = new EndPanel(model.getEndModel());
     }
@@ -54,15 +60,12 @@ public class View implements ModelListener {
     }
 
     private void initStart() {
-        StartPanel panel = new StartPanel(model.getStartModel(), this);
-
-        frame.add(panel);
+        frame.add(startPanel);
         frame.revalidate();
         frame.repaint();
     }
     private void initGamePanel() {
-        GamePanel panel = new GamePanel(model.getGameModel(),this);
-
+        //TODO input
         //initInput(panel);
 
         frame.add(panel);
@@ -70,9 +73,7 @@ public class View implements ModelListener {
         frame.repaint();
     }
     private void initEndPanel() {
-        EndPanel panel = new EndPanel(model.getEndModel());
-
-        frame.add(panel);
+        frame.add(endPanel);
         frame.revalidate();
         frame.repaint();
     }

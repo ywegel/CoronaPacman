@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class EndPanel extends JPanel {
+public class EndPanel extends PanelView {
     private EndModel model;
     private JLabel scorel;
     private JButton replayb;
