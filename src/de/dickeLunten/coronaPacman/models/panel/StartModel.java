@@ -10,8 +10,8 @@ import javax.swing.*;
 public class StartModel {
     private Image backgroundImg;
 
-    public StartModel(){
-        backgroundImg = Data.loadImage("vvmap.png").getScaledInstance(200,200,backgroundImg.SCALE_FAST);
+    public StartModel(){                                        //---Aspect Ratio = 1/1.41402942955---
+        backgroundImg = Data.loadImage("vvmap.png").getScaledInstance(600,848, Image.SCALE_DEFAULT);
     }
 
     public void setBackgroundImg( Image backgroundImg ) {

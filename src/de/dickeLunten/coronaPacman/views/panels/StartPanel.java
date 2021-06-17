@@ -20,7 +20,7 @@ public class StartPanel extends PanelView {
     public StartPanel(StartModel model, ViewListener viewListener) {
         this.model = model;
         this.viewListener = viewListener;
-        setBackground(Color.GRAY);
+        setBackground(Color.DARK_GRAY);
         setLayout(new BorderLayout());
 
         add(new JLabel(new ImageIcon(model.getBackgroundImg())));
@@ -53,3 +53,12 @@ public class StartPanel extends PanelView {
         g.drawImage(pogImg, 0, 0, null);
     }
 }
+
+/*
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(getClass().getResource("/froschi.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+^das selbe wie da unten*/
