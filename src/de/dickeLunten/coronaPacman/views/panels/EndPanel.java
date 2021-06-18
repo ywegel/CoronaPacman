@@ -20,6 +20,7 @@ public class EndPanel extends PanelView {
     private JButton quitb;
     private JButton exitb;
     private int score;
+    private GridBagConstraints constraints = new GridBagConstraints( );
 
     ViewListener viewListener;
 
@@ -32,16 +33,19 @@ public class EndPanel extends PanelView {
 
         this.model = model;
         this.setLayout(new GridBagLayout());
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        scorel = new JLabel("ScoreLabel");
-        scorel.setBackground(Color.GRAY);
+        scorel = new JLabel("ScoreLabel", SwingConstants.CENTER);
+        scorel.setOpaque(true);
+        scorel.setBackground(Color.DARK_GRAY);
         if (model.getScore() == 0) {
-            scorel.setText("Du bist infiziert und hast verloren >_<" + '\n' + "Wie soll es weiter gehen?");
+            scorel.setText("Du bist infiziert und hast verloren");
         }
         else{
             scorel.setText("Du hast gewonnen und " + score + " Punkte erreicht" + '\n' + "Wie soll es weiter gehen?");
         }
-        scorel.setText("Du hast " + model.getScore() + " erreicht");
         scorel.setFont(new Font("sans", Font.PLAIN, 70));
         scorel.setForeground(Color.WHITE);
 
@@ -50,22 +54,29 @@ public class EndPanel extends PanelView {
         replayb.setBackground(new Color(50, 80, 0));
         replayb.setFont(new Font("sans", Font.PLAIN, 70));
         replayb.setForeground(Color.WHITE);
+        replayb.setBorderPainted(false);
 
 
         quitb = new JButton("quit");
         quitb.setBackground(new Color(50, 0, 0));
         quitb.setFont(new Font("sans", Font.PLAIN, 70));
         quitb.setForeground(Color.WHITE);
+        quitb.setBorderPainted(false);
+
 
         exitb = new JButton("exit");
         exitb.setBackground(new Color(50,50,50));
         exitb.setFont(new Font("sans", Font.PLAIN, 70));
         exitb.setForeground(Color.WHITE);
+        exitb.setBorderPainted(false);
 
-        this.add(scorel);
-        this.add(replayb);
-        this.add(quitb);
-        this.add(exitb);
+
+        constraints.gridwidth = 3; // span three columns
+        this.addGB(scorel, 0,0);
+        constraints.gridwidth = 1; // set it back
+        this.addGB(replayb, 0, 2);
+        this.addGB(quitb, 1, 2);
+        this.addGB(exitb, 2, 2);
 
 
         replayb.addActionListener(new ActionListener() {
@@ -91,6 +102,13 @@ public class EndPanel extends PanelView {
             }
         });
 
+    }
+
+    //Methode für GridBagLayout
+    void addGB(Component component, int x, int y) {
+        constraints.gridx = x;
+        constraints.gridy = y;
+        add(component, constraints);
     }
 
 
