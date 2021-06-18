@@ -12,7 +12,7 @@ import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import util.Dimensions;
+import util.Bundle;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,21 +40,27 @@ public class Controller implements ViewListener {
     public Controller() {
         this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel());
         this.view = new View(model, this);
-        //initStartInput(view.getStartPanel());
-        view.setStartPanel(initStartInput(view.getStartPanel()));
+        initStartInput(view.getStartPanel());
         initGameInput(view.getGamePanel());
 
         while (gameIsRunning){
-
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    private void tick() {
+        model.getPlayer().move();
+    }
+
     @Contract("_ -> param1")
-    private StartPanel initStartInput(@NotNull StartPanel panel) {
+    private void initStartInput(@NotNull StartPanel panel) {
         actionEnter = new ActionEnter();
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter_action");
         panel.getActionMap().put("enter_action", actionEnter);
-        return panel;
     }
 
     private void initGameInput(GamePanel panel) {
@@ -121,7 +127,24 @@ public class Controller implements ViewListener {
     }
 
     @Override
-    public void onNavigate(NavigationPanels destination, int... options) {
-        view.onNavigate(destination, options);
+    public void onNavigate(NavigationPanels destination, Bundle bundle) {
+        view.onNavigate(destination, bundle);
+        if(destination == NavigationPanels.GAME_PANEL) {
+            gameIsRunning = true;
+        }
+        switch (destination) {
+            case START_PANEL -> {
+                gameIsRunning = false;
+            }
+            case GAME_PANEL -> {
+                gameIsRunning = true;
+            }
+            case END_PANEL -> {
+                gameIsRunning = false;
+            }
+        }
+        //TODO add bundle and put options in there
+
+        //TODO check if bundle travels to gameoanel, if true, then isRunning = true;
     }
 }

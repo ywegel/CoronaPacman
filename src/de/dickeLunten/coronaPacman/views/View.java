@@ -12,6 +12,7 @@ import de.dickeLunten.coronaPacman.views.panels.EndPanel;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.PausePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
+import util.Bundle;
 
 import javax.swing.*;
 
@@ -67,8 +68,8 @@ public class View implements ModelListener {
         frame.revalidate();
         frame.repaint();
     }
-    private void initEndPanel(int score) {
-        endPanel = new EndPanel(model.getEndModel(), viewListener, score);
+    private void initEndPanel(Bundle bundle) {
+        endPanel = new EndPanel(model.getEndModel(), viewListener, bundle);
         frame.add(endPanel);
         frame.revalidate();
         frame.repaint();
@@ -86,7 +87,7 @@ public class View implements ModelListener {
 
     }
 
-    public void onNavigate(NavigationPanels destination, int... options) {
+    public void onNavigate(NavigationPanels destination, Bundle bundle) {
         switch (destination) {
             case START_PANEL -> {
                 resetFrame();
@@ -98,9 +99,13 @@ public class View implements ModelListener {
             }
             case END_PANEL -> {
                 resetFrame();
-                initEndPanel(options[0]);
+                initEndPanel(bundle);
             }
         }
+    }
+
+    public void onNavigate(NavigationPanels destination) {
+        onNavigate(destination, null);
     }
 
     public StartPanel getStartPanel() {

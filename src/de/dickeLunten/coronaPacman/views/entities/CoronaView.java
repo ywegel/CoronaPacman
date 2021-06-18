@@ -9,4 +9,9 @@ public class CoronaView extends EntityView {
     public CoronaView(Corona model){
         this.model = model;
     }
+
+    @Override
+    public void update() {
+
+    }
 }

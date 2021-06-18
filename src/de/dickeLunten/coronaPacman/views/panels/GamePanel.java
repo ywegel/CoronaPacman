@@ -5,16 +5,21 @@ import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.views.entities.PlayerView;
 import de.dickeLunten.coronaPacman.views.entities.VacView;
-import util.Dimensions;
+import util.Bundle;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
 public class GamePanel extends PanelView {
+    public static final String KEY_SCORE = "game_panel";
+
     private final GameModel model;
     private final ViewListener viewListener;
+
 
     private PlayerView playerView;
     private VacView[] vacViews;
@@ -25,21 +30,18 @@ public class GamePanel extends PanelView {
 
         playerView = new PlayerView(model.getPlayer());
 
-        //TODO add HIM
-
         setBackground(Color.PINK);
         JButton swb = new JButton("hi");
         this.add(swb);
 
         this.add(playerView);
 
-        playerView.revalidate();
-        playerView.repaint(new Rectangle(Dimensions.getScreenResolution().getKey(), Dimensions.getScreenResolution().getValue()));
-
         swb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.END_PANEL, 100);
+                Bundle gameBundle = new Bundle();
+                gameBundle.put("score", model.getScore());
+                viewListener.onNavigate(NavigationPanels.END_PANEL, gameBundle);
             }
         });
     }

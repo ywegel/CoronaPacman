@@ -5,7 +5,7 @@ import util.Coord;
 
 public class Player extends EntityModel {
 
-    private int length, width, x, y;
+    private int height, width, x, y;
     private ModelListener modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.UP;
     private Coord cords;
@@ -14,8 +14,10 @@ public class Player extends EntityModel {
         cords = new Coord(0,0);
         x = 0;
         y = 0;
-        length = 20;
-        width = 10;
+/*        width = 10;
+        height = 20;*/
+        width = 100;
+        height = 200;
     }
 
     public void addListener(ModelListener ml) {
@@ -61,8 +63,8 @@ public class Player extends EntityModel {
         return cords;
     }
 
-    public int getLength() {
-        return length;
+    public int getHeight() {
+        return height;
     }
 
     public int getWidth() {
@@ -77,8 +79,8 @@ public class Player extends EntityModel {
         return y;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public void setWidth(int width) {

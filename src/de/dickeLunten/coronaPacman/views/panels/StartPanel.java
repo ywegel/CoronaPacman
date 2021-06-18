@@ -4,6 +4,7 @@ import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
+import util.Bundle;
 
 import javax.swing.*;
 import javax.swing.text.IconView;
@@ -37,7 +38,7 @@ public class StartPanel extends PanelView {
         startBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.GAME_PANEL);
+                viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
             }
         });
 

@@ -9,4 +9,9 @@ public class TPaperView extends EntityView {
     public TPaperView(TPaper model){
         this.model = model;
     }
+
+    @Override
+    public void update() {
+
+    }
 }

@@ -1,10 +1,8 @@
 package de.dickeLunten.coronaPacman.views.entities;
 
 import de.dickeLunten.coronaPacman.models.entities.Player;
-import de.dickeLunten.coronaPacman.views.View;
 import util.Data;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class PlayerView extends EntityView {
@@ -13,16 +11,34 @@ public class PlayerView extends EntityView {
 
     public PlayerView(Player model){
         this.model = model;
+        this.model.addListener(this);
+
+//        setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
+        setPreferredSize(new Dimension(800, 800));
+
         img = Data.loadImage("him.jpeg");
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(img, 100, 100, 500, 500, this);
+    protected void paintComponent(Graphics g) {
+        System.out.println("paint comp");
+        Dimension size = getSize();
+        System.out.println(size.height + " + " + size.width);
+
+        super.paintComponent(g);
+        g.drawImage(img, model.getX(), model.getY(), 500, 500, this);
+
+/*        size = getSize();
+        System.out.println(size.height + " + " + size.width);
+
+        g.setColor(Color.RED);
+        System.out.println(size.height + " + " + size.width);
+        g.fillRect(0, 0, size.width, size.height);*/
     }
 
-    public void update(){}
+    public void update(){
+        repaint();
+    }
 
 
 }

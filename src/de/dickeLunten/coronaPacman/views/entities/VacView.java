@@ -9,4 +9,9 @@ public class VacView extends EntityView {
     public VacView(Vac model){
         this.model = model;
     }
+
+    @Override
+    public void update() {
+
+    }
 }

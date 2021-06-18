@@ -6,6 +6,7 @@ import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.EndModel;
 import de.dickeLunten.coronaPacman.views.View;
 import org.jetbrains.annotations.NotNull;
+import util.Bundle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,9 +23,9 @@ public class EndPanel extends PanelView {
 
     ViewListener viewListener;
 
-    public EndPanel(EndModel model, ViewListener viewListener, @NotNull int highscore) {
+    public EndPanel(EndModel model, ViewListener viewListener, Bundle bundle) {
 
-        this.score = highscore;
+        this.score = bundle.get("score");
         System.out.println("Score:" + score);
 
         this.viewListener = viewListener;
@@ -70,7 +71,7 @@ public class EndPanel extends PanelView {
         replayb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.GAME_PANEL);
+                viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
 
             }
         });
@@ -79,7 +80,7 @@ public class EndPanel extends PanelView {
         quitb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.START_PANEL);
+                viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
             }
         });
 

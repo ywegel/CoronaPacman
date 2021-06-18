@@ -3,9 +3,6 @@ package de.dickeLunten.coronaPacman.models.panel;
 import util.Data;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import javax.swing.*;
 
 public class StartModel {
     private Image backgroundImg;

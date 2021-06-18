@@ -1,10 +1,7 @@
 package de.dickeLunten.coronaPacman.models.panel;
 
 import de.dickeLunten.coronaPacman.models.entities.Player;
-import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
 import de.dickeLunten.coronaPacman.models.entities.Vac;
-import de.dickeLunten.coronaPacman.views.entities.PlayerView;
-import de.dickeLunten.coronaPacman.views.entities.VacView;
 import util.MapChunkValues;
 import util.Coord;
 import util.PlayerMovableDir;
@@ -12,16 +9,16 @@ import util.PlayerMovableDir;
 import java.util.HashMap;
 
 public class GameModel extends PanelModel{
-
     private Player player;
     private Vac[] vacs;
 
     private HashMap<Coord, MapChunkValues> gameMap;
 
+    private int score;
 
     public GameModel() {
-
         gameMap = new HashMap<>();
+        score = 0;
 
         player = new Player();
 
@@ -76,7 +73,9 @@ public class GameModel extends PanelModel{
         this.player = player;
     }
 
-
+    public int getScore(){
+        return score;
+    }
 
 }
 
