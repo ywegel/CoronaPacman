@@ -35,7 +35,7 @@ public class GamePanel extends PanelView {
         swb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.END_PANEL);
+                viewListener.onNavigate(NavigationPanels.END_PANEL, 100);
             }
         });
     }

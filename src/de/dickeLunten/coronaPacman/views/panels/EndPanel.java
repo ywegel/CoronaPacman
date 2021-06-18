@@ -17,7 +17,7 @@ public class EndPanel extends PanelView {
     private JButton replayb;
     private JButton quitb;
     private JButton exitb;
-    private String score;
+    private int score;
 
     ViewListener viewListener;
 
@@ -26,12 +26,15 @@ public class EndPanel extends PanelView {
         this.viewListener = viewListener;
 
         this.model = model;
-        this.setLayout(new GridLayout(2, 3, 20, 20));
+        this.setLayout(new GridBagLayout());
 
         scorel = new JLabel("ScoreLabel");
         scorel.setBackground(Color.GRAY);
         if (model.getScore() == 0) {
             scorel.setText("Du bist infiziert und hast verloren >_<" + '\n' + "Wie soll es weiter gehen?");
+        }
+        else{
+            scorel.setText("Du hast gewonnen und " + score + " Punkte erreicht" + '\n' + "Wie soll es weiter gehen?");
         }
         scorel.setText("Du hast " + model.getScore() + " erreicht");
         scorel.setFont(new Font("sans", Font.PLAIN, 70));
@@ -50,14 +53,14 @@ public class EndPanel extends PanelView {
         quitb.setForeground(Color.WHITE);
 
         exitb = new JButton("exit");
-        exitb.setBackground(Color.DARK_GRAY);
+        exitb.setBackground(new Color(50,50,50));
         exitb.setFont(new Font("sans", Font.PLAIN, 70));
         exitb.setForeground(Color.WHITE);
 
-        this.add(replayb, 0, 0);
-        this.add(quitb, 0, 1);
-        this.add(exitb, 0, 1);
-        this.add(scorel, 1, 1);
+        this.add(scorel);
+        this.add(replayb);
+        this.add(quitb);
+        this.add(exitb);
 
 
         replayb.addActionListener(new ActionListener() {
@@ -84,5 +87,7 @@ public class EndPanel extends PanelView {
         });
 
     }
+
+
 
 }
