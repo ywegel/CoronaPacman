@@ -42,7 +42,6 @@ public class View implements ModelListener {
         System.out.println(startPanel.getActionMap().get("enter_action"));
         gamePanel = new GamePanel(model.getGameModel(),viewListener);
         pausePanel = new PausePanel(model.getPauseModel());
-        endPanel = new EndPanel(model.getEndModel(), viewListener);
     }
 
     private JFrame initFrame() {
@@ -68,7 +67,8 @@ public class View implements ModelListener {
         frame.revalidate();
         frame.repaint();
     }
-    private void initEndPanel() {
+    private void initEndPanel(int score) {
+        endPanel = new EndPanel(model.getEndModel(), viewListener, score);
         frame.add(endPanel);
         frame.revalidate();
         frame.repaint();
@@ -86,7 +86,7 @@ public class View implements ModelListener {
 
     }
 
-    public void onNavigate(NavigationPanels destination) {
+    public void onNavigate(NavigationPanels destination, int... options) {
         switch (destination) {
             case START_PANEL -> {
                 resetFrame();
@@ -98,7 +98,7 @@ public class View implements ModelListener {
             }
             case END_PANEL -> {
                 resetFrame();
-                initEndPanel();
+                initEndPanel(options[0]);
             }
         }
     }

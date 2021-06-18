@@ -121,7 +121,7 @@ public class Controller implements ViewListener {
     }
 
     @Override
-    public void onNavigate(NavigationPanels destination) {
-        view.onNavigate(destination);
+    public void onNavigate(NavigationPanels destination, int... options) {
+        view.onNavigate(destination, options);
     }
 }

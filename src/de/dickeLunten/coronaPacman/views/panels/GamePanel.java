@@ -5,6 +5,7 @@ import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.views.entities.PlayerView;
 import de.dickeLunten.coronaPacman.views.entities.VacView;
+import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +32,9 @@ public class GamePanel extends PanelView {
         this.add(swb);
 
         this.add(playerView);
+
+        playerView.revalidate();
+        playerView.repaint(new Rectangle(Dimensions.getScreenResolution().getKey(), Dimensions.getScreenResolution().getValue()));
 
         swb.addActionListener(new ActionListener() {
             @Override

@@ -5,6 +5,7 @@ import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.EndModel;
 import de.dickeLunten.coronaPacman.views.View;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,10 @@ public class EndPanel extends PanelView {
 
     ViewListener viewListener;
 
-    public EndPanel(EndModel model, ViewListener viewListener) {
+    public EndPanel(EndModel model, ViewListener viewListener, @NotNull int highscore) {
+
+        this.score = highscore;
+        System.out.println("Score:" + score);
 
         this.viewListener = viewListener;
 
