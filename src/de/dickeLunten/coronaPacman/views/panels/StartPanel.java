@@ -45,6 +45,9 @@ public class StartPanel extends PanelView {
         exitBtn.setFont(new Font("sans", Font.PLAIN, 70));
         exitBtn.setBackground(Color.DARK_GRAY);
         exitBtn.setForeground(Color.WHITE);
+        exitBtn.setOpaque(false);
+        exitBtn.setContentAreaFilled(false);
+        exitBtn.setBorderPainted(false);
 
         exitBtn.addActionListener(new ActionListener() {
             @Override
