@@ -24,19 +24,19 @@ public class GamePanel extends PanelView {
 
         playerView = new PlayerView(model.getPlayer());
 
-        //TODO ad HIM
+        //TODO add HIM
 
- /*       setBackground(Color.PINK);
+        setBackground(Color.PINK);
         JButton swb = new JButton("hi");
-        this.add(swb);*/
+        this.add(swb);
 
         this.add(playerView);
 
-/*        swb.addActionListener(new ActionListener() {
+        swb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.END_PANEL);
             }
-        });*/
+        });
     }
 }

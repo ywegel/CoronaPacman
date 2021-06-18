@@ -43,14 +43,17 @@ public class Player extends EntityModel {
     }
     public void moveDown(){
         y = y + 5;
+        cords.setY(cords.getY() + 5);
         update();
     }
     public void moveRight(){
         x = x + 5;
+        cords.setX(cords.getX() + 5);
         update();
     }
     public void moveLeft(){
         x = x - 5;
+        cords.setX(cords.getX() - 5);
         update();
     }
 

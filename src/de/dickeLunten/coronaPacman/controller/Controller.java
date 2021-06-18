@@ -10,6 +10,7 @@ import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import de.dickeLunten.coronaPacman.views.View;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import util.Dimensions;
 
@@ -48,6 +49,7 @@ public class Controller implements ViewListener {
         }
     }
 
+    @Contract("_ -> param1")
     private StartPanel initStartInput(@NotNull StartPanel panel) {
         actionEnter = new ActionEnter();
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter_action");

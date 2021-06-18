@@ -41,6 +41,29 @@ public class GameModel extends PanelModel{
         };
     }
 
+
+    public void gameTick(){
+        if(doesCollide()){
+            player.move();
+        }
+        if(gameMap.get(player.getCoords()).isHasCorona()){
+
+        }
+        else if(gameMap.get(player.getCoords()).isHasDot()){
+
+        }
+        else if(gameMap.get(player.getCoords()).isHasToiletPaper()){
+
+        }
+        else if(gameMap.get(player.getCoords()).isHasVac()){
+
+        }
+    }
+//    TODO implement endGame method, soll game beenden und Highscore übergeben
+    public int endGame(){
+        return 0;
+    }
+
     private PlayerMovableDir getMovDir() {
         return gameMap.get(player.getCoords()).getPlayerMovableDir();
     }
@@ -52,4 +75,8 @@ public class GameModel extends PanelModel{
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+
+
 }
+
