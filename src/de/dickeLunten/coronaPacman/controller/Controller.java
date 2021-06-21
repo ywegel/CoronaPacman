@@ -42,18 +42,43 @@ public class Controller implements ViewListener {
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
         initGameInput(view.getGamePanel());
+    }
 
+    private void loop() {
+        long lastLoopTime = 0;
+        long lastFPSTime = 0;
+        int fps = 0;
+
+        //TODO brokey :(
         while (gameIsRunning){
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            long timeNow = System.nanoTime();
+            long updateLength = timeNow - lastLoopTime;
+
+            lastFPSTime += updateLength;
+            fps++;
+
+            if(lastFPSTime >= 1000000000) {
+                System.out.println("fps: " + fps);
+                lastFPSTime = 0;
+                fps = 0;
             }
+
+            while () {
+
+            }
+
+            tick();
+            render();
         }
     }
 
     private void tick() {
         model.getPlayer().move();
+        System.out.println(model.getPlayer().getX());
+    }
+
+    private void render() {
+        model.getPlayer().update();
     }
 
     @Contract("_ -> param1")
@@ -99,6 +124,7 @@ public class Controller implements ViewListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("down");
             model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
+            model.getPlayer().moveDown();
         }
     }
 
@@ -135,12 +161,16 @@ public class Controller implements ViewListener {
         switch (destination) {
             case START_PANEL -> {
                 gameIsRunning = false;
+                break;
             }
             case GAME_PANEL -> {
                 gameIsRunning = true;
+                loop();
+                break;
             }
             case END_PANEL -> {
                 gameIsRunning = false;
+                break;
             }
         }
         //TODO add bundle and put options in there
