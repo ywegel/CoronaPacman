@@ -3,10 +3,7 @@ package de.dickeLunten.coronaPacman.controller;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.models.Model;
 import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
-import de.dickeLunten.coronaPacman.models.panel.EndModel;
-import de.dickeLunten.coronaPacman.models.panel.GameModel;
-import de.dickeLunten.coronaPacman.models.panel.PauseModel;
-import de.dickeLunten.coronaPacman.models.panel.StartModel;
+import de.dickeLunten.coronaPacman.models.panel.*;
 import de.dickeLunten.coronaPacman.views.View;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
@@ -35,7 +32,7 @@ public class Controller implements ViewListener {
     private View view;
 
     public Controller() {
-        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel());
+        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
         initGameInput(view.getGamePanel());
@@ -183,6 +180,10 @@ public class Controller implements ViewListener {
                 break;
             }
             case END_PANEL -> {
+                gameIsRunning = false;
+                break;
+            }
+            case CREDITS_PANEL -> {
                 gameIsRunning = false;
                 break;
             }

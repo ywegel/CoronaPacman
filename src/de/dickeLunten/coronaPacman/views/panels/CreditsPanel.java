@@ -1,11 +1,14 @@
 package de.dickeLunten.coronaPacman.views.panels;
 
 import de.dickeLunten.coronaPacman.ViewListener;
+import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.CreditsModel;
 import util.Bundle;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CreditsPanel extends PanelView{
 
@@ -19,22 +22,38 @@ public class CreditsPanel extends PanelView{
 
 
 
-    public CreditsPanel(CreditsModel model, ViewListener viewListener, Bundle bundle){
+    public CreditsPanel(CreditsModel model, ViewListener viewListener){
 
         this.viewListener = viewListener;
         this.setLayout(new GridBagLayout());
-        constraints.gridwidth = 1;
+        this.setBackground(Color.DARK_GRAY);
+
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
         backb = new JButton("back");
         backb.setBackground(new Color(50,50,50));
         backb.setForeground(Color.WHITE);
         backb.setFont(new Font("sans", Font.PLAIN, 70));
         backb.setBorderPainted(false);
+        backb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
+            }
+        });
+
+        creditsl = new JLabel("<html>Created by<br />Yannick Wegel, Colin Clauß,<br />Jake Finch, Felix Rosner, Daniel Bund</html>", SwingConstants.CENTER);
+        //creditsl.setForeground(Color.WHITE);
+        creditsl.setFont(new Font("sans", Font.PLAIN, 70));
+        creditsl.setForeground(Color.WHITE);
 
 
-        creditsl = new JLabel("");
+
 
         addGB(backb, 0, 1);
+        addGB(creditsl, 0, 0);
 
 
 

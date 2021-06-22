@@ -8,10 +8,7 @@ import de.dickeLunten.coronaPacman.models.Model;
 import de.dickeLunten.coronaPacman.models.panel.EndModel;
 import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
-import de.dickeLunten.coronaPacman.views.panels.EndPanel;
-import de.dickeLunten.coronaPacman.views.panels.GamePanel;
-import de.dickeLunten.coronaPacman.views.panels.PausePanel;
-import de.dickeLunten.coronaPacman.views.panels.StartPanel;
+import de.dickeLunten.coronaPacman.views.panels.*;
 import util.Bundle;
 
 import javax.swing.*;
@@ -24,6 +21,7 @@ public class View implements ModelListener {
     private GamePanel gamePanel;
     private PausePanel pausePanel;
     private EndPanel endPanel;
+    private CreditsPanel creditsPanel;
     private ViewListener viewListener;
 
     public View(Model model, ViewListener viewListener) {
@@ -63,6 +61,14 @@ public class View implements ModelListener {
         frame.revalidate();
         frame.repaint();
     }
+
+    private void initCreditsPanel(){
+        creditsPanel = new CreditsPanel(model.getCreditsModel(), viewListener);
+        frame.add(creditsPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
     private void initGamePanel() {
         frame.add(gamePanel);
         frame.revalidate();
@@ -101,6 +107,10 @@ public class View implements ModelListener {
                 resetFrame();
                 initEndPanel(bundle);
             }
+            case CREDITS_PANEL -> {
+                resetFrame();
+                initCreditsPanel();
+            }
         }
     }
 
@@ -123,6 +133,11 @@ public class View implements ModelListener {
     public EndPanel getEndPanel() {
         return endPanel;
     }
+
+    public CreditsPanel getCreditsPanel() {
+        return creditsPanel;
+    }
+
 
     public void setStartPanel(StartPanel panel){
         startPanel = panel;

@@ -32,20 +32,21 @@ public class EndPanel extends PanelView {
 
         this.model = model;
         this.setLayout(new GridBagLayout());
-        constraints.gridwidth = 1;
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
 
         scorel = new JLabel("ScoreLabel", SwingConstants.CENTER);
         scorel.setOpaque(true);
         scorel.setBackground(Color.DARK_GRAY);
-        if (model.getScore() == 0) {
-            scorel.setText("Du bist infiziert und hast verloren");
+        if (score == 0) {
+            scorel.setText("Du bist infiziert und hast verloren  >_<");
         }
         else{
-            scorel.setText("Du hast gewonnen und " + score + " Punkte erreicht" + '\n' + "Wie soll es weiter gehen?");
+            scorel.setText("Du hast gewonnen und " + score + " Punkte erreicht");
         }
         scorel.setFont(new Font("sans", Font.PLAIN, 70));
         scorel.setForeground(Color.WHITE);
-
 
         replayb = new JButton("replay");
         replayb.setBackground(new Color(50, 80, 0));
@@ -54,22 +55,22 @@ public class EndPanel extends PanelView {
         replayb.setBorderPainted(false);
 
 
-        quitb = new JButton("quit");
+        quitb = new JButton("  quit  ");
         quitb.setBackground(new Color(50, 0, 0));
         quitb.setFont(new Font("sans", Font.PLAIN, 70));
         quitb.setForeground(Color.WHITE);
         quitb.setBorderPainted(false);
 
 
-        exitb = new JButton("exit");
-        exitb.setBackground(new Color(50,50,50));
+        exitb = new JButton("  exit  ");
+        exitb.setBackground(new Color(10,10,10));
         exitb.setFont(new Font("sans", Font.PLAIN, 70));
         exitb.setForeground(Color.WHITE);
         exitb.setBorderPainted(false);
 
 
         constraints.gridwidth = 3; // span three columns
-        this.addGB(scorel, 0,0);
+        this.addGB(scorel, 0, 0);
         constraints.gridwidth = 1; // set it back
         this.addGB(replayb, 0, 1);
         this.addGB(quitb, 1, 1);
