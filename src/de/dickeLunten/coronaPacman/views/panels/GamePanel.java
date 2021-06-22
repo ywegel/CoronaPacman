@@ -6,13 +6,12 @@ import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.views.entities.PlayerView;
 import de.dickeLunten.coronaPacman.views.entities.VacView;
 import util.Bundle;
+import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 
 public class GamePanel extends PanelView {
     public static final String KEY_SCORE = "game_panel";
@@ -39,10 +38,17 @@ public class GamePanel extends PanelView {
         swb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Bundle gameBundle = new Bundle();
-                gameBundle.put("score", model.getScore());
-                viewListener.onNavigate(NavigationPanels.END_PANEL, gameBundle);
+                viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
             }
         });
+    }
+
+    public void finishGame(){
+        viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
+    }
+
+    @Override
+    public void update() {
+        paintImmediately(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
     }
 }

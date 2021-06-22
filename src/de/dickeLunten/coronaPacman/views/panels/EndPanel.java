@@ -25,8 +25,7 @@ public class EndPanel extends PanelView {
     ViewListener viewListener;
 
     public EndPanel(EndModel model, ViewListener viewListener, Bundle bundle) {
-
-        this.score = bundle.get("score");
+        this.score = bundle.get(GamePanel.KEY_SCORE);
         System.out.println("Score:" + score);
 
         this.viewListener = viewListener;
@@ -83,7 +82,6 @@ public class EndPanel extends PanelView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
-
             }
         });
 
@@ -111,6 +109,8 @@ public class EndPanel extends PanelView {
         add(component, constraints);
     }
 
+    @Override
+    public void update() {
 
-
+    }
 }

@@ -28,10 +28,7 @@ enum InputAction {
 public class Controller implements ViewListener {
     private volatile boolean gameIsRunning = false;
 
-    private ActionUp actionUp;
-    private ActionDown actionDown;
-    private ActionLeft actionLeft;
-    private ActionRight actionRight;
+
     private ActionEnter actionEnter;
 
     private Model model;
@@ -48,7 +45,7 @@ public class Controller implements ViewListener {
         long lastLoopTime = 0;
         long lastFPSTime = 0;
         int fps = 0;
-
+        int i = 0;
         //TODO brokey :(
         while (gameIsRunning){
             long timeNow = System.nanoTime();
@@ -79,6 +76,8 @@ public class Controller implements ViewListener {
 
     private void render() {
         model.getPlayer().update();
+        view.getGamePanel().update();
+
     }
 
     @Contract("_ -> param1")
@@ -89,26 +88,34 @@ public class Controller implements ViewListener {
     }
 
     private void initGameInput(GamePanel panel) {
-        actionUp = new ActionUp();
-        actionDown = new ActionDown();
-        actionLeft = new ActionLeft();
-        actionRight = new ActionRight();
+        new Thread(() -> {
+            ActionUp actionUp;
+            ActionDown actionDown;
+            ActionLeft actionLeft;
+            ActionRight actionRight;
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
-        panel.getActionMap().put(InputAction.ACTION_UP, actionUp);
+            actionUp = new ActionUp();
+            actionDown = new ActionDown();
+            actionLeft = new ActionLeft();
+            actionRight = new ActionRight();
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), InputAction.ACTION_DOWN);
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), InputAction.ACTION_DOWN);
-        panel.getActionMap().put(InputAction.ACTION_DOWN, actionDown);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
+            panel.getActionMap().put(InputAction.ACTION_UP, actionUp);
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), InputAction.ACTION_LEFT);
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), InputAction.ACTION_LEFT);
-        panel.getActionMap().put(InputAction.ACTION_LEFT, actionLeft);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), InputAction.ACTION_DOWN);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), InputAction.ACTION_DOWN);
+            panel.getActionMap().put(InputAction.ACTION_DOWN, actionDown);
 
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), InputAction.ACTION_RIGHT);
-        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
-        panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), InputAction.ACTION_LEFT);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), InputAction.ACTION_LEFT);
+            panel.getActionMap().put(InputAction.ACTION_LEFT, actionLeft);
+
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), InputAction.ACTION_RIGHT);
+            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
+            panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
+
+        }).start();
     }
 
     public class ActionUp extends AbstractAction {
@@ -155,9 +162,6 @@ public class Controller implements ViewListener {
     @Override
     public void onNavigate(NavigationPanels destination, Bundle bundle) {
         view.onNavigate(destination, bundle);
-        if(destination == NavigationPanels.GAME_PANEL) {
-            gameIsRunning = true;
-        }
         switch (destination) {
             case START_PANEL -> {
                 gameIsRunning = false;

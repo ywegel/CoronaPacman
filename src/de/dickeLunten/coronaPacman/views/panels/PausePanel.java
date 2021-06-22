@@ -11,4 +11,8 @@ public class PausePanel extends PanelView {
         this.model = model;
     }
 
+    @Override
+    public void update() {
+
+    }
 }

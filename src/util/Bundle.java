@@ -21,8 +21,9 @@ public class Bundle {
         return new Bundle(true);
     }
 
-    public void put(String key, Object obj) {
+    public Bundle put(String key, Object obj) {
         map.put(key, obj);
+        return this;
     }
 
     public <T> T get(String key) {

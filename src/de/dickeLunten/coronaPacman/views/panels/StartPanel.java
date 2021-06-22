@@ -16,8 +16,6 @@ public class StartPanel extends PanelView {
     private StartModel model;
     private ViewListener viewListener;
 
-    private Image pogImg;
-
     public StartPanel(StartModel model, ViewListener viewListener) {
         this.model = model;
         this.viewListener = viewListener;
@@ -65,10 +63,15 @@ public class StartPanel extends PanelView {
         //add(highscoreLabel, BorderLayout.NORTH);
     }
 
-    @Override
+/*    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(pogImg, 0, 0, null);
+        g.drawImage(model.getBackgroundImg(), 0, 0, null);
+    }*/
+
+    @Override
+    public void update() {
+
     }
 }
 
