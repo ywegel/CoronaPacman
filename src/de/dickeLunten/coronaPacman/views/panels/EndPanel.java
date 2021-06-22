@@ -20,7 +20,7 @@ public class EndPanel extends PanelView {
     private JButton quitb;
     private JButton exitb;
     private int score;
-    private GridBagConstraints constraints = new GridBagConstraints( );
+    private GridBagConstraints constraints = new GridBagConstraints();
 
     ViewListener viewListener;
 
@@ -32,9 +32,7 @@ public class EndPanel extends PanelView {
 
         this.model = model;
         this.setLayout(new GridBagLayout());
-        constraints.weightx = 1.0;
-        constraints.weighty = 1.0;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridwidth = 1;
 
         scorel = new JLabel("ScoreLabel", SwingConstants.CENTER);
         scorel.setOpaque(true);
@@ -73,9 +71,9 @@ public class EndPanel extends PanelView {
         constraints.gridwidth = 3; // span three columns
         this.addGB(scorel, 0,0);
         constraints.gridwidth = 1; // set it back
-        this.addGB(replayb, 0, 2);
-        this.addGB(quitb, 1, 2);
-        this.addGB(exitb, 2, 2);
+        this.addGB(replayb, 0, 1);
+        this.addGB(quitb, 1, 1);
+        this.addGB(exitb, 2, 1);
 
 
         replayb.addActionListener(new ActionListener() {
