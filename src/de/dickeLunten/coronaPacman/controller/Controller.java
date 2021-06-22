@@ -48,6 +48,7 @@ public class Controller implements ViewListener {
         int i = 0;
         //TODO brokey :(
         while (gameIsRunning){
+
             long timeNow = System.nanoTime();
             long updateLength = timeNow - lastLoopTime;
 
@@ -60,18 +61,27 @@ public class Controller implements ViewListener {
                 fps = 0;
             }
 
-            while () {
 
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
-            tick();
+            tick(i);
             render();
         }
     }
 
-    private void tick() {
+    private void tick(int j) {
         model.getPlayer().move();
         System.out.println(model.getPlayer().getX());
+        j++;
+        if(j > 100){
+            //model.getGameModel().endGame();
+        }
+        System.out.println(model.getPlayer().getCurrentDirection());
+
     }
 
     private void render() {

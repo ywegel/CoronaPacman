@@ -12,6 +12,7 @@ public class GameModel extends PanelModel{
     private Player player;
     private Vac[] vacs;
 
+
     private HashMap<Coord, MapChunkValues> gameMap;
 
     private int score;
@@ -58,7 +59,10 @@ public class GameModel extends PanelModel{
     }
 //    TODO implement endGame method, soll game beenden und Highscore übergeben
     public int endGame(){
+
+
         return 0;
+
     }
 
     private PlayerMovableDir getMovDir() {
