@@ -42,4 +42,5 @@ public class Vac {
     public void setY(int y) {
         this.y = y;
     }
+
 }

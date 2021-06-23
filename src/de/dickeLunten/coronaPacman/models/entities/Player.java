@@ -9,11 +9,13 @@ public class Player extends EntityModel {
     private ModelListener modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.UP;
     private Coord cords;
+    private int lives;
 
     public Player(){
         cords = new Coord(0,0);
         x = 0;
         y = 0;
+        lives = 3;
 /*        width = 10;
         height = 20;*/
         width = 100;
@@ -102,4 +104,8 @@ public class Player extends EntityModel {
     public void setCurrentDirection(PlayerDirection currentDirection) {
         this.currentDirection = currentDirection;
     }
+
+    public int getLives(){return lives;}
+
+    public void setLives(int a){lives = a;}
 }

@@ -112,4 +112,5 @@ public class EndPanel extends PanelView {
     public void update() {
 
     }
+    public void finishGame(int score){ }
 }

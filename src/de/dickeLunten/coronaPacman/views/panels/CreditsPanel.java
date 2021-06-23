@@ -75,4 +75,7 @@ public class CreditsPanel extends PanelView{
     public void update() {
 
     }
+
+
+    public void finishGame(int score){ }
 }

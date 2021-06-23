@@ -15,4 +15,5 @@ public class PausePanel extends PanelView {
     public void update() {
 
     }
+    public void finishGame(int score){ }
 }

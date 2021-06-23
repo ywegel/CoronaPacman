@@ -8,4 +8,6 @@ import javax.swing.*;
 
 public abstract class EntityView extends JComponent implements ModelListener {
 
+    public void finishGame(int score){ }
+
 }

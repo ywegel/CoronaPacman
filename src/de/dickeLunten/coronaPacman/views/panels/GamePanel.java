@@ -23,9 +23,11 @@ public class GamePanel extends PanelView {
     private PlayerView playerView;
     private VacView[] vacViews;
 
-    public GamePanel(GameModel model, ViewListener viewListener){
+    public GamePanel(GameModel model, ViewListener viewListener) {
         this.viewListener = viewListener;
         this.model = model;
+
+        model.setGamePanel(this);
 
         playerView = new PlayerView(model.getPlayer());
 
@@ -43,8 +45,9 @@ public class GamePanel extends PanelView {
         });
     }
 
-    public void finishGame(){
-        viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
+    @Override
+    public void finishGame(int score) {
+        viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, score));
     }
 
     @Override

@@ -128,7 +128,7 @@ public class StartPanel extends PanelView {
         constraints.gridy = y;
         add(component, constraints);
     }
-
+    public void finishGame(int score){ }
 }
 
 /*

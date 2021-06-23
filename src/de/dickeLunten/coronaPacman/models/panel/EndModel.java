@@ -17,5 +17,6 @@ public class EndModel {
     public int getScore(){
         return score;
     }
+    public void setScore(int a){score = a;}
 
 }

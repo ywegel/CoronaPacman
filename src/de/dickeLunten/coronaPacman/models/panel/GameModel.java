@@ -1,5 +1,7 @@
 package de.dickeLunten.coronaPacman.models.panel;
 
+import de.dickeLunten.coronaPacman.ModelListener;
+import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.models.entities.Player;
 import de.dickeLunten.coronaPacman.models.entities.Vac;
 import util.MapChunkValues;
@@ -7,10 +9,14 @@ import util.Coord;
 import util.PlayerMovableDir;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class GameModel extends PanelModel{
+public class GameModel extends PanelModel {
     private Player player;
     private Vac[] vacs;
+    private boolean coronaEdible;
+    private ModelListener gamePanel;
 
 
     private HashMap<Coord, MapChunkValues> gameMap;
@@ -20,6 +26,7 @@ public class GameModel extends PanelModel{
     public GameModel() {
         gameMap = new HashMap<>();
         score = 0;
+        coronaEdible = false;
 
         player = new Player();
 
@@ -29,6 +36,10 @@ public class GameModel extends PanelModel{
         vacs[2] = new Vac(130, 130);
         vacs[3] = new Vac(30, 130);
     }
+
+
+
+    public void setGamePanel(ModelListener vl){gamePanel = vl;}
 
     public boolean doesCollide() {
         return switch (player.getCurrentDirection()) {
@@ -40,29 +51,49 @@ public class GameModel extends PanelModel{
     }
 
 
-    public void gameTick(){
-        if(doesCollide()){
+    public void gameTick() {
+        score++;
+        if (doesCollide()) {
             player.move();
         }
-        if(gameMap.get(player.getCoords()).isHasCorona()){
+        if (gameMap.get(player.getCoords()).isHasCorona()) {
 
+            if(player.getLives() > 1 && !coronaEdible){
+                player.setLives(player.getLives() - 1);
+                //TODO TP player back to spawn
+            }
+            else if(coronaEdible){
+                //TODO remove this Corona
+            }
+            else if(player.getLives() == 1 && !coronaEdible){
+                gamePanel.finishGame(score);
+            }
+
+        } else if (gameMap.get(player.getCoords()).isHasDot()) {
+            //TODO remove dot
+            //TODO wenn das der letzte dot war --> Spiel gewonnen
+
+
+        } else if (gameMap.get(player.getCoords()).isHasToiletPaper()) {
+            player.setLives(player.getLives() + 1);
+            //TODO remove ToiletPaper
+
+        } else if (gameMap.get(player.getCoords()).isHasVac()) {
+            coronaEdible = true;
+
+            TimerTask task = new TimerTask() {
+                public void run() {
+                    coronaEdible = false;
+                }
+            };
+            Timer timer = new Timer("Timer");
+
+            long delay = 15 * 1000L;
+            timer.schedule(task, delay);
+
+            //TODO remove Vac
+            //TODO change Vac design
         }
-        else if(gameMap.get(player.getCoords()).isHasDot()){
-
-        }
-        else if(gameMap.get(player.getCoords()).isHasToiletPaper()){
-
-        }
-        else if(gameMap.get(player.getCoords()).isHasVac()){
-
-        }
-    }
-//    TODO implement endGame method, soll game beenden und Highscore übergeben
-    public int endGame(){
-
-
-        return 0;
-
     }
 
     private PlayerMovableDir getMovDir() {
@@ -77,7 +108,7 @@ public class GameModel extends PanelModel{
         this.player = player;
     }
 
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 
