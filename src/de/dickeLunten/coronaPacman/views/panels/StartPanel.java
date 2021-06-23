@@ -32,9 +32,9 @@ public class StartPanel extends PanelView {
         constraints.weighty = 1.0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        constraints.gridwidth = 2; // span two columns
+        constraints.gridwidth = 3; // span two columns
         addGB(new JLabel(new ImageIcon(model.getBackgroundImg()), JLabel.CENTER),0,1);
-        constraints.gridwidth = 2; // span one columns
+        constraints.gridwidth = 1; // span one column
 
         //create + add startb
         startb = new JButton("Press ENTER to start");
@@ -87,7 +87,7 @@ public class StartPanel extends PanelView {
             }
         });
 
-        rulesb = new JButton("rules");
+        rulesb = new JButton(" rules ");
         rulesb.setFont(new Font("sans", Font.PLAIN, 70));
         rulesb.setBackground(Color.DARK_GRAY);
         rulesb.setForeground(Color.WHITE);

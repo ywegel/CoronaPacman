@@ -27,12 +27,13 @@ public class RulesPanel extends PanelView{
 
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        //constraints.fill = GridBagConstraints.HORIZONTAL;
 
         backb = new JButton("back");
         backb.setFont(new Font("sans", Font.PLAIN, 70));
-        backb.setBackground(Color.DARK_GRAY);
+        backb.setBackground(new Color(50,50,50));
         backb.setForeground(Color.WHITE);
+        backb.setBorderPainted(false);
         backb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,14 +41,15 @@ public class RulesPanel extends PanelView{
             }
         });
 
-        rulesl = new JLabel();
+        rulesl = new JLabel("",SwingConstants.CENTER);
         rulesl.setBackground(Color.DARK_GRAY);
         rulesl.setForeground(Color.WHITE);
-        rulesl.setFont(new Font("sans", Font.PLAIN, 30));
-        rulesl.setText("<html><i>Regeln:</i><br />Oh nein! Die Welt geht in einer Stunde unter, <b>Jimbo</b> muss aber noch shoppen gehen.<br /><b>Jimbo</b> braucht noch sein Mountain Dew, Doritos und ein Waifu-Pillow (und natürlich Klopapier).<br />Böse Coronaviren wollen <b>Jimbo</b>s Vorhaben aber for some reason verhindern.<br />Hilf <b>Jimbo</b> dabei, mit Impfungen die Viren zu zerstören und <b>Jimbo</b>s local Supermarkt leerzuräumen.  </html>");
+        rulesl.setFont(new Font("sans", Font.PLAIN, 60));
+        rulesl.setText("<html><br /><i>Regeln:</i><br />Oh nein! Die Welt geht in einer Stunde unter, <b>Jimbo</b> muss aber noch shoppen gehen.<br /><b>Jimbo</b> braucht noch sein Mountain Dew, Doritos und ein Waifu-Pillow (und Klopapier natürlich auch).<br />Böse Coronaviren wollen <b>Jimbo</b>s Vorhaben aber for some reason verhindern.<br />Hilf <b>Jimbo</b> dabei, mit Impfungen die Viren zu zerstören und <b>Jimbo</b>s local super market leerzuräumen!</html>");
 
-
+        constraints.ipadx = 950;
         addGB(rulesl, 0, 0);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         addGB(backb, 0, 1);
 
     }

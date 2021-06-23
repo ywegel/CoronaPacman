@@ -34,8 +34,9 @@ public class CreditsPanel extends PanelView{
 
         backb = new JButton("back");
         backb.setFont(new Font("sans", Font.PLAIN, 70));
-        backb.setBackground(Color.DARK_GRAY);
+        backb.setBackground(new Color(50,50,50));
         backb.setForeground(Color.WHITE);
+        backb.setBorderPainted(false);
         backb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,26 +44,14 @@ public class CreditsPanel extends PanelView{
             }
         });
 
-        creditsl = new JLabel("<html>Created by<br /><i>Yannick Wegel, Colin Clauß,<br />Jake Finch, Felix Rosner, Daniel Bund</i></html>", SwingConstants.CENTER);
+        creditsl = new JLabel("<html><br /><br />Created by<br /><i>Yannick Wegel, Colin Clauß,<br />Jake Finch, Felix Rosner, Daniel Bund</i></html>", SwingConstants.CENTER);
         //creditsl.setForeground(Color.WHITE);
         creditsl.setFont(new Font("sans", Font.PLAIN, 70));
         creditsl.setForeground(Color.WHITE);
 
-
-
-
-        addGB(backb, 0, 1);
         addGB(creditsl, 0, 0);
-
-
-
-
-
+        addGB(backb, 0, 1);
     }
-
-
-
-
 
     void addGB(Component component, int x, int y) {
         constraints.gridx = x;
