@@ -19,6 +19,7 @@ public class StartPanel extends PanelView {
     private JButton startb;
     private JButton exitb;
     private JButton creditsb;
+    private JButton rulesb;
 
 
     public StartPanel(StartModel model, ViewListener viewListener) {
@@ -84,11 +85,28 @@ public class StartPanel extends PanelView {
             }
         });
 
-        constraints.gridwidth = 2; // span three columns
+        rulesb = new JButton("rules");
+        rulesb.setFont(new Font("sans", Font.PLAIN, 70));
+        rulesb.setBackground(Color.DARK_GRAY);
+        rulesb.setForeground(Color.WHITE);
+        //rulesb.setOpaque(false);
+        //rulesb.setContentAreaFilled(false);
+        rulesb.setBorderPainted(false);
+
+        rulesb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewListener.onNavigate(NavigationPanels.RULES_PANEL, Bundle.emptyBundle());
+
+            }
+        });
+
+        constraints.gridwidth = 3; // span three columns
         addGB(startb, 0, 0);
         constraints.gridwidth = 1; // span one column
-        addGB(exitb, 0, 2);
+        addGB(exitb, 2, 2);
         addGB(creditsb, 1, 2);
+        addGB(rulesb, 0, 2);
 
         //JLabel highscoreLabel = new JLabel("Highscores: ");
         //add(highscoreLabel, BorderLayout.NORTH);

@@ -33,7 +33,7 @@ public class Controller implements ViewListener {
     private View view;
 
     public Controller() {
-        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel());
+        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel(), new RulesModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
         initGameInput(view.getGamePanel());

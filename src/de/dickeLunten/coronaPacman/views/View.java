@@ -22,6 +22,7 @@ public class View implements ModelListener {
     private PausePanel pausePanel;
     private EndPanel endPanel;
     private CreditsPanel creditsPanel;
+    private RulesPanel rulesPanel;
     private ViewListener viewListener;
 
     public View(Model model, ViewListener viewListener) {
@@ -69,6 +70,13 @@ public class View implements ModelListener {
         frame.repaint();
     }
 
+    private void initRulesPanel(){
+        rulesPanel = new RulesPanel(model.getRulesModel(), viewListener);
+        frame.add(rulesPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
     private void initGamePanel() {
         frame.add(gamePanel);
         frame.revalidate();
@@ -111,6 +119,10 @@ public class View implements ModelListener {
                 resetFrame();
                 initCreditsPanel();
             }
+            case RULES_PANEL -> {
+                resetFrame();
+                initRulesPanel();
+            }
         }
     }
 
@@ -142,6 +154,11 @@ public class View implements ModelListener {
     public CreditsPanel getCreditsPanel() {
         return creditsPanel;
     }
+
+    public RulesPanel getRulesPanel() {
+        return rulesPanel;
+    }
+
 
 
     public void setStartPanel(StartPanel panel){

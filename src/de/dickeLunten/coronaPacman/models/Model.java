@@ -12,13 +12,16 @@ public class Model {
     PauseModel pauseModel;
     EndModel endModel;
     CreditsModel creditsModel;
+    RulesModel rulesModel;
 
-    public Model(StartModel startModel, GameModel gameModel, PauseModel pauseModel, EndModel endModel, CreditsModel creditsModel) {
+    public Model(StartModel startModel, GameModel gameModel, PauseModel pauseModel, EndModel endModel, CreditsModel creditsModel, RulesModel rulesModel) {
         this.startModel = startModel;
         this.gameModel = gameModel;
         this.pauseModel = pauseModel;
         this.endModel = endModel;
         this.creditsModel = creditsModel;
+        this.rulesModel = rulesModel;
+
     }
 
     public StartModel getStartModel() {
@@ -61,9 +64,19 @@ public class Model {
         this.creditsModel = creditsModel;
     }
 
+    public RulesModel getRulesModel() {
+        return rulesModel;
+    }
+
+    public void setRulesModel(RulesModel rulesModel) {
+        this.rulesModel = rulesModel;
+    }
+
     public Player getPlayer() {
         return gameModel.getPlayer();
     }
+
+
 
 
 }

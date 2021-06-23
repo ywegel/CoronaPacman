@@ -5,4 +5,5 @@ public enum NavigationPanels {
     GAME_PANEL,
     END_PANEL,
     CREDITS_PANEL,
+    RULES_PANEL
 }
