@@ -49,6 +49,7 @@ public class GamePanel extends PanelView {
 
     @Override
     public void update() {
-        paintImmediately(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+        //paintImmediately(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+        repaint();
     }
 }

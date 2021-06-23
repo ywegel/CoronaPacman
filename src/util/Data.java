@@ -12,4 +12,21 @@ public class Data {
         URL url = ClassLoader.getSystemClassLoader().getResource(path);
         return new ImageIcon(url).getImage();
     }
+
+    public static Font setPacFont(){
+        Font pacFont = null;
+        try {
+            //create the font to use. Specify the size!
+            pacFont = Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")).deriveFont(12f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(pacFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+
+        return pacFont;
+
+    }
+
 }

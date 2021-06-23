@@ -25,6 +25,7 @@ enum InputAction {
 public class Controller implements ViewListener {
     private volatile boolean gameIsRunning = false;
 
+    private static final long NANOS_PER_SECOND = 1_000_000_000L;
 
     private ActionEnter actionEnter;
 
@@ -39,52 +40,56 @@ public class Controller implements ViewListener {
     }
 
     private void loop() {
-        long lastLoopTime = 0;
-        long lastFPSTime = 0;
-        int fps = 0;
-        int i = 0;
         //TODO brokey :(
-        while (gameIsRunning){
+        long nextTick = System.nanoTime();
+        long nextSecond = nextTick;
 
-            long timeNow = System.nanoTime();
-            long updateLength = timeNow - lastLoopTime;
+        // max fps: 120
+        final long rateLimit = NANOS_PER_SECOND / 120;
 
-            lastFPSTime += updateLength;
-            fps++;
+        while (gameIsRunning) {
+            long loopStart = System.nanoTime();
 
-            if(lastFPSTime >= 1000000000) {
-                System.out.println("fps: " + fps);
-                lastFPSTime = 0;
-                fps = 0;
-            }
-
-
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            tick(i);
+            //updateGame
             render();
+
+            final long now = System.nanoTime();
+
+            // catch up with as many ticks as needed (skip them if necessary)
+            if (now - nextTick >= 0) {
+                tick();
+                do {
+                    nextTick += NANOS_PER_SECOND;
+                }while (now - nextTick >= 0);
+
+            }
+/*            while (now - nextSecond >= 0) {
+                nextSecond+= NANOS_PER_SECOND;
+            }*/
+            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
+            System.out.println(delayms);
+            if (delayms > 0) {
+                // more than a millisecond wait, do it....
+                try {
+                    Thread.sleep(delayms);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    private void tick(int j) {
+    private void tick() {
         model.getPlayer().move();
         System.out.println(model.getPlayer().getX());
-        j++;
-        if(j > 100){
-            //model.getGameModel().endGame();
-        }
+
         System.out.println(model.getPlayer().getCurrentDirection());
 
     }
 
     private void render() {
-        model.getPlayer().update();
-        view.getGamePanel().update();
-
+        //model.getPlayer().update();
+        //view.getGamePanel().update();
     }
 
     @Contract("_ -> param1")

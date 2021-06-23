@@ -114,6 +114,11 @@ public class View implements ModelListener {
         }
     }
 
+    @Override
+    public void finishGame(int score) {
+
+    }
+
     public void onNavigate(NavigationPanels destination) {
         onNavigate(destination, null);
     }
