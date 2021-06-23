@@ -5,6 +5,7 @@ import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import util.Bundle;
+import util.Data;
 
 import javax.swing.*;
 import javax.swing.text.IconView;
@@ -37,7 +38,8 @@ public class StartPanel extends PanelView {
 
         //create + add startb
         startb = new JButton("Press ENTER to start");
-        //startBtn.setFont(new Font("Pac-Font", Font.PLAIN, 40));
+        startb.setFont(Data.setPacFont());
+        //startb.setFont(new Font("Pac-Font", Font.PLAIN, 40));
         //startb.setSize(300, 300);
         //startb.setBackground(new Color(50, 50, 50));
         startb.setBackground(Color.DARK_GRAY);
