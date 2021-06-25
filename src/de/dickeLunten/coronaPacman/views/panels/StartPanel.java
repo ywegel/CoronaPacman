@@ -32,7 +32,7 @@ public class StartPanel extends PanelView {
         constraints.weighty = 1.0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        constraints.gridwidth = 3; // span two columns
+        constraints.gridwidth = 3; // span three columns
         addGB(new JLabel(new ImageIcon(model.getBackgroundImg()), JLabel.CENTER),0,1);
         constraints.gridwidth = 1; // span one column
 
