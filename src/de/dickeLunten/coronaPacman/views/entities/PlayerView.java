@@ -21,10 +21,6 @@ public class PlayerView extends EntityView {
 
     @Override
     protected void paintComponent(Graphics g) {
-        System.out.println("paint comp");
-        Dimension size = getSize();
-        System.out.println(size.height + " + " + size.width);
-
         super.paintComponent(g);
         g.drawImage(img, model.getX(), model.getY(), 500, 500, this);
 
@@ -37,8 +33,6 @@ public class PlayerView extends EntityView {
     }
 
     public void update(){
-        repaint();
+        //repaint();
     }
-
-
 }

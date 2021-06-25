@@ -7,13 +7,12 @@ import de.dickeLunten.coronaPacman.models.panel.*;
 import de.dickeLunten.coronaPacman.views.View;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import util.Bundle;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.InvocationTargetException;
 
 enum InputAction {
     ACTION_UP,
@@ -33,6 +32,7 @@ public class Controller implements ViewListener {
     private View view;
 
     public Controller() {
+        System.out.println(Thread.currentThread().getName());
         this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel(), new RulesModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
@@ -40,7 +40,7 @@ public class Controller implements ViewListener {
     }
 
     private void loop() {
-        //TODO brokey :(
+        //https://pavelfatin.com/low-latency-painting-in-awt-and-swing/
         long nextTick = System.nanoTime();
         long nextSecond = nextTick;
 
@@ -50,84 +50,96 @@ public class Controller implements ViewListener {
         while (gameIsRunning) {
             long loopStart = System.nanoTime();
 
-            //updateGame
-            render();
+            //update game screen
+            long startRender = System.nanoTime();
 
-            final long now = System.nanoTime();
-
-            // catch up with as many ticks as needed (skip them if necessary)
-            if (now - nextTick >= 0) {
-                tick();
-                do {
-                    nextTick += NANOS_PER_SECOND;
-                }while (now - nextTick >= 0);
-
+            //Pass render method to java.swing thread and !!wait
+            try {
+                SwingUtilities.invokeAndWait(this::render);
+            } catch (InterruptedException | InvocationTargetException e) {
+                e.printStackTrace();
             }
-/*            while (now - nextSecond >= 0) {
-                nextSecond+= NANOS_PER_SECOND;
-            }*/
-            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
-            System.out.println(delayms);
-            if (delayms > 0) {
+            long deltaRender = System.nanoTime() - startRender;
+
+            long now = System.nanoTime();
+
+            long startTick = System.nanoTime();
+            tick();
+            long deltaTick = System.nanoTime() - startTick;
+
+/*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
+            System.out.println("Delay: " + delayms);*/
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("DeltaRender: " + deltaRender + " ;DeltaTick: " + deltaTick);
+            System.out.println("--------------------------");
+/*            if (delayms > 0) {
                 // more than a millisecond wait, do it....
                 try {
                     Thread.sleep(delayms);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
+/*            try {
+                System.out.println("-----Thread sleepy");
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
         }
     }
 
     private void tick() {
+        //System.out.println("Tick");
         model.getPlayer().move();
-        System.out.println(model.getPlayer().getX());
-
-        System.out.println(model.getPlayer().getCurrentDirection());
-
     }
 
     private void render() {
+        //System.out.println("Render");
         //model.getPlayer().update();
-        //view.getGamePanel().update();
+        view.getGamePanel().update();
     }
 
-    @Contract("_ -> param1")
-    private void initStartInput(@NotNull StartPanel panel) {
+
+    private void initStartInput(StartPanel panel) {
         actionEnter = new ActionEnter();
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter_action");
         panel.getActionMap().put("enter_action", actionEnter);
     }
 
     private void initGameInput(GamePanel panel) {
-        new Thread(() -> {
-            ActionUp actionUp;
-            ActionDown actionDown;
-            ActionLeft actionLeft;
-            ActionRight actionRight;
+        ActionUp actionUp;
+        ActionDown actionDown;
+        ActionLeft actionLeft;
+        ActionRight actionRight;
 
-            actionUp = new ActionUp();
-            actionDown = new ActionDown();
-            actionLeft = new ActionLeft();
-            actionRight = new ActionRight();
+        actionUp = new ActionUp();
+        actionDown = new ActionDown();
+        actionLeft = new ActionLeft();
+        actionRight = new ActionRight();
 
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
-            panel.getActionMap().put(InputAction.ACTION_UP, actionUp);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
+        panel.getActionMap().put(InputAction.ACTION_UP, actionUp);
 
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), InputAction.ACTION_DOWN);
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), InputAction.ACTION_DOWN);
-            panel.getActionMap().put(InputAction.ACTION_DOWN, actionDown);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), InputAction.ACTION_DOWN);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('s'), InputAction.ACTION_DOWN);
+        panel.getActionMap().put(InputAction.ACTION_DOWN, actionDown);
 
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), InputAction.ACTION_LEFT);
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), InputAction.ACTION_LEFT);
-            panel.getActionMap().put(InputAction.ACTION_LEFT, actionLeft);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), InputAction.ACTION_LEFT);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('a'), InputAction.ACTION_LEFT);
+        panel.getActionMap().put(InputAction.ACTION_LEFT, actionLeft);
 
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), InputAction.ACTION_RIGHT);
-            panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
-            panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), InputAction.ACTION_RIGHT);
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('d'), InputAction.ACTION_RIGHT);
+        panel.getActionMap().put(InputAction.ACTION_RIGHT, actionRight);
 
-        }).start();
     }
 
     public class ActionUp extends AbstractAction {
@@ -181,7 +193,10 @@ public class Controller implements ViewListener {
             }
             case GAME_PANEL -> {
                 gameIsRunning = true;
-                loop();
+                System.out.println("Start loop thread");
+                new Thread(() -> {
+                    loop();
+                }).start();
                 break;
             }
             case END_PANEL -> {

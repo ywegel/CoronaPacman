@@ -11,7 +11,7 @@ public class StartModel {
 
     public StartModel(){                                        //---Aspect Ratio = 1/1.41402942955---
         backgroundImg = Data.loadImage("vvmap.png").getScaledInstance(600,848, Image.SCALE_FAST);
-        creditsbImg =
+        //creditsbImg =
     }
 
     public void setBackgroundImg( Image backgroundImg ) {

@@ -11,8 +11,8 @@ public class Player extends EntityModel {
     private Coord cords;
     private int lives;
 
-    public Player(){
-        cords = new Coord(0,0);
+    public Player() {
+        cords = new Coord(0, 0);
         x = 0;
         y = 0;
         lives = 3;
@@ -27,41 +27,44 @@ public class Player extends EntityModel {
     }
 
 
-    public void update(){
+    public void update() {
         modelListeners.update();
     }
 
     public void move() {
-            switch(currentDirection){
-                case UP -> moveUp();
-                case DOWN -> moveDown();
-                case RIGHT -> moveRight();
-                case LEFT -> moveLeft();
-            }
+        switch (currentDirection) {
+            case UP -> moveUp();
+            case DOWN -> moveDown();
+            case RIGHT -> moveRight();
+            case LEFT -> moveLeft();
+        }
     }
 
-    public void moveUp(){
+    public void moveUp() {
         y = y - 5;
         cords.setY(cords.getY() - 5);
         //update();
     }
-    public void moveDown(){
+
+    public void moveDown() {
         y = y + 5;
         cords.setY(cords.getY() + 5);
         //update();
     }
-    public void moveRight(){
+
+    public void moveRight() {
         x = x + 5;
         cords.setX(cords.getX() + 5);
         //update();
     }
-    public void moveLeft(){
+
+    public void moveLeft() {
         x = x - 5;
         cords.setX(cords.getX() - 5);
         //update();
     }
 
-    public Coord getCoords(){
+    public Coord getCoords() {
         return cords;
     }
 
@@ -105,7 +108,11 @@ public class Player extends EntityModel {
         this.currentDirection = currentDirection;
     }
 
-    public int getLives(){return lives;}
+    public int getLives() {
+        return lives;
+    }
 
-    public void setLives(int a){lives = a;}
+    public void setLives(int a) {
+        lives = a;
+    }
 }

@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="CreditsPanel gemacht">
-      <change afterPath="$PROJECT_DIR$/res/map.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <list id="4830a887-4160-4f76-8720-5202d0bfd274" name="Changes by bundd24" comment="">
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/entities/PlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/entities/PlayerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" afterDir="false" />
     </list>
+    <list id="4830a887-4160-4f76-8720-5202d0bfd274" name="Changes by bundd24" comment="" />
     <list id="edb40b8e-1b60-446e-a180-c5723a8632db" name="Changes by chunky chungus" comment="" />
     <list id="31ace75a-2bc0-4507-a058-fe7674ff8a6a" name="Changes by Colin" comment="" />
     <list id="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" name="Changes by dabun" comment="" />
