@@ -41,7 +41,7 @@ public class GameModel extends PanelModel {
 
     public void setGamePanel(ModelListener vl){gamePanel = vl;}
 
-    public boolean doesCollide() {
+    public boolean doesNotCollide() {
         return switch (player.getCurrentDirection()) {
             case UP -> getMovDir().isUp();
             case DOWN -> getMovDir().isDown();
@@ -53,7 +53,7 @@ public class GameModel extends PanelModel {
 
     public void gameTick() {
         score++;
-        if (doesCollide()) {
+        if (doesNotCollide()) {
             player.move();
         }
         if (gameMap.get(player.getCoords()).isHasCorona()) {
