@@ -44,7 +44,8 @@ public class StartPanel extends PanelView {
         //startb.setBackground(new Color(50, 50, 50));
         startb.setBackground(Color.DARK_GRAY);
         startb.setBorderPainted(false);
-        startb.setFont(new Font("sans", Font.PLAIN, 70));
+        //startb.setFont(Data.setPacFont());
+        //startb.setFont(new Font("sans", Font.PLAIN, 70));
         startb.setForeground(Color.WHITE);
 
         startb.addActionListener(new ActionListener() {
@@ -57,7 +58,7 @@ public class StartPanel extends PanelView {
 
         //create + add exitb
         exitb = new JButton(("  exit  "));
-        exitb.setFont(new Font("sans", Font.PLAIN, 70));
+        exitb.setFont(Data.setPacFont());
         exitb.setBackground(Color.DARK_GRAY);
         exitb.setForeground(Color.WHITE);
         //exitb.setOpaque(false);
@@ -72,7 +73,7 @@ public class StartPanel extends PanelView {
         });
 
         creditsb = new JButton("credits");
-        creditsb.setFont(new Font("sans", Font.PLAIN, 70));
+        creditsb.setFont(Data.setPacFont());
         creditsb.setBackground(Color.DARK_GRAY);
         creditsb.setForeground(Color.WHITE);
         //creditsb.setOpaque(false);
@@ -88,7 +89,7 @@ public class StartPanel extends PanelView {
         });
 
         rulesb = new JButton(" rules ");
-        rulesb.setFont(new Font("sans", Font.PLAIN, 70));
+        rulesb.setFont(Data.setPacFont());
         rulesb.setBackground(Color.DARK_GRAY);
         rulesb.setForeground(Color.WHITE);
         //rulesb.setOpaque(false);

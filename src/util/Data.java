@@ -18,11 +18,13 @@ public class Data {
     public static Font setPacFont(){
         Font pacFont = null;
         try {
+            //create input stream
+            InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream("crackman.ttf");
             //create the font to use. Specify the size!
-            pacFont = Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")).deriveFont(12f);
+            pacFont = Font.createFont(Font.TRUETYPE_FONT,stream).deriveFont(70f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
-            ge.registerFont(pacFont);
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }

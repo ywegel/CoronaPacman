@@ -65,6 +65,7 @@ public class Controller implements ViewListener {
 
             long startTick = System.nanoTime();
             tick();
+//            model.getGameModel().gameTick();
             long deltaTick = System.nanoTime() - startTick;
 
 /*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
@@ -179,7 +180,7 @@ public class Controller implements ViewListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Pog");
-            view.onNavigate(NavigationPanels.GAME_PANEL);
+            onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
         }
     }
 
