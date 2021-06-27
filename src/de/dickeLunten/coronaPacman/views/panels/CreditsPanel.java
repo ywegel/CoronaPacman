@@ -44,7 +44,7 @@ public class CreditsPanel extends PanelView{
             }
         });
 
-        creditsl = new JLabel("<html><br /><br />Created by<br /><i>Yannick Wegel, Colin Clauß,<br />Jake Finch, Felix Rosner, Daniel Bund</i></html>", SwingConstants.CENTER);
+        creditsl = new JLabel(model.getCreditslTXT(), SwingConstants.CENTER);
         //creditsl.setForeground(Color.WHITE);
         creditsl.setFont(new Font("sans", Font.PLAIN, 70));
         creditsl.setForeground(Color.WHITE);

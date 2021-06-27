@@ -45,7 +45,7 @@ public class RulesPanel extends PanelView{
         rulesl.setBackground(Color.DARK_GRAY);
         rulesl.setForeground(Color.WHITE);
         rulesl.setFont(new Font("sans", Font.PLAIN, 60));
-        rulesl.setText("<html><br /><i>Regeln:</i><br />Oh nein! Die Welt geht in einer Stunde unter, <b>Jimbo</b> muss aber noch shoppen gehen.<br /><b>Jimbo</b> braucht noch sein Mountain Dew, Doritos und ein Waifu-Pillow (und Klopapier natürlich auch).<br />Böse Coronaviren wollen <b>Jimbo</b>s Vorhaben aber for some reason verhindern.<br />Hilf <b>Jimbo</b> dabei, mit Impfungen die Viren zu zerstören und <b>Jimbo</b>s local super market leerzuräumen!</html>");
+        rulesl.setText(model.getRuleslTXT());
 
         constraints.ipadx = 950;
         addGB(rulesl, 0, 0);
