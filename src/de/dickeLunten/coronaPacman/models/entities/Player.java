@@ -43,26 +43,26 @@ public class Player extends EntityModel {
     //TODO IDEE: pro tick 2mal moven --> move->draw->move->draw
 
     public void moveUp() {
-        y = y - 10;
-        cords.setY(cords.getY() - 10);
+        y = y - 1;
+        cords.setY(cords.getY() - 1);
         //update();
     }
 
     public void moveDown() {
-        y = y + 10;
-        cords.setY(cords.getY() + 10);
+        y = y + 1;
+        cords.setY(cords.getY() + 1);
         //update();
     }
 
     public void moveRight() {
-        x = x + 10;
-        cords.setX(cords.getX() + 10);
+        x = x + 1;
+        cords.setX(cords.getX() + 1);
         //update();
     }
 
     public void moveLeft() {
-        x = x - 10;
-        cords.setX(cords.getX() - 10);
+        x = x - 1;
+        cords.setX(cords.getX() - 1);
         //update();
     }
 
