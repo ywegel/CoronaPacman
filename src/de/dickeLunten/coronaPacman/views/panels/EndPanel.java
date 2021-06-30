@@ -30,6 +30,8 @@ public class EndPanel extends PanelView {
 
         this.viewListener = viewListener;
 
+        System.out.println("THREAD COUNT 3: " + Thread.activeCount());
+
         this.model = model;
         this.setLayout(new GridBagLayout());
         constraints.weightx = 1.0;

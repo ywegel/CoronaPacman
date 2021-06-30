@@ -18,6 +18,8 @@ public class GameModel extends PanelModel {
     private boolean coronaEdible;
     private ModelListener gamePanel;
 
+    private int fps = 0;
+
 
     private HashMap<Coord, MapChunkValues> gameMap;
 
@@ -111,6 +113,8 @@ public class GameModel extends PanelModel {
     public int getScore() {
         return score;
     }
+
+
 
 }
 

@@ -41,11 +41,17 @@ public class Controller implements ViewListener {
 
     private void loop() {
         //https://pavelfatin.com/low-latency-painting-in-awt-and-swing/
-        long nextTick = System.nanoTime();
-        long nextSecond = nextTick;
 
-        // max fps: 120
-        final long rateLimit = NANOS_PER_SECOND / 120;
+        final int fps = 60;
+
+        final long nanosPerFrame = NANOS_PER_SECOND / fps;
+
+        System.out.println("NanosPerFrame :" + nanosPerFrame);
+
+        long statt = System.nanoTime();
+        int frameCount = 0;
+
+        int ticksss = 0;
 
         while (gameIsRunning) {
             long loopStart = System.nanoTime();
@@ -61,23 +67,37 @@ public class Controller implements ViewListener {
             }
             long deltaRender = System.nanoTime() - startRender;
 
+            System.out.println("DELTA RENDER: " + deltaRender);
+
             long now = System.nanoTime();
 
             long startTick = System.nanoTime();
-            tick();
+            tick(ticksss);
+            ticksss++;
 //            model.getGameModel().gameTick();
             long deltaTick = System.nanoTime() - startTick;
 
-/*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
-            System.out.println("Delay: " + delayms);*/
+            long deltaLoop = System.nanoTime() - loopStart;
 
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(deltaLoop < nanosPerFrame) {
+                try {
+                    Thread.sleep((nanosPerFrame - deltaLoop) / 1_000_000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
-            System.out.println("DeltaRender: " + deltaRender + " ;DeltaTick: " + deltaTick);
+            frameCount++;
+            long deltaStatt = System.nanoTime() - statt;
+            if (deltaStatt > NANOS_PER_SECOND) {
+                System.out.println("FPS: " + frameCount);
+                frameCount = 0;
+                statt = System.nanoTime();
+            }
+
+/*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
+            System.out.println("Delay: " + delayms);*/
+            //System.out.println("DeltaRender: " + deltaRender + " ;DeltaTick: " + deltaTick);
             System.out.println("--------------------------");
 /*            if (delayms > 0) {
                 // more than a millisecond wait, do it....
@@ -98,6 +118,9 @@ public class Controller implements ViewListener {
 
     private void tick() {
         //System.out.println("Tick");
+/*        if (tick % 40 == 0) {
+            model.getPlayer().move();
+        }*/
         model.getPlayer().move();
     }
 
@@ -194,7 +217,6 @@ public class Controller implements ViewListener {
             }
             case GAME_PANEL -> {
                 gameIsRunning = true;
-                System.out.println("Start loop thread");
                 new Thread(() -> {
                     loop();
                 }).start();
