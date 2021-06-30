@@ -14,9 +14,11 @@ public class StartModel {
         //creditsbImg =
     }
 
+
     public void setBackgroundImg( Image backgroundImg ) {
         this.backgroundImg = backgroundImg;
     }
+
 
     public Image getBackgroundImg() {
         return backgroundImg;

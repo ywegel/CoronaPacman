@@ -116,7 +116,8 @@ public class Controller implements ViewListener {
         }
     }
 
-    private void tick() {
+
+    private void tick(int tick) {
         //System.out.println("Tick");
 /*        if (tick % 40 == 0) {
             model.getPlayer().move();
