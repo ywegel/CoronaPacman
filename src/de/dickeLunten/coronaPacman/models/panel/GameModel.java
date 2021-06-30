@@ -1,9 +1,10 @@
 package de.dickeLunten.coronaPacman.models.panel;
 
+import de.dickeLunten.coronaPacman.GameModelListener;
 import de.dickeLunten.coronaPacman.ModelListener;
-import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.models.entities.Player;
 import de.dickeLunten.coronaPacman.models.entities.Vac;
+import util.Data;
 import util.MapChunkValues;
 import util.Coord;
 import util.PlayerMovableDir;
@@ -18,15 +19,17 @@ public class GameModel extends PanelModel {
     private boolean coronaEdible;
     private ModelListener gamePanel;
 
+    private GameModelListener gameModelListener;
+
     private int fps = 0;
 
-
-    private HashMap<Coord, MapChunkValues> gameMap;
+    private final HashMap<Coord, MapChunkValues> gameMap;
 
     private int score;
 
     public GameModel() {
-        gameMap = new HashMap<>();
+        gameMap = Data.loadMapDataFromFile();
+        System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
         score = 0;
         coronaEdible = false;
 
@@ -39,9 +42,13 @@ public class GameModel extends PanelModel {
         vacs[3] = new Vac(30, 130);
     }
 
+    public void setGamePanel(ModelListener vl) {
+        gamePanel = vl;
+    }
 
-
-    public void setGamePanel(ModelListener vl){gamePanel = vl;}
+    public void setGameModelListener(GameModelListener gl) {
+        gameModelListener = gl;
+    }
 
     public boolean doesNotCollide() {
         return switch (player.getCurrentDirection()) {
@@ -52,22 +59,20 @@ public class GameModel extends PanelModel {
         };
     }
 
-
     public void gameTick() {
         score++;
+        updateScore();
         if (doesNotCollide()) {
             player.move();
         }
         if (gameMap.get(player.getCoords()).isHasCorona()) {
 
-            if(player.getLives() > 1 && !coronaEdible){
+            if (player.getLives() > 1 && !coronaEdible) {
                 player.setLives(player.getLives() - 1);
                 //TODO TP player back to spawn
-            }
-            else if(coronaEdible){
+            } else if (coronaEdible) {
                 //TODO remove this Corona
-            }
-            else if(player.getLives() == 1 && !coronaEdible){
+            } else if (player.getLives() == 1 && !coronaEdible) {
                 gamePanel.finishGame(score);
             }
 
@@ -98,6 +103,10 @@ public class GameModel extends PanelModel {
         }
     }
 
+    private void updateScore() {
+        gameModelListener.onScoreChanged(score);
+    }
+
     private PlayerMovableDir getMovDir() {
         return gameMap.get(player.getCoords()).getPlayerMovableDir();
     }
@@ -114,7 +123,13 @@ public class GameModel extends PanelModel {
         return score;
     }
 
+    public int getFps() {
+        return fps;
+    }
 
-
+    public void setFps(int fps) {
+        this.fps = fps;
+        gameModelListener.onFpsChanged(fps);
+    }
 }
 

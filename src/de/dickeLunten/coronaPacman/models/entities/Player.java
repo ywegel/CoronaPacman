@@ -7,14 +7,14 @@ public class Player extends EntityModel {
 
     private int height, width, x, y;
     private ModelListener modelListeners;
-    private PlayerDirection currentDirection = PlayerDirection.UP;
+    private PlayerDirection currentDirection = PlayerDirection.RIGHT;
     private Coord cords;
     private int lives;
 
     public Player() {
         cords = new Coord(0, 0);
-        x = 0;
-        y = 0;
+        x = 10;
+        y = 10;
         lives = 3;
 /*        width = 10;
         height = 20;*/

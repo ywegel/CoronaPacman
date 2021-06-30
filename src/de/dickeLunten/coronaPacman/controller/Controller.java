@@ -32,7 +32,6 @@ public class Controller implements ViewListener {
     private View view;
 
     public Controller() {
-        System.out.println(Thread.currentThread().getName());
         this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel(), new RulesModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
@@ -91,6 +90,7 @@ public class Controller implements ViewListener {
             long deltaStatt = System.nanoTime() - statt;
             if (deltaStatt > NANOS_PER_SECOND) {
                 System.out.println("FPS: " + frameCount);
+                model.getGameModel().setFps(frameCount);
                 frameCount = 0;
                 statt = System.nanoTime();
             }
@@ -123,6 +123,7 @@ public class Controller implements ViewListener {
             model.getPlayer().move();
         }*/
         model.getPlayer().move();
+        model.getGameModel().gameTick();
     }
 
     private void render() {
@@ -212,24 +213,12 @@ public class Controller implements ViewListener {
     public void onNavigate(NavigationPanels destination, Bundle bundle) {
         view.onNavigate(destination, bundle);
         switch (destination) {
-            case START_PANEL -> {
-                gameIsRunning = false;
-                break;
-            }
             case GAME_PANEL -> {
                 gameIsRunning = true;
-                new Thread(() -> {
-                    loop();
-                }).start();
-                break;
+                new Thread(this::loop).start();
             }
-            case END_PANEL -> {
+            default -> {
                 gameIsRunning = false;
-                break;
-            }
-            case CREDITS_PANEL -> {
-                gameIsRunning = false;
-                break;
             }
         }
         //TODO add bundle and put options in there
