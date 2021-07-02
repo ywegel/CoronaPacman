@@ -4,27 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="Colins">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/InputAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/InputAction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/NavigationPanels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/NavigationPanels.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/PlayerDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/PlayerDirection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/map.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" afterDir="false" />
-    </list>
-    <list id="f0bd0a95-883d-4c06-880d-3500068d9d68" name="Changes by bundd24" comment="">
-      <change beforePath="$PROJECT_DIR$/res/map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/map.txt" afterDir="false" />
-    </list>
+    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="brokey gamey" />
+    <list id="f0bd0a95-883d-4c06-880d-3500068d9d68" name="Changes by bundd24" comment="Changes by bundd24" />
     <list id="edb40b8e-1b60-446e-a180-c5723a8632db" name="Changes by chunky chungus" comment="" />
     <list id="5fa1e220-eeff-455c-a240-6502051064f7" name="Changes by CLAUSSC29" comment="" />
     <list id="31ace75a-2bc0-4507-a058-fe7674ff8a6a" name="Changes by Colin" comment="" />
     <list id="566cd3ac-a7e2-4680-aadb-2383ff7d59ee" name="Changes by dabun" comment="" />
-    <list id="02f3d0f7-6dde-4ad4-927a-a7cd933fbfd2" name="Changes by Felix" comment="" />
     <list id="21319ecd-1f06-4463-96af-958936f150b8" name="Changes by qwertz" comment="" />
-    <list id="ad481097-e777-4c67-a87a-5e785f1a5d97" name="Changes by würzig" comment="">
+    <list id="ad481097-e777-4c67-a87a-5e785f1a5d97" name="Changes by würzig" comment="Changes by würzig">
       <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Data.java" afterDir="false" />
     </list>
@@ -67,19 +54,6 @@
     <setting file="file://$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java">
-      <ranges>
-        <range start1="30" end1="31" start2="30" end2="31" changelist="ad481097-e777-4c67-a87a-5e785f1a5d97" />
-        <range start1="37" end1="42" start2="37" end2="42" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="67" end1="67" start2="67" end2="68" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="68" end1="68" start2="69" end2="70" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="79" end1="79" start2="81" end2="82" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="84" end1="84" start2="87" end2="88" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-        <range start1="88" end1="88" start2="92" end2="94" changelist="5e740976-3a3a-407e-af37-5634ddb7b884" />
-      </ranges>
-    </file>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="k5hmqa4u" />
@@ -186,7 +160,28 @@
       <option name="project" value="LOCAL" />
       <updated>1624668950190</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="brokey gamey">
+      <created>1625210541258</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1625210541258</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Changes by bundd24">
+      <created>1625210547599</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1625210547599</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Changes by würzig">
+      <created>1625210558035</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1625210558035</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -206,6 +201,9 @@
     <MESSAGE value="CreditsPanel gemacht" />
     <MESSAGE value="improved Panels" />
     <MESSAGE value="Colins Code gesäubert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Colins Code gesäubert" />
+    <MESSAGE value="brokey gamey" />
+    <MESSAGE value="Changes by bundd24" />
+    <MESSAGE value="Changes by würzig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by würzig" />
   </component>
 </project>
