@@ -59,13 +59,20 @@ public class GameModel extends PanelModel {
         };
     }
 
-    public void gameTick() {
+    public void gameTick(int tick) {
         score++;
         updateScore();
+        System.out.println(gameMap.get(player.getCoords()).getPlayerMovableDir().isRight());
+        System.out.println(player.getCurrentDirection().toString());
+        System.out.println(doesNotCollide());
+        System.out.println("-------------");
         if (doesNotCollide()) {
             player.move();
+            if(tick % 5 == 0) {
+                player.moveChunk();
+            }
         }
-        System.out.println(gameMap.get(player.getCoords()).isHasCorona());
+        //System.out.println(gameMap.get(player.getCoords()).isHasCorona());
         if (gameMap.get(player.getCoords()).isHasCorona()) {
 
 

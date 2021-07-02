@@ -45,28 +45,53 @@ public class Player extends EntityModel {
 
     //TODO IDEE: pro tick 2mal moven --> move->draw->move->draw
 
-    public void moveUp() {
+    private void moveUp() {
         y = y - 1;
-        cords.setY(cords.getY() - 1);
+        //cords.setY(cords.getY() - 1);
         //update();
     }
 
-    public void moveDown() {
+    private void moveDown() {
         y = y + 1;
-        cords.setY(cords.getY() + 1);
+        //cords.setY(cords.getY() + 1);
         //update();
     }
 
-    public void moveRight() {
+    private void moveRight() {
         x = x + 1;
-        cords.setX(cords.getX() + 1);
+        //cords.setX(cords.getX() + 1);
         //update();
     }
 
-    public void moveLeft() {
+    private void moveLeft() {
         x = x - 1;
-        cords.setX(cords.getX() - 1);
+        //cords.setX(cords.getX() - 1);
         //update();
+    }
+
+    public void moveChunk() {
+        switch (currentDirection) {
+            case UP -> moveChunkUp();
+            case DOWN -> moveChunkDown();
+            case RIGHT -> moveChunkRight();
+            case LEFT -> moveChunkLeft();
+        }
+    }
+
+    private void moveChunkUp() {
+        cords.setY(cords.getY() - 1);
+    }
+
+    private void moveChunkDown() {
+        cords.setY(cords.getY() + 1);
+    }
+
+    private void moveChunkRight() {
+        cords.setX(cords.getX() + 1);
+    }
+
+    private void moveChunkLeft() {
+        cords.setX(cords.getX() - 1);
     }
 
     public Coord getCoords() {

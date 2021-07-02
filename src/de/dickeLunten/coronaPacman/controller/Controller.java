@@ -66,7 +66,7 @@ public class Controller implements ViewListener {
             }
             long deltaRender = System.nanoTime() - startRender;
 
-            System.out.println("DELTA RENDER: " + deltaRender);
+            //System.out.println("DELTA RENDER: " + deltaRender);
 
             long now = System.nanoTime();
 
@@ -98,7 +98,7 @@ public class Controller implements ViewListener {
 /*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
             System.out.println("Delay: " + delayms);*/
             //System.out.println("DeltaRender: " + deltaRender + " ;DeltaTick: " + deltaTick);
-            System.out.println("--------------------------");
+            //System.out.println("--------------------------");
 /*            if (delayms > 0) {
                 // more than a millisecond wait, do it....
                 try {
@@ -122,8 +122,8 @@ public class Controller implements ViewListener {
 /*        if (tick % 40 == 0) {
             model.getPlayer().move();
         }*/
-        model.getPlayer().move();
-        model.getGameModel().gameTick();
+        //model.getPlayer().move();
+        model.getGameModel().gameTick(tick);
     }
 
     private void render() {
@@ -181,7 +181,6 @@ public class Controller implements ViewListener {
         public void actionPerformed(ActionEvent e) {
             System.out.println("down");
             model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
-            model.getPlayer().moveDown();
         }
     }
 
