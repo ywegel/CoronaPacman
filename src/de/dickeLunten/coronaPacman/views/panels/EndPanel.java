@@ -7,6 +7,7 @@ import de.dickeLunten.coronaPacman.models.panel.EndModel;
 import de.dickeLunten.coronaPacman.views.View;
 import org.jetbrains.annotations.NotNull;
 import util.Bundle;
+import util.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,22 +52,25 @@ public class EndPanel extends PanelView {
         scorel.setForeground(Color.WHITE);
 
         replayb = new JButton("replay");
+        replayb.setFont(Data.setPacFont());
         replayb.setBackground(new Color(50, 80, 0));
-        replayb.setFont(new Font("sans", Font.PLAIN, 70));
+        //replayb.setFont(new Font("sans", Font.PLAIN, 70));
         replayb.setForeground(Color.WHITE);
         replayb.setBorderPainted(false);
 
 
         quitb = new JButton("  quit  ");
+        quitb.setFont(Data.setPacFont());
         quitb.setBackground(new Color(50, 0, 0));
-        quitb.setFont(new Font("sans", Font.PLAIN, 70));
+        //quitb.setFont(new Font("sans", Font.PLAIN, 70));
         quitb.setForeground(Color.WHITE);
         quitb.setBorderPainted(false);
 
 
         exitb = new JButton("  exit  ");
+        exitb.setFont(Data.setPacFont());
         exitb.setBackground(new Color(10,10,10));
-        exitb.setFont(new Font("sans", Font.PLAIN, 70));
+        //exitb.setFont(new Font("sans", Font.PLAIN, 70));
         exitb.setForeground(Color.WHITE);
         exitb.setBorderPainted(false);
 

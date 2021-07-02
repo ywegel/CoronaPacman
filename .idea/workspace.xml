@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="Colins">
+    <list default="true" id="5e740976-3a3a-407e-af37-5634ddb7b884" name="Default Changelist" comment="bei map.txt alle Gehrichtungen eingetragen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Coord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Coord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/RulesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/RulesPanel.java" afterDir="false" />
     </list>
     <list id="f0bd0a95-883d-4c06-880d-3500068d9d68" name="Changes by bundd24" comment="" />
     <list id="edb40b8e-1b60-446e-a180-c5723a8632db" name="Changes by chunky chungus" comment="" />
@@ -151,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624668950190</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="bei map.txt alle Gehrichtungen eingetragen">
+      <created>1625220046338</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1625220046338</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +176,7 @@
     <MESSAGE value="CreditsPanel gemacht" />
     <MESSAGE value="improved Panels" />
     <MESSAGE value="Colins Code gesäubert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Colins Code gesäubert" />
+    <MESSAGE value="bei map.txt alle Gehrichtungen eingetragen" />
+    <option name="LAST_COMMIT_MESSAGE" value="bei map.txt alle Gehrichtungen eingetragen" />
   </component>
 </project>

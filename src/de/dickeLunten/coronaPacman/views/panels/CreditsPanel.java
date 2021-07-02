@@ -4,6 +4,7 @@ import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.CreditsModel;
 import util.Bundle;
+import util.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +34,8 @@ public class CreditsPanel extends PanelView{
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
         backb = new JButton("back");
-        backb.setFont(new Font("sans", Font.PLAIN, 70));
+        //backb.setFont(new Font("sans", Font.PLAIN, 70));
+        backb.setFont(Data.setPacFont());
         backb.setBackground(new Color(50,50,50));
         backb.setForeground(Color.WHITE);
         backb.setBorderPainted(false);
