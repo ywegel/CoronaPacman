@@ -35,11 +35,11 @@ public class GameModel extends PanelModel {
 
         player = new Player();
 
-        vacs = new Vac[4];
-        vacs[0] = new Vac(30, 30);
-        vacs[1] = new Vac(130, 30);
-        vacs[2] = new Vac(130, 130);
-        vacs[3] = new Vac(30, 130);
+//        vacs = new Vac[4];
+//        vacs[0] = new Vac(30, 30);
+//        vacs[1] = new Vac(130, 30);
+//        vacs[2] = new Vac(130, 130);
+//        vacs[3] = new Vac(30, 130);
     }
 
     public void setGamePanel(ModelListener vl) {
@@ -65,7 +65,9 @@ public class GameModel extends PanelModel {
         if (doesNotCollide()) {
             player.move();
         }
+        System.out.println(gameMap.get(player.getCoords()).isHasCorona());
         if (gameMap.get(player.getCoords()).isHasCorona()) {
+
 
             if (player.getLives() > 1 && !coronaEdible) {
                 player.setLives(player.getLives() - 1);
@@ -73,19 +75,23 @@ public class GameModel extends PanelModel {
             } else if (coronaEdible) {
                 //TODO remove this Corona
             } else if (player.getLives() == 1 && !coronaEdible) {
-                gamePanel.finishGame(score);
+                //gamePanel.finishGame(score);
             }
 
         } else if (gameMap.get(player.getCoords()).isHasDot()) {
+            System.out.println("Dot getroffem");
             //TODO remove dot
             //TODO wenn das der letzte dot war --> Spiel gewonnen
 
 
         } else if (gameMap.get(player.getCoords()).isHasToiletPaper()) {
+            System.out.println("TP getroffem");
             player.setLives(player.getLives() + 1);
             //TODO remove ToiletPaper
 
         } else if (gameMap.get(player.getCoords()).isHasVac()) {
+            System.out.println("Vac getroffem");
+
             coronaEdible = true;
 
             TimerTask task = new TimerTask() {

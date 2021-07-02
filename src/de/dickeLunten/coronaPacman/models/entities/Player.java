@@ -9,12 +9,15 @@ public class Player extends EntityModel {
     private ModelListener modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.RIGHT;
     private Coord cords;
+    private int x_count, y_count;
     private int lives;
 
     public Player() {
         cords = new Coord(0, 0);
         x = 10;
         y = 10;
+        x_count = 0;
+        y_count = 0;
         lives = 3;
 /*        width = 10;
         height = 20;*/
