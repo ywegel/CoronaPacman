@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Data {
+    private static HashMap<Coord, MapChunkValues> gameMap;
 
     //kein / vor path !!
     public static Image loadImage(String path){
@@ -38,7 +40,11 @@ public class Data {
     public final static int MAP_CHUNK_SIZE = 323;
     private final static int LINE_OFFSET = 4;
 
-    public static HashMap<Coord, MapChunkValues> loadMapDataFromFile() {
+    public static HashMap<Coord, MapChunkValues> getGameHashMap() {
+        return Objects.requireNonNullElseGet(gameMap, Data::loadMapDataFromFile);
+    }
+
+    private static HashMap<Coord, MapChunkValues> loadMapDataFromFile() {
         int currentChunk = 0;
         HashMap<Coord, MapChunkValues> map = new HashMap<>();
         InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("map.txt");

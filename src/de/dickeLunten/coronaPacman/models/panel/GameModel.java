@@ -28,7 +28,7 @@ public class GameModel extends PanelModel {
     private int score;
 
     public GameModel() {
-        gameMap = Data.loadMapDataFromFile();
+        gameMap = Data.getGameHashMap();
         System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
         score = 0;
         coronaEdible = false;
