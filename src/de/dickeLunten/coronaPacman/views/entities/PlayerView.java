@@ -16,7 +16,7 @@ public class PlayerView extends EntityView {
 //        setPreferredSize(new Dimension(model.getWidth(), model.getHeight()));
         setPreferredSize(new Dimension(800, 800));
 
-        img = Data.loadImage("img/him.jpeg");
+        img = Data.loadImage("img/virus1.png");
     }
 
     @Override
@@ -34,5 +34,9 @@ public class PlayerView extends EntityView {
 
     public void update(){
         //repaint();
+    }
+
+    public Image getImg() {
+        return img;
     }
 }

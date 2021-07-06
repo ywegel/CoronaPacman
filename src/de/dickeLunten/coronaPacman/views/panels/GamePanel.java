@@ -7,6 +7,7 @@ import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.views.entities.PlayerView;
 import de.dickeLunten.coronaPacman.views.entities.VacView;
 import util.Bundle;
+import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,7 @@ public class GamePanel extends PanelView implements GameModelListener {
     private PlayerView playerView;
     private VacView[] vacViews;
 
+    private JLabel background;
     private JLabel fpsCounter;
     private JLabel scoreView;
 
@@ -35,6 +37,11 @@ public class GamePanel extends PanelView implements GameModelListener {
         playerView = new PlayerView(model.getPlayer());
 
         setBackground(Color.PINK);
+
+        background = new JLabel();
+        background.prepareImage(playerView.getImg(), this);
+        add(background);
+
         JButton swb = new JButton("hi");
         this.add(swb);
 
@@ -54,6 +61,13 @@ public class GamePanel extends PanelView implements GameModelListener {
         scoreView = new JLabel();
         scoreView.setText(String.valueOf(model.getScore()));
         add(scoreView);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        //g.drawImage(model.getMapImage(), Dimensions.getScreenResolution().getKey() / 2, 0, this);
+        //g.drawImage(playerView.getImg(), model.getPlayer().getX() + Dimensions.getScreenResolution().getKey() / 2, model.getPlayer().getY(), this);
+        super.paint(g);
     }
 
     @Override

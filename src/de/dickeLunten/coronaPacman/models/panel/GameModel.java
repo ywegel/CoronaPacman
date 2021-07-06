@@ -9,6 +9,7 @@ import util.MapChunkValues;
 import util.Coord;
 import util.PlayerMovableDir;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -27,8 +28,11 @@ public class GameModel extends PanelModel {
 
     private int score;
 
+    private Image mapImage;
+
     public GameModel() {
         gameMap = Data.getGameHashMap();
+        mapImage = Data.loadImage("img/vvmap.png").getScaledInstance(800,1048, Image.SCALE_FAST);
         System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
         score = 0;
         coronaEdible = false;
@@ -68,7 +72,7 @@ public class GameModel extends PanelModel {
         System.out.println("-------------");
         if (doesNotCollide()) {
             player.move();
-            if(tick % 5 == 0) {
+            if(tick % 50 == 0) {
                 player.moveChunk();
             }
         }
@@ -143,6 +147,10 @@ public class GameModel extends PanelModel {
     public void setFps(int fps) {
         this.fps = fps;
         gameModelListener.onFpsChanged(fps);
+    }
+
+    public Image getMapImage() {
+        return mapImage;
     }
 }
 
