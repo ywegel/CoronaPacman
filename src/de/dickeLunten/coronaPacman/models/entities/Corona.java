@@ -3,14 +3,13 @@ package de.dickeLunten.coronaPacman.models.entities;
 import util.Coord;
 import util.Data;
 import util.Dimensions;
-import util.Pair;
 
 import java.awt.*;
 
 public class Corona extends EntityModel {
 
     private int width, height, x, y;
-    private Coord cords;
+    private Coord coords;
     private PlayerDirection currentDirection;
     private Image coronaImg0, coronaImg1;
     private boolean isImageSwitched = false;
@@ -20,7 +19,7 @@ public class Corona extends EntityModel {
         this.y = y;
         this.width = 80;
         this.height = 80;
-        this.cords = new Coord(x * Dimensions.TICKS_PER_CHUNK, y * Dimensions.TICKS_PER_CHUNK);
+        this.coords = new Coord(x * Dimensions.TICKS_PER_CHUNK, y * Dimensions.TICKS_PER_CHUNK);
         this.currentDirection = startDir;
         loadImg(isImageSwitched);
     }
@@ -32,7 +31,7 @@ public class Corona extends EntityModel {
         System.out.println(y);
         this.width = 80;
         this.height = 80;
-        this.cords = chunkPos;
+        this.coords = chunkPos;
         this.currentDirection = startDir;
         loadImg(isImageSwitched);
     }
@@ -107,27 +106,31 @@ public class Corona extends EntityModel {
     }
 
     private void moveChunkUp() {
-        cords.setY(cords.getY() - 1);
+        coords.setY(coords.getY() - 1);
     }
 
     private void moveChunkDown() {
-        cords.setY(cords.getY() + 1);
+        coords.setY(coords.getY() + 1);
     }
 
     private void moveChunkRight() {
-        cords.setX(cords.getX() + 1);
+        coords.setX(coords.getX() + 1);
     }
 
     private void moveChunkLeft() {
-        cords.setX(cords.getX() - 1);
+        coords.setX(coords.getX() - 1);
     }
 
     public void setCurrentDirection(PlayerDirection dir) {
         currentDirection = dir;
     }
 
-    public Coord getCords() {
-        return cords;
+    public PlayerDirection getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public Coord getCoords() {
+        return coords;
     }
 
     public int getHeight() {

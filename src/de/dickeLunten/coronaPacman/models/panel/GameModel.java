@@ -12,26 +12,27 @@ public class GameModel extends PanelModel {
     private Player player;
     private Vac[] vacs;
     private TPaper tPaper;
-    private boolean coronaEdible;
-    private ModelListener gamePanel;
     private ArrayList<Corona> coronas;
-
-    private GameModelListener gameModelListener;
-
-    private int fps = 0;
-
     private final HashMap<Coord, MapChunkValues> gameMap;
-
-    private int score;
 
     private Image mapImage;
 
+    private GameModelListener gameModelListener;
+    private ModelListener gamePanel;
+
+    private boolean coronaEdible;
+
+    private int fps;
+    private int score;
+    private int nomNomCount;
     private boolean animationState = false;
 
     public GameModel() {
         gameMap = Data.getGameHashMap();
         mapImage = Data.loadImageFromRes("img/vvmap.png").getScaledInstance(800, 1048, Image.SCALE_FAST);
-        score = 0;
+        score = -1;
+        fps = -1;
+        nomNomCount = -1;
         coronaEdible = false;
         coronas = new ArrayList<>();
 
@@ -60,26 +61,28 @@ public class GameModel extends PanelModel {
 
     public boolean doesNotCollidePlayer(PlayerDirection dir) {
         return switch (dir) {
-            case UP -> getMovDir().isUp();
-            case DOWN -> getMovDir().isDown();
-            case LEFT -> getMovDir().isLeft();
-            case RIGHT -> getMovDir().isRight();
+            case UP -> getPlayerMovDir().isUp();
+            case DOWN -> getPlayerMovDir().isDown();
+            case LEFT -> getPlayerMovDir().isLeft();
+            case RIGHT -> getPlayerMovDir().isRight();
         };
     }
 
-    public boolean doesNotCollideCorona() {
-        return switch (player.getCurrentDirection()) {
-            case UP -> getMovDir().isUp();
-            case DOWN -> getMovDir().isDown();
-            case LEFT -> getMovDir().isLeft();
-            case RIGHT -> getMovDir().isRight();
+    public boolean doesNotCollideCorona(Corona c) {
+        return switch (c.getCurrentDirection()) {
+            case UP -> getCoronaMovDir(c).isUp();
+            case DOWN -> getCoronaMovDir(c).isDown();
+            case LEFT -> getCoronaMovDir(c).isLeft();
+            case RIGHT -> getCoronaMovDir(c).isRight();
         };
     }
 
     public void gameTick(int tick) {
 
         //switch animation Image
-        animationState = tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0;
+        if(tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
+            animationState = !animationState;
+        }
 
         score++;
         updateScore();
@@ -96,13 +99,16 @@ public class GameModel extends PanelModel {
         }
         //Corona Movement
         for (Corona c : coronas) {
-            if (doesNotCollideCorona()) {
+            if (doesNotCollideCorona(c)) {
                 c.move();
                 if (tick % Dimensions.TICKS_PER_CHUNK == 0) {
                     c.moveChunk();
                 }
-            } else if (!doesNotCollideCorona()) {
-
+            } else {
+                //TODO dauerhaftes colliden mit irgendeiner wand???????????????????????????????????????????????????????
+/*                while (!doesNotCollideCorona(c)){
+                    c.setCurrentDirection(randomDirection());
+                }*/
             }
         }
 
@@ -113,7 +119,7 @@ public class GameModel extends PanelModel {
                 //TODO TP player back to spawn
             } else if (coronaEdible) {
                 for (Corona c : coronas) {
-                    if (player.getCoords() == c.getCords()) {
+                    if (player.getCoords() == c.getCoords()) {
                         coronas.remove(c);
                     }
                 }
@@ -125,6 +131,8 @@ public class GameModel extends PanelModel {
             System.out.println("Dot getroffem");
 
             gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasDot(false));
+
+            nomNomCount++;
 
             //TODO remove dot
             //TODO wenn das der letzte dot war --> Spiel gewonnen
@@ -201,8 +209,12 @@ public class GameModel extends PanelModel {
         gameModelListener.onScoreChanged(score);
     }
 
-    private PlayerMovableDir getMovDir() {
+    private PlayerMovableDir getPlayerMovDir() {
         return gameMap.get(player.getCoords()).getPlayerMovableDir();
+    }
+
+    private PlayerMovableDir getCoronaMovDir(Corona c) {
+        return gameMap.get(c.getCoords()).getPlayerMovableDir();
     }
 
     public Player getPlayer() {
