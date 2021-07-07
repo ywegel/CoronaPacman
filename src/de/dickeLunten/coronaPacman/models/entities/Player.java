@@ -2,6 +2,9 @@ package de.dickeLunten.coronaPacman.models.entities;
 
 import de.dickeLunten.coronaPacman.ModelListener;
 import util.Coord;
+import util.Data;
+
+import java.awt.*;
 
 public class Player extends EntityModel {
 

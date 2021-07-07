@@ -65,9 +65,10 @@ public class GamePanel extends PanelView implements GameModelListener {
 
     @Override
     public void paint(Graphics g) {
-        //g.drawImage(model.getMapImage(), Dimensions.getScreenResolution().getKey() / 2, 0, this);
-        //g.drawImage(playerView.getImg(), model.getPlayer().getX() + Dimensions.getScreenResolution().getKey() / 2, model.getPlayer().getY(), this);
-        super.paint(g);
+        //super.paint(g);
+        g.drawImage(model.getMapImage(), Dimensions.getScreenResolution().getKey() / 2, 0, this);
+        g.drawImage(model.getPlayer().getImg(), model.getPlayer().getX() + Dimensions.getScreenResolution().getKey() / 2, model.getPlayer().getY(), this);
+
     }
 
     @Override
