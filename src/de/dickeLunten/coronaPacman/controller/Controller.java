@@ -8,11 +8,13 @@ import de.dickeLunten.coronaPacman.views.View;
 import de.dickeLunten.coronaPacman.views.panels.GamePanel;
 import de.dickeLunten.coronaPacman.views.panels.StartPanel;
 import util.Bundle;
+import util.WAVPlayer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Watchable;
 
 enum InputAction {
     ACTION_UP,
@@ -51,6 +53,10 @@ public class Controller implements ViewListener {
         int frameCount = 0;
 
         int ticksss = 0;
+
+
+        Thread musicThread = new Thread(WAVPlayer::playGame);
+        musicThread.start();
 
         while (gameIsRunning) {
             long loopStart = System.nanoTime();

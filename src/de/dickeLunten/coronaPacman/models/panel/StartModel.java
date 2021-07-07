@@ -10,8 +10,7 @@ public class StartModel {
     private Font pacFont;
 
     public StartModel(){                                        //---Aspect Ratio = 1/1.41402942955---
-        backgroundImg = Data.loadImage("img/vvmap.png").getScaledInstance(600,848, Image.SCALE_FAST);
-        //creditsbImg =
+        backgroundImg = Data.loadImage("img/vvmap.png").getScaledInstance(600,600, Image.SCALE_FAST);
     }
 
 
