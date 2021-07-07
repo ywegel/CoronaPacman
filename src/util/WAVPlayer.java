@@ -1,45 +1,47 @@
 package util;
 
 import java.io.File;
+import java.net.URISyntaxException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 
-public class WAVPlayer implements Runnable
-{
+public class WAVPlayer {
 
-    public void run(){
-        play("solodrillbeat1.wav");
+    private static final AtomicBoolean isPaused = new AtomicBoolean(true);
+    private static final Object mutex = new Object();
+
+    private static final AtomicBoolean isKill = new AtomicBoolean(false);
+
+    public static void playGameMusic() {
+        play("sounds/solodrillbeat1.wav");
     }
 
-    public static void playGame(){
-        play("solodrillbeat1.wav");
-    }
-
-
-    private static void play(String filename)
-    {
-
+    private static void play(String filename) {
+        System.out.println("Musik läuft");
 
         int EXTERNAL_BUFFER_SIZE = 524288;
 
-        File soundFile = new File(filename);
+        File soundFile = null;
+        try {
+            soundFile = Data.loadFileFromRes(filename);
+        } catch (URISyntaxException e) {
+            System.err.println("Can't find file");
+            e.printStackTrace();
+        }
 
-        if (!soundFile.exists())
-        {
+        if (!soundFile.exists()) {
             System.err.println("Wave file not found: " + filename);
             return;
         }
 
         AudioInputStream audioInputStream = null;
-        try
-        {
+        try {
             audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }
@@ -48,20 +50,17 @@ public class WAVPlayer implements Runnable
 
         SourceDataLine auline = null;
 
-//Describe a desired line
+        //Describe a desired line
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 
-        try
-        {
+        try {
             auline = (SourceDataLine) AudioSystem.getLine(info);
 
             //Opens the line with the specified format,
             //causing the line to acquire any required
             //system resources and become operational.
             auline.open(format);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }
@@ -72,26 +71,26 @@ public class WAVPlayer implements Runnable
         int nBytesRead = 0;
         byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
 
-        try
-        {
-            while (nBytesRead != -1)
-            {
+        isPaused.set(false);
+
+        try {
+            while (nBytesRead != -1 && !isKill.get()) {
+                synchronized (mutex) {
+                    if (isPaused.get()) {
+                        mutex.wait();
+                    }
+                }
+
                 nBytesRead = audioInputStream.read(abData, 0, abData.length);
-                if (nBytesRead >= 0)
-                {
+                if (nBytesRead >= 0) {
                     //Writes audio data to the mixer via this source data line
                     //NOTE : A mixer is an audio device with one or more lines
                     auline.write(abData, 0, nBytesRead);
                 }
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-            return;
-        }
-        finally
-        {
+        } finally {
             //Drains queued data from the line
             //by continuing data I/O until the
             //data line's internal buffer has been emptied
@@ -100,7 +99,24 @@ public class WAVPlayer implements Runnable
             //Closes the line, indicating that any system
             //resources in use by the line can be released
             auline.close();
+
+            isPaused.set(true);
+        }
+    }
+
+    public static void killThread() {
+        isKill.set(true);
+    }
+
+    public static void pauseMusic() {
+        isPaused.set(true);
+    }
+
+    public static void continueMusic() {
+        isPaused.set(false);
+
+        synchronized (mutex) {
+            mutex.notifyAll();
         }
     }
 }
-

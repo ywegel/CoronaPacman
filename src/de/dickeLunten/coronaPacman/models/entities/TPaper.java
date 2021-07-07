@@ -1,14 +1,21 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
+import util.Data;
+
+import java.awt.*;
+
 public class TPaper {
 
     private int length, width, x, y;
 
+    private Image image;
+
     public TPaper(){
         x = 0;
         y = 0;
-        length = 20;
-        width = 10;
+        length = 50;
+        width = 50;
+        image = Data.loadImageFromRes("img/toilettenpapier.png");
     }
 
     public int getLength() {
@@ -41,5 +48,9 @@ public class TPaper {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public Image getImage() {
+        return image;
     }
 }

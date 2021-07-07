@@ -1,14 +1,21 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
+import util.Data;
+
+import java.awt.*;
+
 public class Vac {
 
     private int length, width, x, y;
 
+    private Image image;
+
     public Vac(int x, int y){
         this.x = x;
         this.y = y;
-        length = 20;
-        width = 10;
+        length = 50;
+        width = 50;
+        image = Data.loadImageFromRes("img/Impfung.png");
     }
 
     public int getLength() {
@@ -43,4 +50,7 @@ public class Vac {
         this.y = y;
     }
 
+    public Image getImage() {
+        return image;
+    }
 }

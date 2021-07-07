@@ -1,6 +1,5 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
-import de.dickeLunten.coronaPacman.ModelListener;
 import util.Coord;
 import util.Data;
 
@@ -26,7 +25,7 @@ public class Player extends EntityModel {
         height = 20;
 //        width = 100;
 //        height = 200;
-        img = Data.loadImage("img/Impfung.png").getScaledInstance(50,100,Image.SCALE_FAST);
+        img = Data.loadImageFromRes("img/Impfung.png").getScaledInstance(50,100,Image.SCALE_FAST);
     }
 
     public void move() {

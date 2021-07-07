@@ -19,8 +19,9 @@ public class MapChunkValues {
         return hasDot;
     }
 
-    public void setHasDot(boolean hasDot) {
+    public MapChunkValues setHasDot(boolean hasDot) {
         this.hasDot = hasDot;
+        return this;
     }
 
     public boolean isHasToiletPaper() {

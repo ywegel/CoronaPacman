@@ -5,6 +5,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Objects;
@@ -14,9 +16,14 @@ public class Data {
     private static HashMap<Coord, MapChunkValues> gameMap;
 
     //kein / vor path !!
-    public static Image loadImage(String path){
+    public static Image loadImageFromRes(String path){
         URL url = ClassLoader.getSystemClassLoader().getResource(path);
         return new ImageIcon(url).getImage();
+    }
+
+    public static File loadFileFromRes(String filename) throws URISyntaxException {
+        URI uri = ClassLoader.getSystemClassLoader().getResource(filename).toURI();
+        return new File(uri);
     }
 
     public static Font setPacFont(){
@@ -75,6 +82,7 @@ public class Data {
                                     )
                             ));
 
+
                     System.out.println("-----");
                     System.out.println("Has Dot: " + (Character.digit(currentLine.charAt(LINE_OFFSET), 10) != 0));
                     System.out.println("Has TP: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0));
@@ -85,6 +93,7 @@ public class Data {
                     System.out.println("Has DOWN: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 6), 10) != 0));
                     System.out.println("Has LEFT: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 7), 10) != 0));
                     System.out.println("Has RIGHT: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 8), 10) != 0));
+
 
                     currentChunk++;
                 }

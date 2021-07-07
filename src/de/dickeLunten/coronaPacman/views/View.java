@@ -10,6 +10,7 @@ import de.dickeLunten.coronaPacman.models.panel.GameModel;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import de.dickeLunten.coronaPacman.views.panels.*;
 import util.Bundle;
+import util.Data;
 
 import javax.swing.*;
 
@@ -48,6 +49,8 @@ public class View implements ModelListener {
         JFrame frame = new JFrame("CoronaPacman");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setResizable(false);
+
+        frame.setIconImage(Data.loadImageFromRes("img/VirusVendor.png"));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

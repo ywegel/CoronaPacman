@@ -14,7 +14,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Watchable;
 
 enum InputAction {
     ACTION_UP,
@@ -25,6 +24,10 @@ enum InputAction {
 
 public class Controller implements ViewListener {
     private volatile boolean gameIsRunning = false;
+    private volatile boolean gameIsPaused = false;
+    private final Object lock = new Object();
+
+    private Thread musicThread;
 
     private static final long NANOS_PER_SECOND = 1_000_000_000L;
 
@@ -47,18 +50,29 @@ public class Controller implements ViewListener {
 
         final long nanosPerFrame = NANOS_PER_SECOND / fps;
 
-        System.out.println("NanosPerFrame :" + nanosPerFrame);
+        //System.out.println("NanosPerFrame :" + nanosPerFrame);
 
         long statt = System.nanoTime();
         int frameCount = 0;
 
         int ticksss = 0;
 
-
-        Thread musicThread = new Thread(WAVPlayer::playGame);
+        musicThread = new Thread(WAVPlayer::playGameMusic);
         musicThread.start();
 
         while (gameIsRunning) {
+
+            if(gameIsPaused) {
+                synchronized (lock) {
+                    try {
+                        WAVPlayer.pauseMusic();
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
             long loopStart = System.nanoTime();
 
             //update game screen
@@ -138,6 +152,20 @@ public class Controller implements ViewListener {
         view.getGamePanel().update();
     }
 
+    @Override
+    public void pauseGame() {
+        gameIsPaused = true;
+    }
+
+    @Override
+    public void continueGame() {
+        gameIsPaused = false;
+
+        synchronized (lock) {
+            lock.notifyAll();
+        }
+        WAVPlayer.continueMusic();
+    }
 
     private void initStartInput(StartPanel panel) {
         actionEnter = new ActionEnter();
@@ -177,39 +205,38 @@ public class Controller implements ViewListener {
     public class ActionUp extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("up");
-            model.getPlayer().setCurrentDirection(PlayerDirection.UP);
+            //model.getPlayer().setCurrentDirection(PlayerDirection.UP);
+            model.getGameModel().turnPlayer(PlayerDirection.UP);
         }
     }
 
     public class ActionDown extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("down");
-            model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
+            //model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
+            model.getGameModel().turnPlayer(PlayerDirection.DOWN);
         }
     }
 
     public class ActionLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("left");
-            model.getPlayer().setCurrentDirection(PlayerDirection.LEFT);
+            //model.getPlayer().setCurrentDirection(PlayerDirection.LEFT);
+            model.getGameModel().turnPlayer(PlayerDirection.LEFT);
         }
     }
 
     public class ActionRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("right");
-            model.getPlayer().setCurrentDirection(PlayerDirection.RIGHT);
+            //model.getPlayer().setCurrentDirection(PlayerDirection.RIGHT);
+            model.getGameModel().turnPlayer(PlayerDirection.RIGHT);
         }
     }
 
     public class ActionEnter extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Pog");
             onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
         }
     }
@@ -217,17 +244,15 @@ public class Controller implements ViewListener {
     @Override
     public void onNavigate(NavigationPanels destination, Bundle bundle) {
         view.onNavigate(destination, bundle);
-        switch (destination) {
-            case GAME_PANEL -> {
-                gameIsRunning = true;
-                new Thread(this::loop).start();
-            }
-            default -> {
-                gameIsRunning = false;
-            }
-        }
-        //TODO add bundle and put options in there
 
-        //TODO check if bundle travels to gameoanel, if true, then isRunning = true;
+        if (destination == NavigationPanels.GAME_PANEL) {
+            gameIsRunning = true;
+            new Thread(this::loop).start();
+        } else {
+            gameIsRunning = false;
+            WAVPlayer.killThread();
+            System.out.println("is music thread alive: " + musicThread.isAlive());
+        }
+
     }
 }

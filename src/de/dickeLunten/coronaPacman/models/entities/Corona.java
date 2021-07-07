@@ -1,20 +1,67 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
 import util.Coord;
-import util.PlayerMovableDir;
+import util.Data;
+import util.Dimensions;
+import util.Pair;
+
+import java.awt.*;
 
 public class Corona extends EntityModel {
 
-    private int length, width, x, y;
+    private int width, height, x, y;
     private Coord cords;
     private PlayerDirection currentDirection;
+    private Image coronaImg0, coronaImg1;
+    private boolean isImageSwitched = false;
 
-    public Corona(){
-        x = 0;
-        y = 0;
-        length = 20;
-        width = 10;
-        cords = new Coord(0,0);
+    public Corona(int x, int y, PlayerDirection startDir) {
+        this.x = x;
+        this.y = y;
+        this.width = 80;
+        this.height = 80;
+        this.cords = new Coord(x * Dimensions.TICKS_PER_CHUNK, y * Dimensions.TICKS_PER_CHUNK);
+        this.currentDirection = startDir;
+        loadImg(isImageSwitched);
+    }
+
+    public Corona(Coord chunkPos, PlayerDirection startDir) {
+        this.x = chunkPos.getX() / Dimensions.TICKS_PER_CHUNK;
+        this.y = chunkPos.getY() / Dimensions.TICKS_PER_CHUNK;
+        System.out.println(x);
+        System.out.println(y);
+        this.width = 80;
+        this.height = 80;
+        this.cords = chunkPos;
+        this.currentDirection = startDir;
+        loadImg(isImageSwitched);
+    }
+
+    public Corona() {
+        this(0, 0, PlayerDirection.RIGHT);
+    }
+
+    public Corona(Coord chunkPos, PlayerDirection startDir, boolean isFirstImg) {
+        this(chunkPos, startDir);
+        isImageSwitched = !isFirstImg;
+        loadImg(isFirstImg);
+    }
+
+    public Corona(int x, int y, PlayerDirection startDir, boolean isFirstImg) {
+        this(x, y, startDir);
+        isImageSwitched = !isFirstImg;
+        loadImg(isFirstImg);
+    }
+
+    private void loadImg(boolean firstImg) {
+        if (firstImg) {
+            coronaImg0 = Data.loadImageFromRes("img/virus1.png");
+            coronaImg1 = Data.loadImageFromRes("img/virus2.png");
+        } else {
+
+            coronaImg0 = Data.loadImageFromRes("img/virus2.png");
+            coronaImg1 = Data.loadImageFromRes("img/virus1.png");
+        }
     }
 
     public void move() {
@@ -75,7 +122,7 @@ public class Corona extends EntityModel {
         cords.setX(cords.getX() - 1);
     }
 
-    public void setCurrentDirection(PlayerDirection dir){
+    public void setCurrentDirection(PlayerDirection dir) {
         currentDirection = dir;
     }
 
@@ -83,8 +130,8 @@ public class Corona extends EntityModel {
         return cords;
     }
 
-    public int getLength() {
-        return length;
+    public int getHeight() {
+        return height;
     }
 
     public int getWidth() {
@@ -99,8 +146,8 @@ public class Corona extends EntityModel {
         return y;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public void setWidth(int width) {
@@ -114,4 +161,25 @@ public class Corona extends EntityModel {
     public void setY(int y) {
         this.y = y;
     }
+
+    public Image getImage(boolean s) {
+        if (s) {
+            return coronaImg1;
+        }else {
+            return coronaImg0;
+        }
+    }
+
+/*    public void switchImage() {
+        isImageSwitched = !isImageSwitched;
+        if (isImageSwitched) {
+            Image cache = coronaImg0;
+            coronaImg0 = coronaImg1;
+            coronaImg1 = cache;
+        } else {
+            Image cache = coronaImg1;
+            coronaImg1 = coronaImg0;
+            coronaImg0 = cache;
+        }
+    }*/
 }

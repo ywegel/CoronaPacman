@@ -2,24 +2,16 @@ package de.dickeLunten.coronaPacman.models.panel;
 
 import de.dickeLunten.coronaPacman.GameModelListener;
 import de.dickeLunten.coronaPacman.ModelListener;
-import de.dickeLunten.coronaPacman.models.entities.Corona;
-import de.dickeLunten.coronaPacman.models.entities.Player;
-import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
-import de.dickeLunten.coronaPacman.models.entities.Vac;
-import util.Data;
-import util.MapChunkValues;
-import util.Coord;
-import util.PlayerMovableDir;
+import de.dickeLunten.coronaPacman.models.entities.*;
+import util.*;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameModel extends PanelModel {
     private Player player;
     private Vac[] vacs;
+    private TPaper tPaper;
     private boolean coronaEdible;
     private ModelListener gamePanel;
     private ArrayList<Corona> coronas;
@@ -34,21 +26,29 @@ public class GameModel extends PanelModel {
 
     private Image mapImage;
 
+    private boolean animationState = false;
+
     public GameModel() {
         gameMap = Data.getGameHashMap();
         mapImage = Data.loadImage("img/VirusVendor.png").getScaledInstance(800,1048, Image.SCALE_FAST);
         System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
         score = 0;
         coronaEdible = false;
-        coronas = new ArrayList<Corona>();
+        coronas = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            coronas.add(randomCorona());
+        }
 
         player = new Player();
 
-//        vacs = new Vac[4];
-//        vacs[0] = new Vac(30, 30);
-//        vacs[1] = new Vac(130, 30);
-//        vacs[2] = new Vac(130, 130);
-//        vacs[3] = new Vac(30, 130);
+        vacs = new Vac[4];
+        vacs[0] = new Vac(30, 30);
+        vacs[1] = new Vac(130, 30);
+        vacs[2] = new Vac(130, 130);
+        vacs[3] = new Vac(30, 130);
+
+        tPaper = new TPaper();
     }
 
     public void setGamePanel(ModelListener vl) {
@@ -59,8 +59,8 @@ public class GameModel extends PanelModel {
         gameModelListener = gl;
     }
 
-    public boolean doesNotCollidePlayer() {
-        return switch (player.getCurrentDirection()) {
+    public boolean doesNotCollidePlayer(PlayerDirection dir) {
+        return switch (dir) {
             case UP -> getMovDir().isUp();
             case DOWN -> getMovDir().isDown();
             case LEFT -> getMovDir().isLeft();
@@ -78,42 +78,43 @@ public class GameModel extends PanelModel {
     }
 
     public void gameTick(int tick) {
+
+        //switch animation Image
+        animationState = tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0;
+
         score++;
         updateScore();
-        System.out.println(gameMap.get(player.getCoords()).getPlayerMovableDir().isRight());
+/*        System.out.println(gameMap.get(player.getCoords()).getPlayerMovableDir().isRight());
         System.out.println(player.getCurrentDirection().toString());
-        System.out.println(doesNotCollidePlayer());
-        System.out.println("-------------");
+        System.out.println(doesNotCollidePlayer(getPlayer().getCurrentDirection()));
+        System.out.println("-------------");*/
         //Player Movement
-        if (doesNotCollidePlayer()) {
+        if (doesNotCollidePlayer(getPlayer().getCurrentDirection())) {
             player.move();
-            if(tick % 50 == 0) {
+            if (tick % Dimensions.TICKS_PER_CHUNK == 0) {
                 player.moveChunk();
             }
         }
         //Corona Movement
-        for(Corona c: coronas){
-            if(doesNotCollideCorona()){
+        for (Corona c : coronas) {
+            if (doesNotCollideCorona()) {
                 c.move();
-                if(tick % 50 == 0){
+                if (tick % Dimensions.TICKS_PER_CHUNK == 0) {
                     c.moveChunk();
                 }
-            }
-            else if(!doesNotCollideCorona()){
+            } else if (!doesNotCollideCorona()) {
 
             }
         }
 
-        //System.out.println(gameMap.get(player.getCoords()).isHasCorona());
         if (gameMap.get(player.getCoords()).isHasCorona()) {
-
 
             if (player.getLives() > 1 && !coronaEdible) {
                 player.setLives(player.getLives() - 1);
                 //TODO TP player back to spawn
             } else if (coronaEdible) {
-                for(Corona c: coronas){
-                    if(player.getCoords() == c.getCords()){
+                for (Corona c : coronas) {
+                    if (player.getCoords() == c.getCords()) {
                         coronas.remove(c);
                     }
                 }
@@ -123,6 +124,9 @@ public class GameModel extends PanelModel {
 
         } else if (gameMap.get(player.getCoords()).isHasDot()) {
             System.out.println("Dot getroffem");
+
+            gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasDot(false));
+
             //TODO remove dot
             //TODO wenn das der letzte dot war --> Spiel gewonnen
 
@@ -152,23 +156,46 @@ public class GameModel extends PanelModel {
         }
     }
 
-    public PlayerDirection randomDirection(){
-        int randomNum = 1 + (int)(Math.random() * 4);
-        switch (randomNum){
-            case 1: return PlayerDirection.UP;
-            case 2: return PlayerDirection.DOWN;
-            case 3: return PlayerDirection.LEFT;
-            case 4: return PlayerDirection.RIGHT;
-        }
-        return PlayerDirection.RIGHT;
+    private Corona randomCorona() {
+        return new Corona(randomMapPosition(), randomDirection());
     }
 
-    public void addCorona(Corona c){
+    private PlayerDirection randomDirection() {
+        int randomNum = 1 + (int) (Math.random() * 4);
+        return switch (randomNum) {
+            case 1 -> PlayerDirection.UP;
+            case 2 -> PlayerDirection.DOWN;
+            case 3 -> PlayerDirection.LEFT;
+            default -> PlayerDirection.RIGHT;
+        };
+    }
+
+    private Coord randomMapPosition() {
+        Random r = new Random();
+        return new Coord(r.nextInt(Dimensions.MAP_WIDTH), r.nextInt(Dimensions.MAP_HEIGHT));
+        //TODO constant values file for map etc
+    }
+
+    public void turnPlayer(PlayerDirection dir) {
+        if (doesNotCollidePlayer(dir)) {
+            player.setCurrentDirection(dir);
+        }
+    }
+
+    public void addCorona(Corona c) {
         coronas.add(c);
     }
 
-    public void removeCorona(Corona c){
+    public void removeCorona(Corona c) {
         coronas.remove(c);
+    }
+
+    public int getCoronaCount() {
+        return coronas.size() - 1;
+    }
+
+    public ArrayList<Corona> getCovList(){
+        return coronas;
     }
 
     private void updateScore() {
@@ -202,6 +229,22 @@ public class GameModel extends PanelModel {
 
     public Image getMapImage() {
         return mapImage;
+    }
+
+    public boolean getAnimationState() {
+        return animationState;
+    }
+
+    public HashMap<Coord, MapChunkValues> getGameMap() {
+        return gameMap;
+    }
+
+    public Vac[] getVacs() {
+        return vacs;
+    }
+
+    public TPaper getTPaper() {
+        return tPaper;
     }
 }
 

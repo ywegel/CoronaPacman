@@ -5,4 +5,6 @@ import util.Bundle;
 
 public interface ViewListener {
     void onNavigate(NavigationPanels destination, Bundle bundle);
+    void pauseGame();
+    void continueGame();
 }
