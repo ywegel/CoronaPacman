@@ -2,7 +2,9 @@ package de.dickeLunten.coronaPacman.models.panel;
 
 import de.dickeLunten.coronaPacman.GameModelListener;
 import de.dickeLunten.coronaPacman.ModelListener;
+import de.dickeLunten.coronaPacman.models.entities.Corona;
 import de.dickeLunten.coronaPacman.models.entities.Player;
+import de.dickeLunten.coronaPacman.models.entities.PlayerDirection;
 import de.dickeLunten.coronaPacman.models.entities.Vac;
 import util.Data;
 import util.MapChunkValues;
@@ -10,6 +12,7 @@ import util.Coord;
 import util.PlayerMovableDir;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,6 +22,7 @@ public class GameModel extends PanelModel {
     private Vac[] vacs;
     private boolean coronaEdible;
     private ModelListener gamePanel;
+    private ArrayList<Corona> coronas;
 
     private GameModelListener gameModelListener;
 
@@ -36,6 +40,7 @@ public class GameModel extends PanelModel {
         System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
         score = 0;
         coronaEdible = false;
+        coronas = new ArrayList<Corona>();
 
         player = new Player();
 
@@ -54,7 +59,16 @@ public class GameModel extends PanelModel {
         gameModelListener = gl;
     }
 
-    public boolean doesNotCollide() {
+    public boolean doesNotCollidePlayer() {
+        return switch (player.getCurrentDirection()) {
+            case UP -> getMovDir().isUp();
+            case DOWN -> getMovDir().isDown();
+            case LEFT -> getMovDir().isLeft();
+            case RIGHT -> getMovDir().isRight();
+        };
+    }
+
+    public boolean doesNotCollideCorona() {
         return switch (player.getCurrentDirection()) {
             case UP -> getMovDir().isUp();
             case DOWN -> getMovDir().isDown();
@@ -68,14 +82,28 @@ public class GameModel extends PanelModel {
         updateScore();
         System.out.println(gameMap.get(player.getCoords()).getPlayerMovableDir().isRight());
         System.out.println(player.getCurrentDirection().toString());
-        System.out.println(doesNotCollide());
+        System.out.println(doesNotCollidePlayer());
         System.out.println("-------------");
-        if (doesNotCollide()) {
+        //Player Movement
+        if (doesNotCollidePlayer()) {
             player.move();
             if(tick % 50 == 0) {
                 player.moveChunk();
             }
         }
+        //Corona Movement
+        for(Corona c: coronas){
+            if(doesNotCollideCorona()){
+                c.move();
+                if(tick % 50 == 0){
+                    c.moveChunk();
+                }
+            }
+            else if(!doesNotCollideCorona()){
+
+            }
+        }
+
         //System.out.println(gameMap.get(player.getCoords()).isHasCorona());
         if (gameMap.get(player.getCoords()).isHasCorona()) {
 
@@ -84,7 +112,11 @@ public class GameModel extends PanelModel {
                 player.setLives(player.getLives() - 1);
                 //TODO TP player back to spawn
             } else if (coronaEdible) {
-                //TODO remove this Corona
+                for(Corona c: coronas){
+                    if(player.getCoords() == c.getCords()){
+                        coronas.remove(c);
+                    }
+                }
             } else if (player.getLives() == 1 && !coronaEdible) {
                 //gamePanel.finishGame(score);
             }
@@ -118,6 +150,25 @@ public class GameModel extends PanelModel {
             //TODO remove Vac
             //TODO change Vac design
         }
+    }
+
+    public PlayerDirection randomDirection(){
+        int randomNum = 1 + (int)(Math.random() * 4);
+        switch (randomNum){
+            case 1: return PlayerDirection.UP;
+            case 2: return PlayerDirection.DOWN;
+            case 3: return PlayerDirection.LEFT;
+            case 4: return PlayerDirection.RIGHT;
+        }
+        return PlayerDirection.RIGHT;
+    }
+
+    public void addCorona(Corona c){
+        coronas.add(c);
+    }
+
+    public void removeCorona(Corona c){
+        coronas.remove(c);
     }
 
     private void updateScore() {

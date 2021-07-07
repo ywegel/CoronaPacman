@@ -9,11 +9,11 @@ import java.awt.*;
 public class Player extends EntityModel {
 
     private int height, width, x, y;
-    private ModelListener modelListeners;
     private PlayerDirection currentDirection = PlayerDirection.RIGHT;
     private Coord cords;
     private int x_count, y_count;
     private int lives;
+    private Image img;
 
     public Player() {
         cords = new Coord(0, 0);
@@ -22,19 +22,11 @@ public class Player extends EntityModel {
         x_count = 0;
         y_count = 0;
         lives = 3;
-/*        width = 10;
-        height = 20;*/
-        width = 100;
-        height = 200;
-    }
-
-    public void addListener(ModelListener ml) {
-        this.modelListeners = ml;
-    }
-
-
-    public void update() {
-        modelListeners.update();
+        width = 10;
+        height = 20;
+//        width = 100;
+//        height = 200;
+        img = Data.loadImage("img/Impfung.png").getScaledInstance(50,100,Image.SCALE_FAST);
     }
 
     public void move() {
@@ -45,8 +37,6 @@ public class Player extends EntityModel {
             case LEFT -> moveLeft();
         }
     }
-
-    //TODO IDEE: pro tick 2mal moven --> move->draw->move->draw
 
     private void moveUp() {
         y = y - 1;
@@ -147,5 +137,9 @@ public class Player extends EntityModel {
 
     public void setLives(int a) {
         lives = a;
+    }
+
+    public Image getImg(){
+        return img;
     }
 }
