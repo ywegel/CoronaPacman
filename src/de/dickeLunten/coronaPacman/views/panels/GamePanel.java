@@ -24,6 +24,12 @@ public class GamePanel extends PanelView implements GameModelListener {
     private JLabel background;
     private JLabel fpsCounter;
     private JLabel scoreView;
+    private JButton pauseb;
+    private JLabel pausel;
+    private JButton continueb;
+    private JButton quitb;
+
+    //TODO alle knöpfe und anzeigen links oder rechts
 
     public GamePanel(GameModel model, ViewListener viewListener) {
         this.viewListener = viewListener;
@@ -34,6 +40,44 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         setBackground(Color.PINK);
 
+        JButton pauseb = new JButton("I I");
+        add(pauseb);
+
+        JLabel pausel = new JLabel("Game paused");
+        pausel.setBackground(new Color(50, 50, 50, 50));
+        pausel.setFont(Data.setPacFont());
+        pausel.setSize(Dimensions.getScreenResolution().getKey(), Dimensions.getScreenResolution().getValue());
+        pausel.setVisible(false);
+
+        JButton continueb = new JButton("continue");
+        continueb.setBackground(new Color(0, 50, 0));
+        continueb.setSize(Dimensions.getScreenResolution().getKey(), continueb.getHeight());
+        continueb.setBorderPainted(false);
+        continueb.setVisible(false);
+
+        add(pausel);
+        add(continueb);
+
+
+        pauseb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewListener.pauseGame();
+                pausel.setVisible(true);
+                continueb.setVisible(true);
+                pauseb.setVisible(false);
+            }
+        });
+
+        continueb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pausel.setVisible(false);
+                continueb.setVisible(false);
+                pauseb.setVisible(true);
+                viewListener.continueGame();
+            }
+        });
 
         JButton swb = new JButton("hi");
         this.add(swb);

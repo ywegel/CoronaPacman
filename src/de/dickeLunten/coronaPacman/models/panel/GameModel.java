@@ -30,8 +30,7 @@ public class GameModel extends PanelModel {
 
     public GameModel() {
         gameMap = Data.getGameHashMap();
-        mapImage = Data.loadImage("img/VirusVendor.png").getScaledInstance(800,1048, Image.SCALE_FAST);
-        System.out.println(gameMap.get(new Coord(0, 0)).isHasCorona());
+        mapImage = Data.loadImageFromRes("img/vvmap.png").getScaledInstance(800, 1048, Image.SCALE_FAST);
         score = 0;
         coronaEdible = false;
         coronas = new ArrayList<>();
