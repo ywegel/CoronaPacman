@@ -121,11 +121,6 @@ public class StartPanel extends PanelView {
         g.drawImage(model.getBackgroundImg(), 0, 0, null);
     }*/
 
-    @Override
-    public void update() {
-
-    }
-
     public void addGB(Component component, int x, int y) {
         constraints.gridx = x;
         constraints.gridy = y;

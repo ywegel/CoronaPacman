@@ -99,11 +99,6 @@ public class View implements ModelListener {
         frame.repaint();
     }
 
-    @Override
-    public void update() {
-
-    }
-
     public void onNavigate(NavigationPanels destination, Bundle bundle) {
         switch (destination) {
             case START_PANEL -> {
@@ -127,11 +122,6 @@ public class View implements ModelListener {
                 initRulesPanel();
             }
         }
-    }
-
-    @Override
-    public void finishGame(int score) {
-
     }
 
     public void onNavigate(NavigationPanels destination) {

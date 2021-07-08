@@ -26,12 +26,8 @@ public class WAVPlayer {
         int EXTERNAL_BUFFER_SIZE = 524288;
 
         File soundFile = null;
-        try {
-            soundFile = Data.loadFileFromRes(filename);
-        } catch (URISyntaxException e) {
-            System.err.println("Can't find file");
-            e.printStackTrace();
-        }
+
+        soundFile = Data.loadFileFromRes(filename);
 
         if (!soundFile.exists()) {
             System.err.println("Wave file not found: " + filename);

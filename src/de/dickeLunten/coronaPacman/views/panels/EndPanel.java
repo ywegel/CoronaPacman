@@ -1,11 +1,8 @@
 package de.dickeLunten.coronaPacman.views.panels;
 
-import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.EndModel;
-import de.dickeLunten.coronaPacman.views.View;
-import org.jetbrains.annotations.NotNull;
 import util.Bundle;
 import util.Data;
 
@@ -16,10 +13,10 @@ import java.awt.event.ActionListener;
 
 public class EndPanel extends PanelView {
     private EndModel model;
-    private JLabel scorel;
-    private JButton replayb;
-    private JButton quitb;
-    private JButton exitb;
+    private JLabel scoreL;
+    private JButton replayB;
+    private JButton quitB;
+    private JButton exitB;
     private int score;
     private GridBagConstraints constraints = new GridBagConstraints();
 
@@ -39,9 +36,9 @@ public class EndPanel extends PanelView {
         constraints.weighty = 1.0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        scorel = new JLabel("ScoreLabel", SwingConstants.CENTER);
-        scorel.setOpaque(true);
-        scorel.setBackground(Color.DARK_GRAY);
+        scoreL = new JLabel("ScoreLabel", SwingConstants.CENTER);
+        scoreL.setOpaque(true);
+        scoreL.setBackground(Color.DARK_GRAY);
         if (score == 0) {
             scorel.setText("Du bist infiziert und hast verloren  >_<");
         }
@@ -51,39 +48,39 @@ public class EndPanel extends PanelView {
         scorel.setFont(new Font("sans", Font.PLAIN, 70));
         scorel.setForeground(Color.WHITE);
 
-        replayb = new JButton("replay");
-        replayb.setFont(Data.setPacFont());
-        replayb.setBackground(new Color(50, 80, 0));
+        replayB = new JButton("replay");
+        replayB.setFont(Data.setPacFont());
+        replayB.setBackground(new Color(50, 80, 0));
         //replayb.setFont(new Font("sans", Font.PLAIN, 70));
-        replayb.setForeground(Color.WHITE);
-        replayb.setBorderPainted(false);
+        replayB.setForeground(Color.WHITE);
+        replayB.setBorderPainted(false);
 
 
-        quitb = new JButton("  quit  ");
-        quitb.setFont(Data.setPacFont());
-        quitb.setBackground(new Color(50, 0, 0));
+        quitB = new JButton("  quit  ");
+        quitB.setFont(Data.setPacFont());
+        quitB.setBackground(new Color(50, 0, 0));
         //quitb.setFont(new Font("sans", Font.PLAIN, 70));
-        quitb.setForeground(Color.WHITE);
-        quitb.setBorderPainted(false);
+        quitB.setForeground(Color.WHITE);
+        quitB.setBorderPainted(false);
 
 
-        exitb = new JButton("  exit  ");
-        exitb.setFont(Data.setPacFont());
-        exitb.setBackground(new Color(10,10,10));
+        exitB = new JButton("  exit  ");
+        exitB.setFont(Data.setPacFont());
+        exitB.setBackground(new Color(10, 10, 10));
         //exitb.setFont(new Font("sans", Font.PLAIN, 70));
-        exitb.setForeground(Color.WHITE);
-        exitb.setBorderPainted(false);
+        exitB.setForeground(Color.WHITE);
+        exitB.setBorderPainted(false);
 
 
         constraints.gridwidth = 3; // span three columns
-        this.addGB(scorel, 0, 0);
+        this.addGB(scoreL, 0, 0);
         constraints.gridwidth = 1; // set it back
-        this.addGB(replayb, 0, 1);
-        this.addGB(quitb, 1, 1);
-        this.addGB(exitb, 2, 1);
+        this.addGB(replayB, 0, 1);
+        this.addGB(quitB, 1, 1);
+        this.addGB(exitB, 2, 1);
 
 
-        replayb.addActionListener(new ActionListener() {
+        replayB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
@@ -91,14 +88,14 @@ public class EndPanel extends PanelView {
         });
 
 
-        quitb.addActionListener(new ActionListener() {
+        quitB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
             }
         });
 
-        exitb.addActionListener(new ActionListener() {
+        exitB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);

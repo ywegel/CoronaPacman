@@ -33,6 +33,7 @@ public class Corona extends EntityModel {
         this.height = 80;
         this.coords = chunkPos;
         this.currentDirection = startDir;
+        System.out.println(coords.getX() + " + " + coords.getY());
         loadImg(isImageSwitched);
     }
 

@@ -10,10 +10,4 @@ public class PausePanel extends PanelView {
     public PausePanel(PauseModel model){
         this.model = model;
     }
-
-    @Override
-    public void update() {
-
-    }
-    public void finishGame(int score){ }
 }

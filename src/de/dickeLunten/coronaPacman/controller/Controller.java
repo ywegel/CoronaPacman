@@ -93,7 +93,7 @@ public class Controller implements ViewListener {
             long startTick = System.nanoTime();
             tick(ticksss);
             ticksss++;
-//            model.getGameModel().gameTick();
+
             long deltaTick = System.nanoTime() - startTick;
 
             long deltaLoop = System.nanoTime() - loopStart;
@@ -139,16 +139,11 @@ public class Controller implements ViewListener {
 
     private void tick(int tick) {
         //System.out.println("Tick");
-/*        if (tick % 40 == 0) {
-            model.getPlayer().move();
-        }*/
-        //model.getPlayer().move();
         model.getGameModel().gameTick(tick);
     }
 
     private void render() {
         //System.out.println("Render");
-        //model.getPlayer().update();
         view.getGamePanel().update();
     }
 
@@ -174,15 +169,10 @@ public class Controller implements ViewListener {
     }
 
     private void initGameInput(GamePanel panel) {
-        ActionUp actionUp;
-        ActionDown actionDown;
-        ActionLeft actionLeft;
-        ActionRight actionRight;
-
-        actionUp = new ActionUp();
-        actionDown = new ActionDown();
-        actionLeft = new ActionLeft();
-        actionRight = new ActionRight();
+        ActionUp actionUp = new ActionUp();
+        ActionDown actionDown = new ActionDown();
+        ActionLeft actionLeft = new ActionLeft();
+        ActionRight actionRight = new ActionRight();
 
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), InputAction.ACTION_UP);
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('w'), InputAction.ACTION_UP);
@@ -205,7 +195,6 @@ public class Controller implements ViewListener {
     public class ActionUp extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //model.getPlayer().setCurrentDirection(PlayerDirection.UP);
             model.getGameModel().turnPlayer(PlayerDirection.UP);
         }
     }
@@ -213,7 +202,6 @@ public class Controller implements ViewListener {
     public class ActionDown extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //model.getPlayer().setCurrentDirection(PlayerDirection.DOWN);
             model.getGameModel().turnPlayer(PlayerDirection.DOWN);
         }
     }
@@ -221,7 +209,6 @@ public class Controller implements ViewListener {
     public class ActionLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //model.getPlayer().setCurrentDirection(PlayerDirection.LEFT);
             model.getGameModel().turnPlayer(PlayerDirection.LEFT);
         }
     }
@@ -229,7 +216,6 @@ public class Controller implements ViewListener {
     public class ActionRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //model.getPlayer().setCurrentDirection(PlayerDirection.RIGHT);
             model.getGameModel().turnPlayer(PlayerDirection.RIGHT);
         }
     }

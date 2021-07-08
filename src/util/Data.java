@@ -15,14 +15,19 @@ import java.util.Scanner;
 public class Data {
     private static HashMap<Coord, MapChunkValues> gameMap;
 
-    //kein / vor path !!
     public static Image loadImageFromRes(String path){
         URL url = ClassLoader.getSystemClassLoader().getResource(path);
         return new ImageIcon(url).getImage();
     }
 
-    public static File loadFileFromRes(String filename) throws URISyntaxException {
-        URI uri = ClassLoader.getSystemClassLoader().getResource(filename).toURI();
+    public static File loadFileFromRes(String filename) {
+        URI uri = null;
+        try {
+            uri = Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(filename)).toURI();
+        } catch (URISyntaxException e) {
+            System.err.println("Can't convert FileLocation to URI");
+            e.printStackTrace();
+        }
         return new File(uri);
     }
 
@@ -52,7 +57,6 @@ public class Data {
             gameMap = loadMapDataFromFile();
         }
         return gameMap;
-        //return Objects.requireNonNullElseGet(gameMap, Data::loadMapDataFromFile);
     }
 
     private static HashMap<Coord, MapChunkValues> loadMapDataFromFile() {
@@ -83,7 +87,7 @@ public class Data {
                             ));
 
 
-                    System.out.println("-----");
+/*                    System.out.println("-----");
                     System.out.println("Has Dot: " + (Character.digit(currentLine.charAt(LINE_OFFSET), 10) != 0));
                     System.out.println("Has TP: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0));
                     System.out.println("Has VAC: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 2), 10) != 0));
@@ -92,15 +96,13 @@ public class Data {
                     System.out.println("Has UP: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 5), 10) != 0));
                     System.out.println("Has DOWN: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 6), 10) != 0));
                     System.out.println("Has LEFT: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 7), 10) != 0));
-                    System.out.println("Has RIGHT: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 8), 10) != 0));
-
-
+                    System.out.println("Has RIGHT: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 8), 10) != 0));*/
                     currentChunk++;
                 }
             }
 
         }
-        System.out.println("Chunks loaded: " + currentChunk);
+        //System.out.println("Chunks loaded: " + currentChunk);
         return map;
     }
 

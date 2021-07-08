@@ -56,22 +56,9 @@ public class RulesPanel extends PanelView{
 
     }
 
-
-
-
-
-
-
     void addGB(Component component, int x, int y) {
         constraints.gridx = x;
         constraints.gridy = y;
         add(component, constraints);
     }
-
-
-    @Override
-    public void update() {
-
-    }
-    public void finishGame(int score){ }
 }

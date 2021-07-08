@@ -8,11 +8,14 @@ public class Dimensions {
 
     public static final Pair<Integer, Integer> MAP_DIMENSION = new Pair<>(MAP_WIDTH, MAP_HEIGHT);
 
-    public static final int TICKS_PER_CHUNK = 50;
+    public static final int TICKS_PER_CHUNK = 48;
+
+    public static final int ABSTAND_X = 45;
+    public static final int ABSTAND_Y = 52;
 
     public static final int TICKS_PER_ANIMATION_SWITCH = 30;
 
-    public static final int MAP_OFFSET_X = 50;
+    public static final int MAP_OFFSET_X = 33;
     public static final int MAP_OFFSET_Y = 50;
 
     private static Pair<Integer, Integer> screenRes;

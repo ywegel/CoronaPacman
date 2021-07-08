@@ -6,16 +6,17 @@ import de.dickeLunten.coronaPacman.models.entities.*;
 import util.*;
 
 import java.awt.*;
+import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class GameModel extends PanelModel {
-    private Player player;
-    private Vac[] vacs;
-    private TPaper tPaper;
-    private ArrayList<Corona> coronas;
+    private final Player player;
+    private final Vac[] vacs;
+    private final TPaper tPaper;
+    private final ArrayList<Corona> coronas;
     private final HashMap<Coord, MapChunkValues> gameMap;
 
-    private Image mapImage;
+    private final Image mapImage;
 
     private GameModelListener gameModelListener;
     private ModelListener gamePanel;
@@ -106,9 +107,14 @@ public class GameModel extends PanelModel {
                 }
             } else {
                 //TODO dauerhaftes colliden mit irgendeiner wand???????????????????????????????????????????????????????
-/*                while (!doesNotCollideCorona(c)){
+                int counter = 0;
+                while (!doesNotCollideCorona(c)){
                     c.setCurrentDirection(randomDirection());
-                }*/
+                    if (counter > 30) {
+                        throw new IllegalStateException("POG POG POGPO PGOP OGP OGPOAPSDG");
+                    }
+                    counter++;
+                }
             }
         }
 
@@ -178,23 +184,16 @@ public class GameModel extends PanelModel {
     }
 
     private Coord randomMapPosition() {
-        Random r = new Random();
+/*        Random r = new Random();
         return new Coord(r.nextInt(Dimensions.MAP_WIDTH), r.nextInt(Dimensions.MAP_HEIGHT));
-        //TODO constant values file for map etc
+        //TODO constant values file for map etc*/
+        return new Coord(2, 3);
     }
 
     public void turnPlayer(PlayerDirection dir) {
         if (doesNotCollidePlayer(dir)) {
             player.setCurrentDirection(dir);
         }
-    }
-
-    public void addCorona(Corona c) {
-        coronas.add(c);
-    }
-
-    public void removeCorona(Corona c) {
-        coronas.remove(c);
     }
 
     public int getCoronaCount() {
@@ -219,10 +218,6 @@ public class GameModel extends PanelModel {
 
     public Player getPlayer() {
         return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 
     public int getScore() {

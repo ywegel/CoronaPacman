@@ -13,18 +13,15 @@ import java.awt.event.ActionListener;
 
 public class CreditsPanel extends PanelView{
 
-    private CreditsModel model;
-    private GridBagConstraints constraints = new GridBagConstraints();
-    private JButton backb;
-    private JLabel creditsl;
+    private final CreditsModel model;
+    private final GridBagConstraints constraints = new GridBagConstraints();
+    private final JButton backB;
+    private final JLabel creditsL;
 
     ViewListener viewListener;
 
-
-
-
     public CreditsPanel(CreditsModel model, ViewListener viewListener){
-
+        this.model = model;
         this.viewListener = viewListener;
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.DARK_GRAY);
@@ -33,26 +30,25 @@ public class CreditsPanel extends PanelView{
         constraints.weighty = 1.0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        backb = new JButton("back");
-        //backb.setFont(new Font("sans", Font.PLAIN, 70));
-        backb.setFont(Data.setPacFont());
-        backb.setBackground(new Color(50,50,50));
-        backb.setForeground(Color.WHITE);
-        backb.setBorderPainted(false);
-        backb.addActionListener(new ActionListener() {
+        backB = new JButton("back");
+        backB.setFont(Data.setPacFont());
+        backB.setBackground(new Color(50,50,50));
+        backB.setForeground(Color.WHITE);
+        backB.setBorderPainted(false);
+        backB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
             }
         });
 
-        creditsl = new JLabel(model.getCreditslTXT(), SwingConstants.CENTER);
+        creditsL = new JLabel(model.getCreditslTXT(), SwingConstants.CENTER);
         //creditsl.setForeground(Color.WHITE);
-        creditsl.setFont(new Font("sans", Font.PLAIN, 70));
-        creditsl.setForeground(Color.WHITE);
+        creditsL.setFont(new Font("sans", Font.PLAIN, 70));
+        creditsL.setForeground(Color.WHITE);
 
-        addGB(creditsl, 0, 0);
-        addGB(backb, 0, 1);
+        addGB(creditsL, 0, 0);
+        addGB(backB, 0, 1);
     }
 
     void addGB(Component component, int x, int y) {
@@ -60,13 +56,4 @@ public class CreditsPanel extends PanelView{
         constraints.gridy = y;
         add(component, constraints);
     }
-
-
-    @Override
-    public void update() {
-
-    }
-
-
-    public void finishGame(int score){ }
 }

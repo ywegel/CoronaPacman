@@ -21,60 +21,72 @@ public class GamePanel extends PanelView implements GameModelListener {
     private final GameModel model;
     private final ViewListener viewListener;
 
-    private JLabel background;
-    private JLabel fpsCounter;
-    private JLabel scoreView;
-    private JButton pauseb;
-    private JLabel pausel;
-    private JButton continueb;
-    private JButton quitb;
+    private final JLabel fpsCounter;
+    private final JLabel scoreView;
+    private final JButton pauseB;
+    private final JPanel pauseP;
+    private final JButton continueB;
+    private final JButton quitB;
+    private GridBagConstraints constraints = new GridBagConstraints();
 
     //TODO alle knöpfe und anzeigen links oder rechts
 
-    public GamePanel(GameModel model, ViewListener viewListener) {
+    public GamePanel(GameModel model, ViewListener viewListener) {//
         this.viewListener = viewListener;
         this.model = model;
 
-        model.setGamePanel(this);
+        ////model.setGamePanel(this);
         model.setGameModelListener(this);
 
         setBackground(Color.PINK);
 
-        JButton pauseb = new JButton("I I");
-        add(pauseb);
-
-        JLabel pausel = new JLabel("Game paused");
-        pausel.setBackground(new Color(50, 50, 50, 50));
-        pausel.setFont(Data.setPacFont());
-        pausel.setSize(Dimensions.getScreenResolution().getKey(), Dimensions.getScreenResolution().getValue());
-        pausel.setVisible(false);
-
-        JButton continueb = new JButton("continue");
-        continueb.setBackground(new Color(0, 50, 0));
-        continueb.setSize(Dimensions.getScreenResolution().getKey(), continueb.getHeight());
-        continueb.setBorderPainted(false);
-        continueb.setVisible(false);
-
-        add(pausel);
-        add(continueb);
+        pauseB = new JButton("I I");
+        pauseB.setHorizontalAlignment(JLabel.RIGHT);
+        add(pauseB, BorderLayout.NORTH);
 
 
-        pauseb.addActionListener(new ActionListener() {
+        pauseP = new JPanel();
+        pauseP.setBackground(new Color(50, 50, 50, 150));
+        pauseP.setVisible(false);
+        add(pauseP, BorderLayout.PAGE_START);
+
+        pauseP.setLayout(new GridBagLayout());
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+
+        continueB = new JButton("continue");
+        continueB.setBackground(new Color(0, 50, 0));
+        continueB.setBorderPainted(false);
+        continueB.setVisible(false);
+        continueB.setFont(new Font("sans", Font.PLAIN, 70));
+
+        quitB = new JButton("quit");
+        quitB.setBackground(new Color(50, 0, 0));
+        quitB.setBorderPainted(false);
+        quitB.setVisible(false);
+        quitB.setFont(new Font("sans", Font.PLAIN, 70));
+
+        addGB(continueB, 0, 0);
+        addGB(quitB, 0, 1);
+
+
+        pauseB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.pauseGame();
-                pausel.setVisible(true);
-                continueb.setVisible(true);
-                pauseb.setVisible(false);
+                pauseP.setVisible(true);
+                continueB.setVisible(true);
+                pauseB.setVisible(false);
             }
         });
 
-        continueb.addActionListener(new ActionListener() {
+        continueB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pausel.setVisible(false);
-                continueb.setVisible(false);
-                pauseb.setVisible(true);
+                pauseP.setVisible(false);
+                continueB.setVisible(false);
+                pauseB.setVisible(true);
                 viewListener.continueGame();
             }
         });
@@ -98,16 +110,6 @@ public class GamePanel extends PanelView implements GameModelListener {
         add(scoreView);
     }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-/*        g.drawImage(model.getMapImage(), Dimensions.getScreenResolution().getKey() / 2, 0, this);
-        g.drawImage(model.getPlayer().getImg(), model.getPlayer().getX() + Dimensions.getScreenResolution().getKey() / 2, model.getPlayer().getY(), this);
-
-        g.drawString(String.valueOf(model.getScore()), 0, 0);
-        g.drawString(String.valueOf(model.getFps()), 50, 0);*/
-    }
-
     private static final int halfScreen = Dimensions.getScreenResolution().getKey() / 2;
 
     @Override
@@ -124,11 +126,11 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         for (Map.Entry<Coord, MapChunkValues> entry : model.getGameMap().entrySet()) {
             if (entry.getValue().isHasDot()) {
-                g2d.fillOval(((entry.getKey().getX() * Dimensions.TICKS_PER_CHUNK) + halfScreen), entry.getKey().getY() * Dimensions.TICKS_PER_CHUNK, 10, 10);
+                g2d.fillOval(((entry.getKey().getX() * Dimensions.ABSTAND_X) + halfScreen + Dimensions.MAP_OFFSET_X), (entry.getKey().getY() * Dimensions.ABSTAND_Y) + Dimensions.MAP_OFFSET_Y, 10, 10);
             }
             if (entry.getValue().isHasToiletPaper()) {
                 TPaper tp = model.getTPaper();
-                g2d.drawImage(tp.getImage(), tp.getX() + halfScreen + Dimensions.MAP_OFFSET_X, tp.getY() + Dimensions.MAP_OFFSET_Y, this);
+                g2d.drawImage(tp.getImage(), tp.getX() + halfScreen, tp.getY(), this);
             }
             if (entry.getValue().isHasVac()) {
                 for (Vac v : model.getVacs()) {
