@@ -10,6 +10,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.net.URISyntaxException;
+import java.nio.Buffer;
 
 public class EndPanel extends PanelView {
     private EndModel model;
@@ -19,12 +25,36 @@ public class EndPanel extends PanelView {
     private JButton exitB;
     private int score;
     private GridBagConstraints constraints = new GridBagConstraints();
+    private int highscore;
 
     ViewListener viewListener;
 
     public EndPanel(EndModel model, ViewListener viewListener, Bundle bundle) {
         this.score = bundle.get(GamePanel.KEY_SCORE);
-        System.out.println("Score:" + score);
+
+        //Auslesen des HighScore Files
+        File highScoreFile = Data.loadFileFromRes("HighScore.txt");
+        System.out.println(highScoreFile.getAbsolutePath());
+        highScoreFile.setWritable(true);
+        try{
+            BufferedReader in = new BufferedReader( new FileReader(highScoreFile));
+            highscore = Integer.parseInt(in.readLine());
+            System.out.println(highscore + "");
+            if(score > highscore){
+                highscore = score;
+                System.out.println("Neuer HighScore!!!");
+                FileWriter fw = new FileWriter(Data.loadFileFromRes("HighScore.txt"));
+                fw.write(String.valueOf(highscore));
+                fw.close();
+            }
+            in.close();
+        }
+        catch (Exception e){
+            System.out.println("Highscore konnte nicht ausgelesen werden!");
+            e.printStackTrace();
+        }
+        highScoreFile.setReadOnly();
+
 
         this.viewListener = viewListener;
 
@@ -40,13 +70,12 @@ public class EndPanel extends PanelView {
         scoreL.setOpaque(true);
         scoreL.setBackground(Color.DARK_GRAY);
         if (score == 0) {
-            scorel.setText("Du bist infiziert und hast verloren  >_<");
+            scoreL.setText("Du bist infiziert und hast verloren  >_<");
+        } else {
+            scoreL.setText("<html> Du hast gewonnen und " + score + " Punkte erreicht <br />  Highscore: " + highscore + "</html>");
         }
-        else{
-            scorel.setText("Du hast gewonnen und " + score + " Punkte erreicht");
-        }
-        scorel.setFont(new Font("sans", Font.PLAIN, 70));
-        scorel.setForeground(Color.WHITE);
+        scoreL.setFont(new Font("sans", Font.PLAIN, 60));
+        scoreL.setForeground(Color.WHITE);
 
         replayB = new JButton("replay");
         replayB.setFont(Data.setPacFont());
@@ -110,10 +139,4 @@ public class EndPanel extends PanelView {
         constraints.gridy = y;
         add(component, constraints);
     }
-
-    @Override
-    public void update() {
-
-    }
-    public void finishGame(int score){ }
 }
