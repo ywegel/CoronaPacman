@@ -34,9 +34,11 @@ public class GamePanel extends PanelView implements GameModelListener {
     public GamePanel(GameModel model, ViewListener viewListener) {//
         this.viewListener = viewListener;
         this.model = model;
+        setLayout(new BorderLayout());
 
         ////model.setGamePanel(this);
         model.setGameModelListener(this);
+
 
         setBackground(Color.PINK);
 
@@ -91,8 +93,15 @@ public class GamePanel extends PanelView implements GameModelListener {
             }
         });
 
+        quitB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
+            }
+        });
+
         JButton swb = new JButton("hi");
-        this.add(swb);
+        this.addGB(swb, 0, 0);
 
         swb.addActionListener(new ActionListener() {
             @Override
@@ -111,6 +120,12 @@ public class GamePanel extends PanelView implements GameModelListener {
     }
 
     private static final int halfScreen = Dimensions.getScreenResolution().getKey() / 2;
+
+    void addGB(Component component, int x, int y) {
+        constraints.gridx = x;
+        constraints.gridy = y;
+        pauseP.add(component, constraints);
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -138,6 +153,7 @@ public class GamePanel extends PanelView implements GameModelListener {
                 }
             }
         }
+
     }
 
     @Override
