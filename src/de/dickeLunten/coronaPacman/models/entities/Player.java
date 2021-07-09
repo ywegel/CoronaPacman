@@ -2,30 +2,33 @@ package de.dickeLunten.coronaPacman.models.entities;
 
 import util.Coord;
 import util.Data;
+import util.Dimensions;
 
 import java.awt.*;
 
 public class Player extends EntityModel {
 
-    private int height, width, x, y;
+    private int height, width, x, y, chunkOffsetX, chunkOffsetY;
     private PlayerDirection currentDirection = PlayerDirection.RIGHT;
     private Coord cords;
-    private int x_count, y_count;
     private int lives;
-    private Image img;
+    private Image[] img;
 
     public Player() {
         cords = new Coord(0, 0);
-        x = 10;
-        y = 10;
-        x_count = 0;
-        y_count = 0;
+        x = Dimensions.PIXEL_PER_CHUNK_X / 2;
+        y = Dimensions.PIXEL_PER_CHUNK_X / 2;
+        chunkOffsetX = x;
+        chunkOffsetY = y;
         lives = 3;
-        width = 10;
-        height = 20;
-//        width = 100;
-//        height = 200;
-        img = Data.loadImageFromRes("img/Impfung.png").getScaledInstance(50,100,Image.SCALE_FAST);
+        width = 64;
+        height = 65;
+        img = new Image[8];
+
+        //Player size = 641 653
+        for (int i = 0; i < 8; i++) {
+            img[i] = Data.loadImageFromRes("img/SpielerAnsicht" + i + ".png").getScaledInstance(width,height,Image.SCALE_FAST);
+        }
     }
 
     public void move() {
@@ -38,25 +41,25 @@ public class Player extends EntityModel {
     }
 
     private void moveUp() {
-        y = y - 1;
+        y--;
         //cords.setY(cords.getY() - 1);
         //update();
     }
 
     private void moveDown() {
-        y = y + 1;
+        y++;
         //cords.setY(cords.getY() + 1);
         //update();
     }
 
     private void moveRight() {
-        x = x + 1;
+        x++;
         //cords.setX(cords.getX() + 1);
         //update();
     }
 
     private void moveLeft() {
-        x = x - 1;
+        x--;
         //cords.setX(cords.getX() - 1);
         //update();
     }
@@ -138,7 +141,36 @@ public class Player extends EntityModel {
         lives = a;
     }
 
-    public Image getImg(){
-        return img;
+    public Image getImg(boolean isSwitch) {
+        return switch (currentDirection) {
+            case UP -> img[isSwitch ? 1 : 0];
+            case DOWN -> img[2 + (isSwitch ? 1 : 0)];
+            case RIGHT -> img[4 + (isSwitch ? 1 : 0)];
+            case LEFT -> img[6 + (isSwitch ? 1 : 0)];
+        };
+    }
+
+    public int getChunkOffsetX() {
+        return chunkOffsetX;
+    }
+
+    public void setChunkOffsetX(int chunkOffsetX) {
+        this.chunkOffsetX = chunkOffsetX;
+    }
+
+    public int getChunkOffsetY() {
+        return chunkOffsetY;
+    }
+
+    public void setChunkOffsetY(int chunkOffsetY) {
+        this.chunkOffsetY = chunkOffsetY;
+    }
+
+    public void increaseChunkOffsetX() {
+        chunkOffsetX++;
+    }
+
+    public void increaseChunkOffsetY() {
+        chunkOffsetY++;
     }
 }

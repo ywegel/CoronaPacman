@@ -19,21 +19,18 @@ public class Corona extends EntityModel {
         this.y = y;
         this.width = 80;
         this.height = 80;
-        this.coords = new Coord(x * Dimensions.TICKS_PER_CHUNK, y * Dimensions.TICKS_PER_CHUNK);
+        this.coords = new Coord(x * Dimensions.PIXEL_PER_CHUNK_X, y * Dimensions.PIXEL_PER_CHUNK_Y);
         this.currentDirection = startDir;
         loadImg(isImageSwitched);
     }
 
     public Corona(Coord chunkPos, PlayerDirection startDir) {
-        this.x = chunkPos.getX() / Dimensions.TICKS_PER_CHUNK;
-        this.y = chunkPos.getY() / Dimensions.TICKS_PER_CHUNK;
-        System.out.println(x);
-        System.out.println(y);
+        this.x = chunkPos.getX() * Dimensions.PIXEL_PER_CHUNK_X;
+        this.y = chunkPos.getY() * Dimensions.PIXEL_PER_CHUNK_Y;
         this.width = 80;
         this.height = 80;
         this.coords = chunkPos;
         this.currentDirection = startDir;
-        System.out.println(coords.getX() + " + " + coords.getY());
         loadImg(isImageSwitched);
     }
 

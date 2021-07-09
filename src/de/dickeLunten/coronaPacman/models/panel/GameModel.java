@@ -6,7 +6,6 @@ import de.dickeLunten.coronaPacman.models.entities.*;
 import util.*;
 
 import java.awt.*;
-import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class GameModel extends PanelModel {
@@ -26,11 +25,13 @@ public class GameModel extends PanelModel {
     private int fps;
     private int score;
     private int nomNomCount;
-    private boolean animationState = false;
+    private boolean coronaAnimationState = false;
+    private boolean playerAnimationState = false;
+    private PlayerDirection playerTurnRequest = null;
 
     public GameModel() {
         gameMap = Data.getGameHashMap();
-        mapImage = Data.loadImageFromRes("img/vvmap.png").getScaledInstance(800, 1048, Image.SCALE_FAST);
+        mapImage = Data.loadImageFromRes("img/vvmap.png").getScaledInstance(Dimensions.MAP_PIXEL_WIDTH, Dimensions.MAP_PIXEL_HEIGHT, Image.SCALE_FAST);
         score = -1;
         fps = -1;
         nomNomCount = -1;
@@ -50,10 +51,6 @@ public class GameModel extends PanelModel {
         vacs[3] = new Vac(30, 130);
 
         tPaper = new TPaper();
-    }
-
-    public void setGamePanel(ModelListener vl) {
-        gamePanel = vl;
     }
 
     public void setGameModelListener(GameModelListener gl) {
@@ -79,38 +76,75 @@ public class GameModel extends PanelModel {
     }
 
     public void gameTick(int tick) {
-
         //switch animation Image
-        if(tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
-            animationState = !animationState;
+        if (tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
+            coronaAnimationState = !coronaAnimationState;
+        }
+        if (tick % Dimensions.TICKS_PER_PLAYER_ANIMATION_SWITCH == 0) {
+            playerAnimationState = !playerAnimationState;
         }
 
         score++;
         updateScore();
-/*        System.out.println(gameMap.get(player.getCoords()).getPlayerMovableDir().isRight());
-        System.out.println(player.getCurrentDirection().toString());
-        System.out.println(doesNotCollidePlayer(getPlayer().getCurrentDirection()));
-        System.out.println("-------------");*/
+
         //Player Movement
+        boolean TPCX = (tick) % Dimensions.TICKS_PER_CHUNK_X == 0;
+        boolean TPCY = (tick) % Dimensions.TICKS_PER_CHUNK_Y == 0;
+
+        /*        if (doesNotCollidePlayer(player.getCurrentDirection())) {
+            player.move();
+
+            if (getPlayer().getCurrentDirection() == PlayerDirection.UP || getPlayer().getCurrentDirection() == PlayerDirection.DOWN) {
+
+                if (player.getY() % (Dimensions.MAP_PIXEL_HEIGHT / Dimensions.MAP_HEIGHT) == 0) {
+                    player.moveChunk();
+                }
+
+            }else {
+                if (player.getX() % (Dimensions.MAP_PIXEL_WIDTH / Dimensions.MAP_WIDTH) == 0) {
+                    player.moveChunk();
+                }
+            }
+
+        }*/
+
         if (doesNotCollidePlayer(getPlayer().getCurrentDirection())) {
             player.move();
-            if (tick % Dimensions.TICKS_PER_CHUNK == 0) {
-                player.moveChunk();
+            if (getPlayer().getCurrentDirection() == PlayerDirection.UP || getPlayer().getCurrentDirection() == PlayerDirection.DOWN) {
+                //player.increaseChunkOffsetY();
+                if (TPCY) {
+                    //player.setChunkOffsetY(0);
+                    player.moveChunk();
+                }
+            } else {
+                //player.increaseChunkOffsetX();
+                if (TPCX) {
+                    //player.setChunkOffsetX(0);
+                    player.moveChunk();
+
+                }
             }
         }
+
         //Corona Movement
         for (Corona c : coronas) {
             if (doesNotCollideCorona(c)) {
                 c.move();
-                if (tick % Dimensions.TICKS_PER_CHUNK == 0) {
-                    c.moveChunk();
+                if (c.getCurrentDirection() == PlayerDirection.UP || c.getCurrentDirection() == PlayerDirection.DOWN) {
+                    if (TPCY) {
+                        c.moveChunk();
+                    }
+                } else {
+                    if (TPCX) {
+                        c.moveChunk();
+                    }
                 }
             } else {
                 //TODO fix pls
                 //TODO corona achtet nicht auf wand und man kann nciht sterben ( map.set has corona)
                 //TODO JLAbel mit leben
                 int counter = 0;
-                while (!doesNotCollideCorona(c)){
+                while (!doesNotCollideCorona(c)) {
                     c.setCurrentDirection(randomDirection());
                     if (counter > 30) {
                         throw new IllegalStateException("POG POG POGPO PGOP OGP OGPOAPSDG");
@@ -186,14 +220,23 @@ public class GameModel extends PanelModel {
     }
 
     private Coord randomMapPosition() {
-/*        Random r = new Random();
-        return new Coord(r.nextInt(Dimensions.MAP_WIDTH), r.nextInt(Dimensions.MAP_HEIGHT));
-        //TODO constant values file for map etc*/
-        return new Coord(2, 3);
+        Random r = new Random();
+        int x;
+        int y;
+        do {
+            x = r.nextInt(Dimensions.MAP_WIDTH);
+            y = r.nextInt(Dimensions.MAP_HEIGHT);
+            System.out.println(x);
+            System.out.println(y);
+        }
+        while (!gameMap.get(new Coord(x, y)).isHasDot());
+        return new Coord(x, y);
+        //TODO constant values file for map etc
     }
 
-    public void turnPlayer(PlayerDirection dir) {
+    public void requestTurn(PlayerDirection dir) {
         if (doesNotCollidePlayer(dir)) {
+            //playerTurnRequest = dir;
             player.setCurrentDirection(dir);
         }
     }
@@ -202,7 +245,7 @@ public class GameModel extends PanelModel {
         return coronas.size() - 1;
     }
 
-    public ArrayList<Corona> getCovList(){
+    public ArrayList<Corona> getCovList() {
         return coronas;
     }
 
@@ -239,8 +282,12 @@ public class GameModel extends PanelModel {
         return mapImage;
     }
 
-    public boolean getAnimationState() {
-        return animationState;
+    public boolean getCoronaAnimationState() {
+        return coronaAnimationState;
+    }
+
+    public boolean getPlayerAnimationState() {
+        return playerAnimationState;
     }
 
     public HashMap<Coord, MapChunkValues> getGameMap() {

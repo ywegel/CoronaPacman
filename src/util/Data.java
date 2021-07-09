@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Data {
     private static HashMap<Coord, MapChunkValues> gameMap;
 
-    public static Image loadImageFromRes(String path){
+    public static Image loadImageFromRes(String path) {
         URL url = ClassLoader.getSystemClassLoader().getResource(path);
         return new ImageIcon(url).getImage();
     }
@@ -31,13 +31,13 @@ public class Data {
         return new File(uri);
     }
 
-    public static Font setPacFont(){
+    public static Font setPacFont() {
         Font pacFont = null;
         try {
             //create input stream
             InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream("crackman.ttf");
             //create the font to use. Specify the size!
-            pacFont = Font.createFont(Font.TRUETYPE_FONT,stream).deriveFont(70f);
+            pacFont = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(70f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));
@@ -66,16 +66,32 @@ public class Data {
         try (Scanner scanner = new Scanner(is)) {
             scanner.nextLine();
 
-            for (int i = 0; i < 19; i++) {
+            for (int i = 0; i < 20; i++) {
 
                 for (int j = 0; j < 17; j++) {
                     String currentLine = scanner.nextLine();
 
+                    MapChunkValues mapChunkValues =                             new MapChunkValues(
+                            Character.digit(currentLine.charAt(LINE_OFFSET), 10) != 0,
+                            Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0,
+                            Character.digit(currentLine.charAt(LINE_OFFSET + 2), 10) != 0,
+                            Character.digit(currentLine.charAt(LINE_OFFSET + 3), 10) != 0,
+                            new PlayerMovableDir(
+                                    Character.digit(currentLine.charAt(LINE_OFFSET + 5), 10) != 0,
+                                    Character.digit(currentLine.charAt(LINE_OFFSET + 6), 10) != 0,
+                                    Character.digit(currentLine.charAt(LINE_OFFSET + 7), 10) != 0,
+                                    Character.digit(currentLine.charAt(LINE_OFFSET + 8), 10) != 0
+                            )
+                    );
+
                     map.put(
                             new Coord(j, i),
-                            new MapChunkValues(
+                            mapChunkValues
+                            );
+
+                    /*new MapChunkValues(
                                     Character.digit(currentLine.charAt(LINE_OFFSET), 10) != 0,
-                                            Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0,
+                                    Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0,
                                     Character.digit(currentLine.charAt(LINE_OFFSET + 2), 10) != 0,
                                     Character.digit(currentLine.charAt(LINE_OFFSET + 3), 10) != 0,
                                     new PlayerMovableDir(
@@ -83,11 +99,12 @@ public class Data {
                                             Character.digit(currentLine.charAt(LINE_OFFSET + 6), 10) != 0,
                                             Character.digit(currentLine.charAt(LINE_OFFSET + 7), 10) != 0,
                                             Character.digit(currentLine.charAt(LINE_OFFSET + 8), 10) != 0
-                                    )
-                            ));
+                                    )*/
 
 
 /*                    System.out.println("-----");
+                    System.out.println("X: " + j);
+                    System.out.println("Y: " + i);
                     System.out.println("Has Dot: " + (Character.digit(currentLine.charAt(LINE_OFFSET), 10) != 0));
                     System.out.println("Has TP: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 1), 10) != 0));
                     System.out.println("Has VAC: " + (Character.digit(currentLine.charAt(LINE_OFFSET + 2), 10) != 0));
@@ -102,7 +119,7 @@ public class Data {
             }
 
         }
-        //System.out.println("Chunks loaded: " + currentChunk);
+        System.out.println("Chunks loaded: " + currentChunk);
         return map;
     }
 

@@ -45,7 +45,7 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         pauseB = new JButton(" I I ");
         pauseB.setFont(new Font("sans", Font.PLAIN, 70));
-        pauseB.setBackground(new Color(50,50,50));
+        pauseB.setBackground(new Color(50, 50, 50));
         pauseB.setForeground(Color.WHITE);
         pauseB.setBorderPainted(false);
         pauseB.setVisible(true);
@@ -82,7 +82,7 @@ public class GamePanel extends PanelView implements GameModelListener {
         quitB.setFont(Data.setPacFont());
 
         constraints.gridwidth = 2;
-        addGB(pauseL,0,0);
+        addGB(pauseL, 0, 0);
         constraints.gridwidth = 1;
         addGB(continueB, 0, 1);
         addGB(quitB, 1, 1);
@@ -134,41 +134,54 @@ public class GamePanel extends PanelView implements GameModelListener {
         add(scoreView);
     }
 
-    private static final int halfScreen = Dimensions.getScreenResolution().getKey() / 2;
-
     void addGB(Component component, int x, int y) {
         constraints.gridx = x;
         constraints.gridy = y;
         pauseP.add(component, constraints);
     }
 
+
+    private static final int halfScreen = Dimensions.getScreenResolution().getKey() / 2;
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
+        //Hintergrund
         g2d.drawImage(model.getMapImage(), halfScreen, 0, this);
-        g2d.drawImage(model.getPlayer().getImg(), model.getPlayer().getX() + halfScreen, model.getPlayer().getY(), this);
 
-        for (Corona c : model.getCovList()) {
-            g2d.drawImage(c.getImage(model.getAnimationState()), c.getX() + halfScreen, c.getY(), c.getWidth(), c.getHeight(), this);
-        }
-
+        //Dots, Impfung, Toilettenpapier
         for (Map.Entry<Coord, MapChunkValues> entry : model.getGameMap().entrySet()) {
             if (entry.getValue().isHasDot()) {
-                g2d.fillOval(((entry.getKey().getX() * Dimensions.ABSTAND_X) + halfScreen + Dimensions.MAP_OFFSET_X), (entry.getKey().getY() * Dimensions.ABSTAND_Y) + Dimensions.MAP_OFFSET_Y, 10, 10);
+                g2d.fillOval(((entry.getKey().getX() * Dimensions.PIXEL_PER_CHUNK_X) + halfScreen + Dimensions.MAP_OFFSET_X), (entry.getKey().getY() * Dimensions.PIXEL_PER_CHUNK_Y) + Dimensions.MAP_OFFSET_Y, 10, 10);
             }
             if (entry.getValue().isHasToiletPaper()) {
                 TPaper tp = model.getTPaper();
-                g2d.drawImage(tp.getImage(), tp.getX() + halfScreen, tp.getY(), this);
+                g2d.drawImage(tp.getImage(), tp.getX() + halfScreen + Dimensions.MAP_OFFSET_X, tp.getY() + Dimensions.MAP_OFFSET_Y, this);
             }
             if (entry.getValue().isHasVac()) {
                 for (Vac v : model.getVacs()) {
-                    g2d.drawImage(v.getImage(), v.getX() + halfScreen, v.getY(), this);
+                    g2d.drawImage(v.getImage(), v.getX() + halfScreen + Dimensions.MAP_OFFSET_X, v.getY() + Dimensions.MAP_OFFSET_Y, this);
                 }
             }
         }
 
+        for (int i = 0; i < Dimensions.MAP_WIDTH + 1; i++) {
+            g2d.drawLine(Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 0 + Dimensions.MAP_OFFSET_Y / 2, Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 1500 + +Dimensions.MAP_OFFSET_Y / 2);
+        }
+
+        for (int i = 0; i < Dimensions.MAP_HEIGHT; i++) {
+            g2d.drawLine(0 + halfScreen + Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2, 1000 + halfScreen + +Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2);
+        }
+
+        //Spieler
+        g2d.drawImage(model.getPlayer().getImg(model.getPlayerAnimationState()), model.getPlayer().getX() + halfScreen, model.getPlayer().getY(), this);
+
+        //Corona
+        for (Corona c : model.getCovList()) {
+            g2d.drawImage(c.getImage(model.getCoronaAnimationState()), c.getX() + halfScreen, c.getY(), c.getWidth(), c.getHeight(), this);
+        }
     }
 
     @Override

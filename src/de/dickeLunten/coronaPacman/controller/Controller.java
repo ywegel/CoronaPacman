@@ -195,28 +195,28 @@ public class Controller implements ViewListener {
     public class ActionUp extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.getGameModel().turnPlayer(PlayerDirection.UP);
+            model.getGameModel().requestTurn(PlayerDirection.UP);
         }
     }
 
     public class ActionDown extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.getGameModel().turnPlayer(PlayerDirection.DOWN);
+            model.getGameModel().requestTurn(PlayerDirection.DOWN);
         }
     }
 
     public class ActionLeft extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.getGameModel().turnPlayer(PlayerDirection.LEFT);
+            model.getGameModel().requestTurn(PlayerDirection.LEFT);
         }
     }
 
     public class ActionRight extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.getGameModel().turnPlayer(PlayerDirection.RIGHT);
+            model.getGameModel().requestTurn(PlayerDirection.RIGHT);
         }
     }
 

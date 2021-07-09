@@ -40,7 +40,6 @@ public class View implements ModelListener {
 
     private void initPanels() {
         startPanel = new StartPanel(model.getStartModel(), viewListener);
-        System.out.println(startPanel.getActionMap().get("enter_action"));
         gamePanel = new GamePanel(model.getGameModel(),viewListener);
         pausePanel = new PausePanel(model.getPauseModel());
     }
