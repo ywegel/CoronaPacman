@@ -12,6 +12,12 @@ import javax.swing.text.IconView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+/**
+ * Verwaltet das Startpanel.
+ *
+ * @author Felix Rosner
+ * @version 2021.09.07
+ */
 
 public class StartPanel extends PanelView {
     private StartModel model;
@@ -22,6 +28,13 @@ public class StartPanel extends PanelView {
     private JButton creditsb;
     private JButton rulesb;
 
+    /**
+     * Konstruktor der Klasse StartPanel.
+     * Erzeugt ein neues StartPanel, setzt Hintergrundfarbe und Layout.
+     * Erzeugt die Buttons in der Pacman SChriftart und Standartgröße.
+     * ActionListener werden mit Button verknüpft.
+     * @param
+     */
 
     public StartPanel(StartModel model, ViewListener viewListener) {
         this.model = model;
@@ -120,6 +133,9 @@ public class StartPanel extends PanelView {
         super.paintComponent(g);
         g.drawImage(model.getBackgroundImg(), 0, 0, null);
     }*/
+    /**
+     * Setzt Buttons an zugewiesene Koordinaten im GridBagLayout.
+     */
 
     public void addGB(Component component, int x, int y) {
         constraints.gridx = x;
