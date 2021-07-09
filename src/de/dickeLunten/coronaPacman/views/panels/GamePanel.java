@@ -25,6 +25,7 @@ public class GamePanel extends PanelView implements GameModelListener {
     private final JLabel scoreView;
     private final JButton pauseB;
     private final JPanel pauseP;
+    private final JLabel pauseL;
     private final JButton continueB;
     private final JButton quitB;
     private GridBagConstraints constraints = new GridBagConstraints();
@@ -42,15 +43,20 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         setBackground(Color.PINK);
 
-        pauseB = new JButton("I I");
-        pauseB.setHorizontalAlignment(JLabel.RIGHT);
-        add(pauseB, BorderLayout.NORTH);
+        pauseB = new JButton(" I I ");
+        pauseB.setFont(new Font("sans", Font.PLAIN, 70));
+        pauseB.setBackground(new Color(50,50,50));
+        pauseB.setForeground(Color.WHITE);
+        pauseB.setBorderPainted(false);
+        pauseB.setVisible(true);
+        add(pauseB, BorderLayout.EAST);
 
 
         pauseP = new JPanel();
-        pauseP.setBackground(new Color(50, 50, 50, 150));
+        pauseP.setPreferredSize(new Dimension(1, Dimensions.getScreenResolution().getKey()));
+        pauseP.setBackground(new Color(50, 50, 50, 220));
         pauseP.setVisible(false);
-        add(pauseP, BorderLayout.PAGE_START);
+        add(pauseP, BorderLayout.NORTH);
 
         pauseP.setLayout(new GridBagLayout());
         constraints.weightx = 1.0;
@@ -59,27 +65,35 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         continueB = new JButton("continue");
         continueB.setBackground(new Color(0, 50, 0));
+        continueB.setForeground(Color.WHITE);
         continueB.setBorderPainted(false);
-        continueB.setVisible(false);
-        continueB.setFont(new Font("sans", Font.PLAIN, 70));
+        continueB.setVisible(true);
+        continueB.setFont(Data.setPacFont());
 
-        quitB = new JButton("quit");
+        pauseL = new JLabel("game paused", SwingConstants.CENTER);
+        pauseL.setBackground(new Color(0, 0, 0));
+        pauseL.setForeground(Color.WHITE);
+        pauseL.setFont(Data.setPacFont());
+
+        quitB = new JButton("        quit        ");
         quitB.setBackground(new Color(50, 0, 0));
+        quitB.setForeground(Color.WHITE);
         quitB.setBorderPainted(false);
-        quitB.setVisible(false);
-        quitB.setFont(new Font("sans", Font.PLAIN, 70));
+        quitB.setFont(Data.setPacFont());
 
-        addGB(continueB, 0, 0);
-        addGB(quitB, 0, 1);
+        constraints.gridwidth = 2;
+        addGB(pauseL,0,0);
+        constraints.gridwidth = 1;
+        addGB(continueB, 0, 1);
+        addGB(quitB, 1, 1);
 
 
         pauseB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pauseB.setVisible(false);
                 viewListener.pauseGame();
                 pauseP.setVisible(true);
-                continueB.setVisible(true);
-                pauseB.setVisible(false);
             }
         });
 
@@ -87,21 +101,22 @@ public class GamePanel extends PanelView implements GameModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pauseP.setVisible(false);
-                continueB.setVisible(false);
-                pauseB.setVisible(true);
                 viewListener.continueGame();
+                pauseB.setVisible(true);
             }
         });
 
         quitB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pauseP.setVisible(false);
+                //viewListener.continueGame();
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
             }
         });
 
         JButton swb = new JButton("hi");
-        this.addGB(swb, 0, 0);
+        add(swb);
 
         swb.addActionListener(new ActionListener() {
             @Override
