@@ -106,7 +106,9 @@ public class GameModel extends PanelModel {
                     c.moveChunk();
                 }
             } else {
-                //TODO dauerhaftes colliden mit irgendeiner wand???????????????????????????????????????????????????????
+                //TODO fix pls
+                //TODO corona achtet nicht auf wand und man kann nciht sterben ( map.set has corona)
+                //TODO JLAbel mit leben
                 int counter = 0;
                 while (!doesNotCollideCorona(c)){
                     c.setCurrentDirection(randomDirection());

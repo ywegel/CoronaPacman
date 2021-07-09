@@ -2,20 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55141114-3eff-4344-a114-125b2b5e32f9" name="Default Changelist" comment="bei map.txt alle Gehrichtungen eingetragen">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/Application.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/GameModelListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/GameModelListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/ModelListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/ModelListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/ViewListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/ViewListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionDown.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionDown.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionEnter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionEnter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionLeft.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionLeft.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionRight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionRight.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller$ActionUp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/InputAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/InputAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/NavigationPanels.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/controller/NavigationPanels.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/Model.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Corona$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Corona$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Corona.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Corona.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/EntityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/EntityModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Player$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/PlayerDirection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/PlayerDirection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/TPaper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/TPaper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Vac.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/entities/Vac.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/CreditsModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/CreditsModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/EndModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/EndModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/GameModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/PanelModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/PanelModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/PauseModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/PauseModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/RulesModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/RulesModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/StartModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/models/panel/StartModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/View.class" afterDir="false" />
@@ -28,37 +45,35 @@
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PanelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PanelView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PausePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/PausePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/RulesPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/RulesPanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/RulesPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/RulesPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/de/dickeLunten/coronaPacman/views/panels/StartPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Bundle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Bundle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Coord.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Coord.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Data.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Dimensions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Dimensions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/MapChunkValues.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/MapChunkValues.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/PlayerMovableDir.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/PlayerMovableDir.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/Util.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CoronaPacman/util/WAVPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CoronaPacman/util/WAVPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/GameModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/GameModelListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/ModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/ModelListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Corona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/entities/Corona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/models/panel/StartModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/PausePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/PausePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/RulesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/RulesPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/map.txt" afterDir="false" />
+    </list>
+    <list id="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" name="Changes by CLAUSSC29" comment="">
+      <change beforePath="$PROJECT_DIR$/res/map.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/map.txt" afterDir="false" />
+    </list>
+    <list id="87c5def0-a9e3-4a26-913a-51770d5a4968" name="Changes by Colin" comment="" />
+    <list id="72f38a3b-1ff3-4cf2-9a5e-969888877510" name="Changes by dani" comment="" />
+    <list id="178ba04d-09f4-4ee5-9bdf-2693f37c6111" name="Changes by frosn" comment="">
       <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/StartPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Dimensions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/WAVPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/WAVPlayer.java" afterDir="false" />
-    </list>
-    <list id="87c5def0-a9e3-4a26-913a-51770d5a4968" name="Changes by Colin" comment="">
-      <change afterPath="$PROJECT_DIR$/res/HighScore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java" afterDir="false" />
-    </list>
-    <list id="72f38a3b-1ff3-4cf2-9a5e-969888877510" name="Changes by dani" comment="">
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,67 +115,47 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/CreditsPanel.java">
+    <file path="$PROJECT_DIR$/res/map.txt">
       <ranges>
-        <range start1="15" end1="19" start2="15" end2="19" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="22" end1="25" start2="22" end2="22" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="26" end1="27" start2="23" end2="24" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="35" end1="42" start2="32" end2="38" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="48" end1="49" start2="44" end2="45" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="50" end1="52" start2="46" end2="48" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="53" end1="55" start2="49" end2="51" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="62" end1="71" start2="58" end2="58" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="72" end1="73" start2="59" end2="59" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/EndPanel.java">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="2" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="6" end1="8" start2="5" end2="5" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="15" end1="15" start2="12" end2="18" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-        <range start1="18" end1="22" start2="21" end2="25" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="24" end1="24" start2="27" end2="28" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-        <range start1="29" end1="30" start2="33" end2="57" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-        <range start1="41" end1="44" start2="68" end2="71" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="45" end1="46" start2="72" end2="75" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-        <range start1="47" end1="52" start2="76" end2="78" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-        <range start1="53" end1="56" start2="79" end2="82" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="57" end1="59" start2="83" end2="85" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="61" end1="64" start2="87" end2="90" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="65" end1="67" start2="91" end2="93" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="69" end1="72" start2="95" end2="98" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="73" end1="75" start2="99" end2="101" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="78" end1="79" start2="104" end2="105" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="80" end1="83" start2="106" end2="109" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="85" end1="86" start2="111" end2="112" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="93" end1="94" start2="119" end2="120" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="100" end1="101" start2="126" end2="127" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="115" end1="121" start2="141" end2="141" changelist="87c5def0-a9e3-4a26-913a-51770d5a4968" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/de/dickeLunten/coronaPacman/views/panels/GamePanel.java">
-      <ranges>
-        <range start1="23" end1="30" start2="23" end2="30" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="33" end1="34" start2="33" end2="34" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="36" end1="36" start2="36" end2="37" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-        <range start1="37" end1="38" start2="38" end2="39" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="39" end1="39" start2="40" end2="41" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-        <range start1="42" end1="44" start2="44" end2="48" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="45" end1="50" start2="49" end2="53" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="51" end1="56" start2="54" end2="58" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="57" end1="59" start2="59" end2="64" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="60" end1="60" start2="65" end2="70" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="61" end1="62" start2="71" end2="76" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="65" end1="68" start2="79" end2="82" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="71" end1="72" start2="85" end2="86" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="74" end1="77" start2="88" end2="91" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="80" end1="80" start2="94" end2="101" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-        <range start1="82" end1="83" start2="103" end2="104" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-        <range start1="99" end1="109" start2="120" end2="120" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="112" end1="112" start2="123" end2="129" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
-        <range start1="126" end1="127" start2="143" end2="144" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="130" end1="131" start2="147" end2="148" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
-        <range start1="138" end1="138" start2="155" end2="156" changelist="72f38a3b-1ff3-4cf2-9a5e-969888877510" />
+        <range start1="9" end1="10" start2="9" end2="10" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="19" end1="21" start2="19" end2="21" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="22" end1="25" start2="22" end2="25" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="26" end1="27" start2="26" end2="27" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="28" end1="31" start2="28" end2="31" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="32" end1="34" start2="32" end2="34" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="36" end1="38" start2="36" end2="38" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="39" end1="42" start2="39" end2="42" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="43" end1="44" start2="43" end2="44" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="45" end1="48" start2="45" end2="48" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="49" end1="51" start2="49" end2="51" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="70" end1="72" start2="70" end2="72" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="73" end1="74" start2="73" end2="74" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="75" end1="80" start2="75" end2="80" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="81" end1="82" start2="81" end2="82" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="83" end1="85" start2="83" end2="85" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="90" end1="91" start2="90" end2="91" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="94" end1="95" start2="94" end2="95" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="98" end1="99" start2="98" end2="99" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="103" end1="106" start2="103" end2="106" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="107" end1="110" start2="107" end2="110" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="111" end1="112" start2="111" end2="112" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="113" end1="116" start2="113" end2="116" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="117" end1="124" start2="117" end2="123" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="125" end1="126" start2="124" end2="125" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="133" end1="134" start2="132" end2="133" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="135" end1="141" start2="134" end2="140" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="142" end1="143" start2="141" end2="142" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="144" end1="149" start2="143" end2="148" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="150" end1="151" start2="149" end2="150" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="152" end1="158" start2="151" end2="157" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="161" end1="166" start2="160" end2="165" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="167" end1="168" start2="166" end2="167" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="169" end1="175" start2="168" end2="174" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="176" end1="177" start2="175" end2="176" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="178" end1="183" start2="177" end2="182" changelist="df82cc11-8d90-4218-9f1b-9e63fc1e5ef8" />
+        <range start1="187" end1="192" start2="186" end2="191" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="204" end1="209" start2="203" end2="208" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
+        <range start1="221" end1="223" start2="220" end2="222" changelist="55141114-3eff-4344-a114-125b2b5e32f9" />
       </ranges>
     </file>
   </component>
@@ -180,9 +175,9 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.20474407" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
