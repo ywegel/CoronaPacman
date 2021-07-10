@@ -1,6 +1,5 @@
 package de.dickeLunten.coronaPacman.views.panels;
 
-import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
@@ -8,10 +7,10 @@ import util.Bundle;
 import util.Data;
 
 import javax.swing.*;
-import javax.swing.text.IconView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * Verwaltet das Startpanel.
  *
@@ -33,7 +32,8 @@ public class StartPanel extends PanelView {
      * Erzeugt ein neues StartPanel, setzt Hintergrundfarbe und Layout.
      * Erzeugt die Buttons in der Pacman SChriftart und Standartgröße.
      * ActionListener werden mit Button verknüpft.
-     * @param
+     * @param model Model zum StartPanel.
+     * @param viewListener Beobachter des StartPanels.
      */
 
     public StartPanel(StartModel model, ViewListener viewListener) {
