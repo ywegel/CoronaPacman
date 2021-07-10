@@ -24,6 +24,11 @@ public class MapChunkValues {
         return this;
     }
 
+    public MapChunkValues setHasVac(boolean hasVac){
+        this.hasVac = hasVac;
+        return this;
+    }
+
     public boolean isHasToiletPaper() {
         return hasToiletPaper;
     }
@@ -34,10 +39,6 @@ public class MapChunkValues {
 
     public boolean isHasVac() {
         return hasVac;
-    }
-
-    public void setHasVac(boolean hasVac) {
-        this.hasVac = hasVac;
     }
 
     public boolean isHasCorona() {

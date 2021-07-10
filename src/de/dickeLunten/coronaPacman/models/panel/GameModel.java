@@ -10,7 +10,7 @@ import java.util.*;
 
 public class GameModel extends PanelModel {
     private final Player player;
-    private final Vac[] vacs;
+    private final ArrayList<Vac> vacs;
     private final TPaper tPaper;
     private final ArrayList<Corona> coronas;
     private final HashMap<Coord, MapChunkValues> gameMap;
@@ -18,13 +18,13 @@ public class GameModel extends PanelModel {
     private final Image mapImage;
 
     private GameModelListener gameModelListener;
-    private ModelListener gamePanel;
 
     private boolean coronaEdible;
 
     private int fps;
     private int score;
     private int nomNomCount;
+    private int vacCount;
     private boolean coronaAnimationState = false;
     private boolean playerAnimationState = false;
     private PlayerDirection playerTurnRequest = null;
@@ -44,11 +44,12 @@ public class GameModel extends PanelModel {
 
         player = new Player();
 
-        vacs = new Vac[4];
-        vacs[0] = new Vac(30, 30);
-        vacs[1] = new Vac(130, 30);
-        vacs[2] = new Vac(130, 130);
-        vacs[3] = new Vac(30, 130);
+        vacCount = 4;
+        vacs = new ArrayList<Vac>();
+        vacs.add(new Vac(new Coord(1,2) , -23, 15));
+        vacs.add(new Vac(new Coord(17,2) , 697, 15));
+        vacs.add(new Vac(new Coord(1,19) , -23, 848));
+        vacs.add(new Vac(new Coord(17,19) , 697, 848));
 
         tPaper = new TPaper();
     }
@@ -142,7 +143,7 @@ public class GameModel extends PanelModel {
             } else {
                 //TODO fix pls
                 //TODO corona achtet nicht auf wand und man kann nciht sterben ( map.set has corona)
-                //TODO JLAbel mit leben
+
                 int counter = 0;
                 while (!doesNotCollideCorona(c)) {
                     c.setCurrentDirection(randomDirection());
@@ -154,11 +155,13 @@ public class GameModel extends PanelModel {
             }
         }
 
+        //Collisions
         if (gameMap.get(player.getCoords()).isHasCorona()) {
 
             if (player.getLives() > 1 && !coronaEdible) {
                 player.setLives(player.getLives() - 1);
-                //TODO TP player back to spawn
+                player.setX(0);
+                player.setY(0);
             } else if (coronaEdible) {
                 for (Corona c : coronas) {
                     if (player.getCoords() == c.getCoords()) {
@@ -166,19 +169,19 @@ public class GameModel extends PanelModel {
                     }
                 }
             } else if (player.getLives() == 1 && !coronaEdible) {
-                //gamePanel.finishGame(score);
+                gameModelListener.finishGame(score);
             }
 
         } else if (gameMap.get(player.getCoords()).isHasDot()) {
-            System.out.println("Dot getroffem");
 
             gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasDot(false));
 
             nomNomCount++;
 
-            //TODO remove dot
-            //TODO wenn das der letzte dot war --> Spiel gewonnen
-
+            //184 dots mit vacs ; 180 nur dots
+            if(nomNomCount == 180 && vacCount == 0){
+                 gameModelListener.finishGame(score);
+            }
 
         } else if (gameMap.get(player.getCoords()).isHasToiletPaper()) {
             System.out.println("TP getroffem");
@@ -186,7 +189,23 @@ public class GameModel extends PanelModel {
             //TODO remove ToiletPaper
 
         } else if (gameMap.get(player.getCoords()).isHasVac()) {
-            System.out.println("Vac getroffem");
+            Coord cache = player.getCoords();
+            System.out.println(cache.getX() +"  "+ cache.getY());
+            gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasVac(false));
+            vacCount--;
+
+            for(Vac v: vacs){
+                System.out.println(player.getCoords().getX()+ "   " + player.getCoords().getY());
+                if(v.getCords() == player.getCoords()){
+
+                    vacs.remove(v);
+                }
+            }
+
+
+            if(nomNomCount == 180 && vacCount == 0){
+                gameModelListener.finishGame(score);
+            }
 
             coronaEdible = true;
 
@@ -294,7 +313,7 @@ public class GameModel extends PanelModel {
         return gameMap;
     }
 
-    public Vac[] getVacs() {
+    public ArrayList<Vac> getVacs() {
         return vacs;
     }
 

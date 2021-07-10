@@ -23,6 +23,7 @@ public class GamePanel extends PanelView implements GameModelListener {
 
     private final JLabel fpsCounter;
     private final JLabel scoreView;
+    private final JLabel lives;
     private final JButton pauseB;
     private final JPanel pauseP;
     private final JLabel pauseL;
@@ -35,13 +36,44 @@ public class GamePanel extends PanelView implements GameModelListener {
     public GamePanel(GameModel model, ViewListener viewListener) {//
         this.viewListener = viewListener;
         this.model = model;
+        model.setGameModelListener(this);
         setLayout(new BorderLayout());
+
+
+//------------------------------------------------------------------------------------------------------
+/*        GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+                GridBagConstraints.NORTHWEST, GridBagConstraints.NONE, new Insets(
+                0, 0, 0, 0), 0, 0);*/
+
+
+        fpsCounter = new JLabel();
+        fpsCounter.setText(String.valueOf(model.getFps()));
+        fpsCounter.setBackground(Color.LIGHT_GRAY);
+//        fpsCounter.setVisible(false);
+        add(fpsCounter, BorderLayout.NORTH);
+
+        scoreView = new JLabel();
+        scoreView.setText("Score: " + String.valueOf(model.getScore()));
+        scoreView.setFont(new Font("sans", Font.PLAIN, 40));
+        add(scoreView);
+
+
+        lives = new JLabel();
+        lives.setText("Lives: " + model.getPlayer().getLives());
+        lives.setFont(new Font("sans", Font.PLAIN, 40));
+        lives.setBackground(Color.LIGHT_GRAY);
+        lives.setPreferredSize(new Dimension(30,30));
+        add(lives, BorderLayout.SOUTH);
+
+
+
+//------------------------------------------------------------------------------------------------------
 
         ////model.setGamePanel(this);
         model.setGameModelListener(this);
 
 
-        setBackground(Color.PINK);
+        setBackground(Color.LIGHT_GRAY);
 
         pauseB = new JButton(" I I ");
         pauseB.setFont(new Font("sans", Font.PLAIN, 70));
@@ -115,23 +147,17 @@ public class GamePanel extends PanelView implements GameModelListener {
             }
         });
 
-        JButton swb = new JButton("hi");
-        add(swb);
+//        JButton swb = new JButton("hi");
+//        add(swb);
+//
+//        swb.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
+//            }
+//        });
 
-        swb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
-            }
-        });
 
-        fpsCounter = new JLabel();
-        fpsCounter.setText(String.valueOf(model.getFps()));
-        add(fpsCounter);
-
-        scoreView = new JLabel();
-        scoreView.setText(String.valueOf(model.getScore()));
-        add(scoreView);
     }
 
     void addGB(Component component, int x, int y) {
