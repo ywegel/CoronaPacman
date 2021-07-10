@@ -89,10 +89,51 @@ public class GameModel extends PanelModel {
         score++;
         updateScore();
 
-        //Player Movement
-        boolean TPCX = (tick) % Dimensions.TICKS_PER_CHUNK_X == 0;
-        boolean TPCY = (tick) % Dimensions.TICKS_PER_CHUNK_Y == 0;
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+        //Player Movement
+        if (doesNotCollidePlayer(player.getCurrentDirection())) {
+            player.move();
+        }
+        //Player Keeps moving until centred in chunk
+        if (!doesNotCollidePlayer(player.getCurrentDirection())) {
+            switch (player.getCurrentDirection()) {
+                case UP:
+                    if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y > 0.25) {
+                        player.move();
+                        System.out.println("Move nach Oben erlaubt");
+                    }
+                    break;
+                case DOWN:
+                    if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y < 0.25) {
+                        player.move();
+                        System.out.println("Move nach Unten erlaubt");
+                    }
+                    break;
+                case LEFT:
+                    if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X > 0.25) {
+                        player.move();
+                        System.out.println("Move nach Links erlaubt");
+                    }
+                    break;
+                case RIGHT:
+                    if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X < 0.25) {
+                        player.move();
+                        System.out.println("Move nach Rechts erlaubt");
+                    }
+                    break;
+            }
+        }
+
+        //changes player coord when in new Chunk
+        int xCord = player.getX() / Dimensions.PIXEL_PER_CHUNK_X;
+        int yCord = player.getY() / Dimensions.PIXEL_PER_CHUNK_Y;
+        player.setCords(new Coord(xCord, yCord));
+
+//        System.out.println("X: " + player.getCords().getX() + "; Y: " + player.getCords().getY());
+//        System.out.println("Exact Coords:  X: " + ((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X + "; Y: " + ((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y);
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
         /*        if (doesNotCollidePlayer(player.getCurrentDirection())) {
             player.move();
 
@@ -109,6 +150,12 @@ public class GameModel extends PanelModel {
             }
 
         }*/
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//Yannick's Version
+        /*
+
+//        boolean TPCX = (tick) % Dimensions.TICKS_PER_CHUNK_X == 0;
+//        boolean TPCY = (tick) % Dimensions.TICKS_PER_CHUNK_Y == 0;
 
         if (doesNotCollidePlayer(getPlayer().getCurrentDirection())) {
             player.move();
@@ -126,10 +173,61 @@ public class GameModel extends PanelModel {
 
                 }
             }
-        }
-
+        }*/
+//-------------------------------------------------------------------------------------------------------------------------------------------------
         //Corona Movement
         for (Corona c : coronas) {
+            if (doesNotCollideCorona(c)) {
+                c.move();
+            }
+            //Corona keeps moving until centred in chunk then changes direction
+            if (!doesNotCollideCorona(c)) {
+                switch (c.getCurrentDirection()) {
+                    case UP:
+                        if ((((double) c.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - c.getY() / Dimensions.PIXEL_PER_CHUNK_Y > 0.25) {
+                            c.move();
+//                            System.out.println("Move nach Oben erlaubt");
+                        } else {
+                            c.setCurrentDirection(randomDirection());
+                        }
+                        break;
+                    case DOWN:
+                        if ((((double) c.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - c.getY() / Dimensions.PIXEL_PER_CHUNK_Y < 0.25) {
+                            c.move();
+//                            System.out.println("Move nach Unten erlaubt");
+                        } else {
+                            c.setCurrentDirection(randomDirection());
+                        }
+                        break;
+                    case LEFT:
+                        if ((((double) c.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - c.getX() / Dimensions.PIXEL_PER_CHUNK_X > 0.25) {
+                            c.move();
+//                            System.out.println("Move nach Links erlaubt");
+                        } else {
+                            c.setCurrentDirection(randomDirection());
+                        }
+                        break;
+                    case RIGHT:
+                        if ((((double) c.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - c.getX() / Dimensions.PIXEL_PER_CHUNK_X < 0.25) {
+                            c.move();
+//                            System.out.println("Move nach Rechts erlaubt");
+                        } else {
+                            c.setCurrentDirection(randomDirection());
+                        }
+                        break;
+                }
+            }
+
+            //updates Corona Coords when in new Chunk
+            int xCordCorona = c.getX() / Dimensions.PIXEL_PER_CHUNK_X;
+            int yCordCorona = c.getY() / Dimensions.PIXEL_PER_CHUNK_Y;
+            c.setCoords(new Coord(xCordCorona, yCordCorona));
+
+        }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//Yannick's Version
+        /*        for (Corona c : coronas) {
             if (doesNotCollideCorona(c)) {
                 c.move();
                 if (c.getCurrentDirection() == PlayerDirection.UP || c.getCurrentDirection() == PlayerDirection.DOWN) {
@@ -142,8 +240,6 @@ public class GameModel extends PanelModel {
                     }
                 }
             } else {
-                //TODO fix pls
-                //TODO corona achtet nicht auf wand und man kann nciht sterben ( map.set has corona)
 
                 int counter = 0;
                 while (!doesNotCollideCorona(c)) {
@@ -154,16 +250,16 @@ public class GameModel extends PanelModel {
                     counter++;
                 }
             }
-        }
+        }*/
 
         //Collisions
+        //TODO Corona Collisions
         for (Corona c : coronas) {
             if (player.getCords() == c.getCoords()) {
                 System.out.println("Mit Corona Collided");
                 if (player.getLives() > 1 && !coronaEdible) {
                     System.out.println("Leben removed");
                     player.setLives(player.getLives() - 1);
-                    //TODO stuff
                 } else if (coronaEdible) {
                     System.out.println("Corona gegessen");
                     coronas.remove(c);

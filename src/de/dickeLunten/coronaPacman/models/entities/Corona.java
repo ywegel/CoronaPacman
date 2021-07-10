@@ -168,7 +168,11 @@ public class Corona extends EntityModel {
         this.y = y;
     }
 
-    public Image getImage(boolean switched,boolean edible ) {
+    public void setCoords(Coord coords) {
+        this.coords = coords;
+    }
+
+    public Image getImage(boolean switched, boolean edible ) {
         if(edible){
             if(switched){
                 return edibleImg1;
