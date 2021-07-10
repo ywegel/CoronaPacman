@@ -46,10 +46,10 @@ public class GameModel extends PanelModel {
 
         vacCount = 4;
         vacs = new ArrayList<Vac>();
-        vacs.add(new Vac(new Coord(1,2) , -23, 15));
-        vacs.add(new Vac(new Coord(17,2) , 697, 15));
-        vacs.add(new Vac(new Coord(1,19) , -23, 848));
-        vacs.add(new Vac(new Coord(17,19) , 697, 848));
+        vacs.add(new Vac(new Coord(1, 2), -23, 15));
+        vacs.add(new Vac(new Coord(17, 2), 697, 15));
+        vacs.add(new Vac(new Coord(1, 19), -23, 848));
+        vacs.add(new Vac(new Coord(17, 19), 697, 848));
 
         tPaper = new TPaper();
     }
@@ -157,7 +157,24 @@ public class GameModel extends PanelModel {
         }
 
         //Collisions
-        if (gameMap.get(player.getCoords()).isHasCorona()) {
+        for (Corona c : coronas) {
+            if (player.getCords() == c.getCoords()) {
+                System.out.println("Mit Corona Collided");
+                if (player.getLives() > 1 && !coronaEdible) {
+                    System.out.println("Leben removed");
+                    player.setLives(player.getLives() - 1);
+                    //TODO stuff
+                } else if (coronaEdible) {
+                    System.out.println("Corona gegessen");
+                    coronas.remove(c);
+                } else if (player.getLives() == 1 && !coronaEdible) {
+                    System.out.println("Spielende");
+                    gameModelListener.finishGame(score);
+                }
+            }
+        }
+/*        if (gameMap.get(player.getCords()).isHasCorona()) {
+
 
             if (player.getLives() > 1 && !coronaEdible) {
                 player.setLives(player.getLives() - 1);
@@ -165,7 +182,7 @@ public class GameModel extends PanelModel {
                 player.setY(0);
             } else if (coronaEdible) {
                 for (Corona c : coronas) {
-                    if (player.getCoords() == c.getCoords()) {
+                    if (player.getCords() == c.getCoords()) {
                         coronas.remove(c);
                     }
                 }
@@ -173,40 +190,40 @@ public class GameModel extends PanelModel {
                 gameModelListener.finishGame(score);
             }
 
-        } else if (gameMap.get(player.getCoords()).isHasDot()) {
+        }*/
+        if (gameMap.get(player.getCords()).isHasDot()) {
 
-            gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasDot(false));
+            gameMap.put(getPlayer().getCords(), gameMap.get(getPlayer().getCords()).setHasDot(false));
 
             nomNomCount++;
 
             //184 dots mit vacs ; 180 nur dots
-            if(nomNomCount == 180 && vacCount == 0){
-                 gameModelListener.finishGame(score);
+            if (nomNomCount == 180 && vacCount == 0) {
+                gameModelListener.finishGame(score);
             }
 
-        } else if (gameMap.get(player.getCoords()).isHasToiletPaper()) {
-            System.out.println("TP getroffem");
+        } else if (gameMap.get(player.getCords()).isHasToiletPaper()) {
+            System.out.println("TP getroffen");
             player.setLives(player.getLives() + 1);
             //TODO remove ToiletPaper
 
-        } else if (gameMap.get(player.getCoords()).isHasVac()) {
-            gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasVac(false));
+        } else if (gameMap.get(player.getCords()).isHasVac()) {
+            gameMap.put(getPlayer().getCords(), gameMap.get(getPlayer().getCords()).setHasVac(false));
             vacCount--;
             System.out.println("Number of Vacs: " + vacCount);
 
             Vac cacheVac = null;
-            for(Vac v: vacs){
+            for (Vac v : vacs) {
 //                System.out.println("Player: " + updatedPlayerPosition().getX()+ "   " + updatedPlayerPosition().getY());
 //                System.out.println("Vac: " + v.getCords().getX()+ "   " + v.getCords().getY());
-                if(v.getCords().equals(new Coord(player.getCoords().getX() + 1, player.getCoords().getY() + 1))){
-                    System.out.println("flag");
+                if (v.getCords().equals(new Coord(player.getCords().getX() + 1, player.getCords().getY() + 1))) {
                     cacheVac = v;
                 }
             }
             vacs.remove(cacheVac);
 
 
-            if(nomNomCount == 180 && vacCount == 0){
+            if (nomNomCount == 180 && vacCount == 0) {
                 gameModelListener.finishGame(score);
             }
 
@@ -221,9 +238,6 @@ public class GameModel extends PanelModel {
 
             long delay = 15 * 1000L;
             timer.schedule(task, delay);
-
-            //TODO remove Vac
-            //TODO change Vac design
         }
     }
 
@@ -280,7 +294,7 @@ public class GameModel extends PanelModel {
     }
 
     private PlayerMovableDir getPlayerMovDir() {
-        return gameMap.get(player.getCoords()).getPlayerMovableDir();
+        return gameMap.get(player.getCords()).getPlayerMovableDir();
     }
 
     private PlayerMovableDir getCoronaMovDir(Corona c) {

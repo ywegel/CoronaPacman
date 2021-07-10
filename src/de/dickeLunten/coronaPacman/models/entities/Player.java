@@ -89,7 +89,7 @@ public class Player extends EntityModel {
         cords.setX(cords.getX() - 1);
     }
 
-    public Coord getCoords() {
+    public Coord getCords() {
         return cords;
 //        return new Coord(cords.getX() + 1,cords.getY() + 1 );
     }
