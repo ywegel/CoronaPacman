@@ -77,6 +77,7 @@ public class GameModel extends PanelModel {
     }
 
     public void gameTick(int tick) {
+
         //switch animation Image
         if (tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
             coronaAnimationState = !coronaAnimationState;
@@ -189,18 +190,20 @@ public class GameModel extends PanelModel {
             //TODO remove ToiletPaper
 
         } else if (gameMap.get(player.getCoords()).isHasVac()) {
-            Coord cache = player.getCoords();
-            System.out.println(cache.getX() +"  "+ cache.getY());
             gameMap.put(getPlayer().getCoords(), gameMap.get(getPlayer().getCoords()).setHasVac(false));
             vacCount--;
+            System.out.println("Number of Vacs: " + vacCount);
 
+            Vac cacheVac = null;
             for(Vac v: vacs){
-                System.out.println(player.getCoords().getX()+ "   " + player.getCoords().getY());
-                if(v.getCords() == player.getCoords()){
-
-                    vacs.remove(v);
+//                System.out.println("Player: " + updatedPlayerPosition().getX()+ "   " + updatedPlayerPosition().getY());
+//                System.out.println("Vac: " + v.getCords().getX()+ "   " + v.getCords().getY());
+                if(v.getCords().equals(new Coord(player.getCoords().getX() + 1, player.getCoords().getY() + 1))){
+                    System.out.println("flag");
+                    cacheVac = v;
                 }
             }
+            vacs.remove(cacheVac);
 
 
             if(nomNomCount == 180 && vacCount == 0){
@@ -258,6 +261,10 @@ public class GameModel extends PanelModel {
             //playerTurnRequest = dir;
             player.setCurrentDirection(dir);
         }
+    }
+
+    public boolean isCoronaEdible() {
+        return coronaEdible;
     }
 
     public int getCoronaCount() {

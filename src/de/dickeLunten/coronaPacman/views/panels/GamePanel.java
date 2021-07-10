@@ -206,7 +206,7 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         //Corona
         for (Corona c : model.getCovList()) {
-            g2d.drawImage(c.getImage(model.getCoronaAnimationState()), c.getX() + halfScreen, c.getY(), c.getWidth(), c.getHeight(), this);
+            g2d.drawImage(c.getImage(model.getCoronaAnimationState(), model.isCoronaEdible()), c.getX() + halfScreen, c.getY(), c.getWidth(), c.getHeight(), this);
         }
     }
 

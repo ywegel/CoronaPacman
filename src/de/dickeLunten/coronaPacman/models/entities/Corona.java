@@ -4,6 +4,7 @@ import util.Coord;
 import util.Data;
 import util.Dimensions;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Corona extends EntityModel {
@@ -11,7 +12,7 @@ public class Corona extends EntityModel {
     private int width, height, x, y;
     private Coord coords;
     private PlayerDirection currentDirection;
-    private Image coronaImg0, coronaImg1;
+    private Image coronaImg0, coronaImg1, edibleImg0, edibleImg1;
     private boolean isImageSwitched = false;
 
     public Corona(int x, int y, PlayerDirection startDir) {
@@ -54,10 +55,14 @@ public class Corona extends EntityModel {
         if (firstImg) {
             coronaImg0 = Data.loadImageFromRes("img/virus1.png");
             coronaImg1 = Data.loadImageFromRes("img/virus2.png");
-        } else {
+            edibleImg0 = Data.loadImageFromRes("img/ediblevirus1.png");
+            edibleImg1 = Data.loadImageFromRes("img/ediblevirus2.png");
 
+        } else {
             coronaImg0 = Data.loadImageFromRes("img/virus2.png");
             coronaImg1 = Data.loadImageFromRes("img/virus1.png");
+            edibleImg0 = Data.loadImageFromRes("img/ediblevirus2.png");
+            edibleImg1 = Data.loadImageFromRes("img/ediblevirus1.png");
         }
     }
 
@@ -163,12 +168,22 @@ public class Corona extends EntityModel {
         this.y = y;
     }
 
-    public Image getImage(boolean s) {
-        if (s) {
-            return coronaImg1;
-        }else {
-            return coronaImg0;
+    public Image getImage(boolean switched,boolean edible ) {
+        if(edible){
+            if(switched){
+                return edibleImg1;
+            } else {
+                return edibleImg0;
+            }
         }
+        else {
+            if (switched) {
+                return coronaImg1;
+            } else {
+                return coronaImg0;
+            }
+        }
+
     }
 
 /*    public void switchImage() {
