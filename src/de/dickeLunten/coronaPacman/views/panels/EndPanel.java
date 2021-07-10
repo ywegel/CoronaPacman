@@ -40,7 +40,7 @@ public class EndPanel extends PanelView {
             BufferedReader in = new BufferedReader( new FileReader(highScoreFile));
             highscore = Integer.parseInt(in.readLine());
             System.out.println(highscore + "");
-            if(score > highscore){
+            if(score < highscore || highscore == 0){
                 highscore = score;
                 System.out.println("Neuer HighScore!!!");
                 FileWriter fw = new FileWriter(Data.loadFileFromRes("HighScore.txt"));
