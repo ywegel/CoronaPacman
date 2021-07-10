@@ -6,6 +6,7 @@ import de.dickeLunten.coronaPacman.models.panel.CreditsModel;
 import de.dickeLunten.coronaPacman.models.panel.RulesModel;
 import util.Bundle;
 import util.Data;
+import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,9 @@ public class RulesPanel extends PanelView{
     private CreditsModel model;
     private GridBagConstraints constraints = new GridBagConstraints();
     private JButton backb;
-    private JLabel rulesl;
+    private JLabel rulesL;
+    private JButton deB;
+    private JButton enB;
 
     ViewListener viewListener;
 
@@ -29,6 +32,38 @@ public class RulesPanel extends PanelView{
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
         //constraints.fill = GridBagConstraints.HORIZONTAL;
+
+        deB = new JButton("DE");
+        deB.setFont(new Font("sans", Font.PLAIN, 60));
+        deB.setBackground(new Color(0,50,0));
+        deB.setForeground(Color.WHITE);
+        deB.setBorderPainted(false);
+
+        enB = new JButton("EN");
+        enB.setFont(new Font("sans", Font.PLAIN, 60));
+        enB.setBackground(new Color(50,0,0));
+        enB.setForeground(Color.WHITE);
+        enB.setBorderPainted(false);
+
+        deB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deB.setBackground(new Color(0, 50, 0));
+                enB.setBackground(new Color(50, 0, 0));
+                rulesL.setText(model.getRulesL_DE());
+            }
+        });
+
+        enB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enB.setBackground(new Color(0, 50, 0));
+                deB.setBackground(new Color(50, 0, 0));
+                rulesL.setText(model.getRulesL_EN());
+            }
+        });
+
+
 
         backb = new JButton("back");
         //backb.setFont(new Font("sans", Font.PLAIN, 70));
@@ -43,16 +78,22 @@ public class RulesPanel extends PanelView{
             }
         });
 
-        rulesl = new JLabel("",SwingConstants.CENTER);
-        rulesl.setBackground(Color.DARK_GRAY);
-        rulesl.setForeground(Color.WHITE);
-        rulesl.setFont(new Font("sans", Font.PLAIN, 60));
-        rulesl.setText(model.getRuleslTXT());
+        rulesL = new JLabel("",SwingConstants.CENTER);
+        rulesL.setBackground(Color.DARK_GRAY);
+        rulesL.setForeground(Color.WHITE);
+        rulesL.setFont(new Font("sans", Font.PLAIN, 60));
+        rulesL.setText(model.getRulesL_DE());
 
-        constraints.ipadx = 950;
-        addGB(rulesl, 0, 0);
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        addGB(backb, 0, 1);
+
+        addGB(enB, 1,0);
+        addGB(deB, 2,0);
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.ipadx = 950;
+        constraints.gridwidth = 3;
+        addGB(rulesL, 0, 1);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        addGB(backb, 0, 2);
 
     }
 
