@@ -17,7 +17,9 @@ public class WAVPlayer {
     private static final AtomicBoolean isKill = new AtomicBoolean(false);
 
     public static void playGameMusic() {
-        play("sounds/solodrillbeat1.wav");
+        while (true) {
+            play("sounds/solodrillbeat1.wav");
+        }
     }
 
     private static void play(String filename) {

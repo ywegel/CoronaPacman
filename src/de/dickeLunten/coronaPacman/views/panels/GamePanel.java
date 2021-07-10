@@ -29,6 +29,7 @@ public class GamePanel extends PanelView implements GameModelListener {
     private final JLabel pauseL;
     private final JButton continueB;
     private final JButton quitB;
+    private final JButton restartB;
     private GridBagConstraints constraints = new GridBagConstraints();
 
     //TODO alle knöpfe und anzeigen links oder rechts
@@ -75,6 +76,8 @@ public class GamePanel extends PanelView implements GameModelListener {
 
         setBackground(Color.LIGHT_GRAY);
 
+
+
         pauseB = new JButton(" I I ");
         pauseB.setFont(new Font("sans", Font.PLAIN, 70));
         pauseB.setBackground(new Color(50, 50, 50));
@@ -102,22 +105,30 @@ public class GamePanel extends PanelView implements GameModelListener {
         continueB.setVisible(true);
         continueB.setFont(Data.setPacFont());
 
+        restartB = new JButton("  restart  ");
+        restartB.setBackground(new Color(0, 0, 50));
+        restartB.setForeground(Color.WHITE);
+        restartB.setBorderPainted(false);
+        restartB.setVisible(true);
+        restartB.setFont(Data.setPacFont());
+
         pauseL = new JLabel("game paused", SwingConstants.CENTER);
         pauseL.setBackground(new Color(0, 0, 0));
         pauseL.setForeground(Color.WHITE);
         pauseL.setFont(Data.setPacFont());
 
-        quitB = new JButton("        quit        ");
+        quitB = new JButton("      quit      ");
         quitB.setBackground(new Color(50, 0, 0));
         quitB.setForeground(Color.WHITE);
         quitB.setBorderPainted(false);
         quitB.setFont(Data.setPacFont());
 
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 3;
         addGB(pauseL, 0, 0);
         constraints.gridwidth = 1;
         addGB(continueB, 0, 1);
-        addGB(quitB, 1, 1);
+        addGB(restartB, 1, 1);
+        addGB(quitB, 2, 1);
 
 
         pauseB.addActionListener(new ActionListener() {
@@ -135,6 +146,13 @@ public class GamePanel extends PanelView implements GameModelListener {
                 pauseP.setVisible(false);
                 viewListener.continueGame();
                 pauseB.setVisible(true);
+            }
+        });
+
+        restartB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
             }
         });
 
