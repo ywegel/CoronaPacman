@@ -254,8 +254,9 @@ public class GameModel extends PanelModel {
 
         //Collisions
         //TODO Corona Collisions
+        //TODO remove corona collide boolean from mapChunkValues
         for (Corona c : coronas) {
-            if (player.getCords() == c.getCoords()) {
+            if (player.getCords().getX() ==  c.getCoords().getX() && player.getCords().getY() ==  c.getCoords().getY()) {
                 System.out.println("Mit Corona Collided");
                 if (player.getLives() > 1 && !coronaEdible) {
                     System.out.println("Leben removed");
