@@ -10,6 +10,7 @@ public class Player extends EntityModel {
 
     private int height, width, x, y, chunkOffsetX, chunkOffsetY;
     private PlayerDirection currentDirection = PlayerDirection.RIGHT;
+    private PlayerDirection plannedDirection;
     private Coord cords;
     private int lives;
     private Image[] img;
@@ -23,6 +24,7 @@ public class Player extends EntityModel {
         lives = 3;
         width = 64;
         height = 65;
+        plannedDirection = currentDirection;
         img = new Image[8];
 
         //Player size = 641 653
@@ -96,6 +98,14 @@ public class Player extends EntityModel {
     public Coord getCords() {
         return cords;
 //        return new Coord(cords.getX() + 1,cords.getY() + 1 );
+    }
+
+    public PlayerDirection getPlannedDirection() {
+        return plannedDirection;
+    }
+
+    public void setPlannedDirection(PlayerDirection plannedDirection) {
+        this.plannedDirection = plannedDirection;
     }
 
     public int getHeight() {
