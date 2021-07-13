@@ -6,7 +6,6 @@ import de.dickeLunten.coronaPacman.models.panel.*;
 import javax.xml.stream.events.StartDocument;
 
 public class Model {
-
     StartModel startModel;
     GameModel gameModel;
     PauseModel pauseModel;
@@ -21,62 +20,33 @@ public class Model {
         this.endModel = endModel;
         this.creditsModel = creditsModel;
         this.rulesModel = rulesModel;
-
     }
 
     public StartModel getStartModel() {
         return startModel;
     }
 
-    public void setStartModel(StartModel startModel) {
-        this.startModel = startModel;
-    }
-
     public GameModel getGameModel() {
         return gameModel;
-    }
-
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
     }
 
     public PauseModel getPauseModel() {
         return pauseModel;
     }
 
-    public void setPauseModel(PauseModel model) {
-        this.pauseModel = model;
-    }
-
     public EndModel getEndModel() {
         return endModel;
-    }
-
-    public void setEndModel(EndModel endModel) {
-        this.endModel = endModel;
     }
 
     public CreditsModel getCreditsModel() {
         return creditsModel;
     }
 
-    public void setCreditsModel(CreditsModel creditsModel) {
-        this.creditsModel = creditsModel;
-    }
-
     public RulesModel getRulesModel() {
         return rulesModel;
     }
 
-    public void setRulesModel(RulesModel rulesModel) {
-        this.rulesModel = rulesModel;
+    public void resetGameModel() {
+        gameModel = new GameModel();
     }
-
-    public Player getPlayer() {
-        return gameModel.getPlayer();
-    }
-
-
-
-
 }

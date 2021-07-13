@@ -20,7 +20,7 @@ public class Data {
         return new ImageIcon(url).getImage();
     }
 
-    public static File loadFileFromRes(String filename) {
+/*    public static File loadFileFromRes(String filename) {
         URI uri = null;
         try {
             uri = Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(filename)).toURI();
@@ -29,6 +29,10 @@ public class Data {
             e.printStackTrace();
         }
         return new File(uri);
+    }*/
+
+    public static InputStream loadFileFromResAsStream(String filename) {
+        return Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResourceAsStream(filename));
     }
 
     public static Font setPacFont() {
@@ -40,7 +44,11 @@ public class Data {
             pacFont = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(70f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));
+
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));  //TODO brauch man des? immer fehler und funktioniert auch ohne
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }

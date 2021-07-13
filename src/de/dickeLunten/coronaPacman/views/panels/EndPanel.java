@@ -113,6 +113,7 @@ public class EndPanel extends PanelView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
+                viewListener.notifyGameStarted();
             }
         });
 

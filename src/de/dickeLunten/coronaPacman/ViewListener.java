@@ -7,4 +7,6 @@ public interface ViewListener {
     void onNavigate(NavigationPanels destination, Bundle bundle);
     void pauseGame();
     void continueGame();
+    void exitGame();
+    void notifyGameStarted();
 }

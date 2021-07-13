@@ -93,14 +93,14 @@ public class GameModel extends PanelModel {
 
         if(doesNotCollidePlayer(player.getPlannedDirection())){
             turning = true;
-            System.out.println(player.getPlannedDirection());
+            //System.out.println(player.getPlannedDirection());
         }
         if(turning){
             switch (player.getCurrentDirection()) {
                 case UP:
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y > 0.25) {
-                        player.move();
-                        System.out.println("Move nach Oben erlaubt");
+                            player.move();
+                        //System.out.println("Move nach Oben erlaubt");
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
@@ -109,7 +109,7 @@ public class GameModel extends PanelModel {
                 case DOWN:
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y < 0.25) {
                         player.move();
-                        System.out.println("Move nach Unten erlaubt");
+                        //System.out.println("Move nach Unten erlaubt");
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
@@ -118,7 +118,7 @@ public class GameModel extends PanelModel {
                 case LEFT:
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X > 0.25) {
                         player.move();
-                        System.out.println("Move nach Links erlaubt");
+                        //System.out.println("Move nach Links erlaubt");
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
@@ -127,7 +127,7 @@ public class GameModel extends PanelModel {
                 case RIGHT:
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X < 0.25) {
                         player.move();
-                        System.out.println("Move nach Rechts erlaubt");
+                        //System.out.println("Move nach Rechts erlaubt");
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
@@ -147,25 +147,25 @@ public class GameModel extends PanelModel {
                 case UP:
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y > 0.25) {
                         player.move();
-                        System.out.println("Move nach Oben erlaubt");
+                        //System.out.println("Move nach Oben erlaubt");
                     }
                     break;
                 case DOWN:
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y < 0.25) {
                         player.move();
-                        System.out.println("Move nach Unten erlaubt");
+                        //System.out.println("Move nach Unten erlaubt");
                     }
                     break;
                 case LEFT:
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X > 0.25) {
                         player.move();
-                        System.out.println("Move nach Links erlaubt");
+                        //System.out.println("Move nach Links erlaubt");
                     }
                     break;
                 case RIGHT:
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X < 0.25) {
                         player.move();
-                        System.out.println("Move nach Rechts erlaubt");
+                        //System.out.println("Move nach Rechts erlaubt");
                     }
                     break;
             }
@@ -312,7 +312,8 @@ public class GameModel extends PanelModel {
         //Collisions
         //TODO Corona Collisions
         //TODO remove corona collide boolean from mapChunkValues
-        for (Corona c : coronas) {
+        for (Iterator<Corona> iterator = coronas.iterator(); iterator.hasNext();) {
+            Corona c = iterator.next();
             if (player.getCords().getX() == c.getCoords().getX() && player.getCords().getY() == c.getCoords().getY()) {
                 System.out.println("Mit Corona Collided");
                 if (player.getLives() > 1 && !coronaEdible) {
@@ -320,7 +321,7 @@ public class GameModel extends PanelModel {
                     player.setLives(player.getLives() - 1);
                 } else if (coronaEdible) {
                     System.out.println("Corona gegessen");
-                    coronas.remove(c);
+                    iterator.remove();
                 } else if (player.getLives() == 1 && !coronaEdible) {
                     System.out.println("Spielende");
                     gameModelListener.finishGame(score);

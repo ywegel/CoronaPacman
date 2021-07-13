@@ -153,6 +153,7 @@ public class GamePanel extends PanelView implements GameModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
+                viewListener.notifyGameStarted();
             }
         });
 
@@ -160,8 +161,8 @@ public class GamePanel extends PanelView implements GameModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pauseP.setVisible(false);
-                //viewListener.continueGame();
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
+                viewListener.exitGame();
             }
         });
 
@@ -240,6 +241,7 @@ public class GamePanel extends PanelView implements GameModelListener {
 
     @Override
     public void finishGame(int score) {
+        viewListener.exitGame();
         viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, score));
     }
 

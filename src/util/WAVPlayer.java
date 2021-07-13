@@ -1,6 +1,7 @@
 package util;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.sound.sampled.AudioFormat;
@@ -27,18 +28,20 @@ public class WAVPlayer {
 
         int EXTERNAL_BUFFER_SIZE = 524288;
 
-        File soundFile = null;
+/*        File soundFile = null;
 
         soundFile = Data.loadFileFromRes(filename);
 
         if (!soundFile.exists()) {
             System.err.println("Wave file not found: " + filename);
             return;
-        }
+        }*/
+
+        InputStream soundInputStream = Data.loadFileFromResAsStream(filename);
 
         AudioInputStream audioInputStream = null;
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            audioInputStream = AudioSystem.getAudioInputStream(soundInputStream);
         } catch (Exception e) {
             e.printStackTrace();
             return;

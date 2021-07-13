@@ -80,6 +80,7 @@ public class View implements ModelListener {
     }
 
     private void initGamePanel() {
+        gamePanel = new GamePanel(model.getGameModel(), viewListener);
         frame.add(gamePanel);
         frame.revalidate();
         frame.repaint();
@@ -105,6 +106,7 @@ public class View implements ModelListener {
                 initStart();
             }
             case GAME_PANEL -> {
+                model.resetGameModel();
                 resetFrame();
                 initGamePanel();
             }
@@ -123,10 +125,6 @@ public class View implements ModelListener {
         }
     }
 
-    public void onNavigate(NavigationPanels destination) {
-        onNavigate(destination, null);
-    }
-
     public StartPanel getStartPanel() {
         return startPanel;
     }
@@ -134,29 +132,4 @@ public class View implements ModelListener {
     public GamePanel getGamePanel() {
         return gamePanel;
     }
-
-    public PausePanel getPausePanel() {
-        return pausePanel;
-    }
-
-    public EndPanel getEndPanel() {
-        return endPanel;
-    }
-
-    public CreditsPanel getCreditsPanel() {
-        return creditsPanel;
-    }
-
-    public RulesPanel getRulesPanel() {
-        return rulesPanel;
-    }
-
-
-
-    public void setStartPanel(StartPanel panel){
-        startPanel = panel;
-    }
-
-
-
 }
