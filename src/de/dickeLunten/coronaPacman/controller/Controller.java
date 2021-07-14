@@ -22,14 +22,8 @@ enum InputAction {
 }
 
 public class Controller implements ViewListener {
-/*    private volatile boolean gameIsRunning = false;
-    private volatile boolean gameIsPaused = false;
-    private final Object lock = new Object();*/
-
     private Thread musicThread, gameLoopThread;
     private GameLoop gameLoop;
-
-    //private static final long NANOS_PER_SECOND = 1_000_000_000L;
 
     private ActionEnter actionEnter;
 
@@ -38,141 +32,24 @@ public class Controller implements ViewListener {
 
     public Controller() {
         //TODO only initiate models when screen starts, so that every time it starts new screen!!!
-        this.model = new Model(new StartModel(), new GameModel(), new PauseModel(), new EndModel(), new CreditsModel(), new RulesModel());
+        this.model = new Model(new StartModel(), new GameModel(), new EndModel(), new CreditsModel(), new RulesModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());
-
-        /*initGameInput(view.getGamePanel());
-        gameLoop = new GameLoop(model, view);*/
-    }
-
-/*    private void loop() {
-        //https://pavelfatin.com/low-latency-painting-in-awt-and-swing/
-
-        final int fps = 60;
-
-        final long nanosPerFrame = NANOS_PER_SECOND / fps;
-
-        long statt = System.nanoTime();
-        int frameCount = 0;
-
-        int ticksss = 0;
-
-        musicThread = new Thread(WAVPlayer::playGameMusic);
-        musicThread.start();
-
-        while (gameIsRunning) {
-
-            if(gameIsPaused) {
-                synchronized (lock) {
-                    try {
-                        WAVPlayer.pauseMusic();
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            long loopStart = System.nanoTime();
-
-            //Pass render method to java.swing thread and !!wait
-            try {
-                SwingUtilities.invokeAndWait(this::render);
-            } catch (InterruptedException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-
-            tick(ticksss);
-            ticksss++;
-
-            long deltaLoop = System.nanoTime() - loopStart;
-
-            if(deltaLoop < nanosPerFrame) {
-                try {
-                    Thread.sleep((nanosPerFrame - deltaLoop) / 1_000_000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            frameCount++;
-            long deltaStatt = System.nanoTime() - statt;
-            if (deltaStatt > NANOS_PER_SECOND) {
-                System.out.println("FPS: " + frameCount);
-                model.getGameModel().setFps(frameCount);
-                frameCount = 0;
-                statt = System.nanoTime();
-            }
-
-*//*            final long delayms = ((loopStart + rateLimit) - System.nanoTime()) / NANOS_PER_SECOND;
-            System.out.println("Delay: " + delayms);*//*
-            //System.out.println("DeltaRender: " + deltaRender + " ;DeltaTick: " + deltaTick);
-            //System.out.println("--------------------------");
-*//*            if (delayms > 0) {
-                // more than a millisecond wait, do it....
-                try {
-                    Thread.sleep(delayms);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }*//*
-     *//*            try {
-                System.out.println("-----Thread sleepy");
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*//*
-        }
-    }
-
-
-    private void tick(int tick) {
-        //System.out.println("Tick");
-        model.getGameModel().gameTick(tick);
-    }
-
-    private void render() {
-        //System.out.println("Render");
-        view.getGamePanel().update();
     }
 
     @Override
-    public void pauseGame() {
-        gameIsPaused = true;
-    }
-
-    @Override
-    public void continueGame() {
-        gameIsPaused = false;
-        synchronized (lock) {
-            lock.notifyAll();
-        }
-        WAVPlayer.continueMusic();
-    }
-
-    @Override
-    public void exitGame() {
-        synchronized (lock) {
-            gameIsRunning = false;
-            WAVPlayer.killThread();
-            lock.notifyAll();
-        }
-    }*/
-
-    @Override
-    public void pauseGame() {
+    public void notifyPauseGame() {
         gameLoop.pauseGame();
         WAVPlayer.pauseMusic();
     }
 
     @Override
-    public void continueGame() {
+    public void notifyContinueGame() {
         gameLoop.continueGame();
     }
 
     @Override
-    public void exitGame() {
+    public void notifyExitGame() {
         gameLoop.exitGame();
         WAVPlayer.killThread();
     }
@@ -183,7 +60,7 @@ public class Controller implements ViewListener {
         gameLoop = new GameLoop(model, view);
         gameLoopThread = new Thread(gameLoop);
         gameLoopThread.start();
-        musicThread = new Thread(musicThread);
+        musicThread = new Thread(WAVPlayer::playGameMusic);
         musicThread.start();
     }
 
@@ -249,33 +126,12 @@ public class Controller implements ViewListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
+            notifyGameStarted();
         }
     }
 
     @Override
     public void onNavigate(NavigationPanels destination, Bundle bundle) {
         view.onNavigate(destination, bundle);
-
-/*
-        if (destination == NavigationPanels.GAME_PANEL) {
-            //gameIsRunning = true;
-            //gameLoopThread = new Thread(this::loop);
-            //gameLoopThread.start();
-*/
-/*            gameLoopThread = new Thread(gameLoop);
-            gameLoopThread.start();
-            musicThread = new Thread(musicThread);
-            musicThread.start();*//*
-
-        } else {*/
-/*
-            gameIsRunning = false;
-            WAVPlayer.killThread();
-            gameLoop.exitGame();*//*
-
-            System.out.println("is music thread alive: " + musicThread.isAlive());
-        }
-*/
-
     }
 }

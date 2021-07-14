@@ -8,15 +8,13 @@ import javax.xml.stream.events.StartDocument;
 public class Model {
     StartModel startModel;
     GameModel gameModel;
-    PauseModel pauseModel;
     EndModel endModel;
     CreditsModel creditsModel;
     RulesModel rulesModel;
 
-    public Model(StartModel startModel, GameModel gameModel, PauseModel pauseModel, EndModel endModel, CreditsModel creditsModel, RulesModel rulesModel) {
+    public Model(StartModel startModel, GameModel gameModel, EndModel endModel, CreditsModel creditsModel, RulesModel rulesModel) {
         this.startModel = startModel;
         this.gameModel = gameModel;
-        this.pauseModel = pauseModel;
         this.endModel = endModel;
         this.creditsModel = creditsModel;
         this.rulesModel = rulesModel;
@@ -30,9 +28,6 @@ public class Model {
         return gameModel;
     }
 
-    public PauseModel getPauseModel() {
-        return pauseModel;
-    }
 
     public EndModel getEndModel() {
         return endModel;

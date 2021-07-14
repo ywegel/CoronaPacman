@@ -11,7 +11,7 @@ import java.util.*;
 public class GameModel extends PanelModel {
     private final Player player;
     private final ArrayList<Vac> vacs;
-    private final TPaper tPaper;
+    private TPaper tPaper;
     private final ArrayList<Corona> coronas;
     private final HashMap<Coord, MapChunkValues> gameMap;
 
@@ -30,7 +30,7 @@ public class GameModel extends PanelModel {
     private boolean turning, immune;
 
     public GameModel() {
-        gameMap = Data.getGameHashMap();
+        gameMap = Data.loadMapDataFromFile();
         mapImage = Data.loadImageFromRes("img/vvmap.png").getScaledInstance(Dimensions.MAP_PIXEL_WIDTH, Dimensions.MAP_PIXEL_HEIGHT, Image.SCALE_FAST);
         score = -1;
         fps = -1;
@@ -53,7 +53,7 @@ public class GameModel extends PanelModel {
         vacs.add(new Vac(new Coord(1, 19), -23, 848));
         vacs.add(new Vac(new Coord(17, 19), 697, 848));
 
-        tPaper = new TPaper();
+        tPaper = null;
     }
 
     public void setGameModelListener(GameModelListener gl) {
@@ -80,11 +80,11 @@ public class GameModel extends PanelModel {
 
     public void gameTick(int tick) {
 
-        if(coronaEdible) {
+        if (coronaEdible) {
             if (tick % Dimensions.TICKS_PER_FAST_ANIMATION_SWITCH == 0) {
                 coronaAnimationState = !coronaAnimationState;
             }
-        }else {
+        } else {
             if (tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
                 coronaAnimationState = !coronaAnimationState;
             }
@@ -100,18 +100,17 @@ public class GameModel extends PanelModel {
         updateLives();
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-        if(doesNotCollidePlayer(player.getPlannedDirection()) && player.getPlannedDirection() != player.getCurrentDirection()){
+        if (doesNotCollidePlayer(player.getPlannedDirection()) && player.getPlannedDirection() != player.getCurrentDirection()) {
             turning = true;
             //System.out.println(player.getPlannedDirection());
         }
-        if(turning){
+        if (turning) {
             switch (player.getCurrentDirection()) {
                 case UP:
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y > 0.25) {
-                            player.move();
+                        player.move();
                         //System.out.println("Move nach Oben erlaubt");
-                    }
-                    else{
+                    } else {
                         player.setCurrentDirection(player.getPlannedDirection());
                         turning = false;
                     }
@@ -120,8 +119,7 @@ public class GameModel extends PanelModel {
                     if ((((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y) - player.getY() / Dimensions.PIXEL_PER_CHUNK_Y < 0.25) {
                         player.move();
                         //System.out.println("Move nach Unten erlaubt");
-                    }
-                    else{
+                    } else {
                         player.setCurrentDirection(player.getPlannedDirection());
                         turning = false;
                     }
@@ -130,8 +128,7 @@ public class GameModel extends PanelModel {
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X > 0.25) {
                         player.move();
                         //System.out.println("Move nach Links erlaubt");
-                    }
-                    else{
+                    } else {
                         player.setCurrentDirection(player.getPlannedDirection());
                         turning = false;
                     }
@@ -140,8 +137,7 @@ public class GameModel extends PanelModel {
                     if ((((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X) - player.getX() / Dimensions.PIXEL_PER_CHUNK_X < 0.25) {
                         player.move();
                         //System.out.println("Move nach Rechts erlaubt");
-                    }
-                    else{
+                    } else {
                         player.setCurrentDirection(player.getPlannedDirection());
                         turning = false;
                     }
@@ -151,7 +147,7 @@ public class GameModel extends PanelModel {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
         //Player Movement
-        System.out.println(turning);
+        //System.out.println(turning);
         if (doesNotCollidePlayer(player.getCurrentDirection()) && !turning) {
             player.move();
         }
@@ -329,9 +325,16 @@ public class GameModel extends PanelModel {
             Corona c = iterator.next();
             if (player.getCords().getX() == c.getCoords().getX() && player.getCords().getY() == c.getCoords().getY()) {
                 System.out.println("Mit Corona Collided");
-                if (player.getLives() > 1 && !coronaEdible && !immune) {
+                if (player.getLives() >= 1 && !coronaEdible && !immune) {
                     System.out.println("Leben removed");
                     player.setLives(player.getLives() - 1);
+
+                    if (tPaper == null) {
+                        tPaper = new TPaper(randomMapPosition());
+                        gameMap.put(tPaper.getCoords(), gameMap.get(tPaper.getCoords()).setHasToiletPaper(true));
+                        System.out.println("hier bins ich " + tPaper.getCoords().getX() + " + " + tPaper.getCoords().getY());
+                    }
+
                     immune = true;
                     TimerTask task = new TimerTask() {
                         public void run() {
@@ -341,11 +344,10 @@ public class GameModel extends PanelModel {
                     Timer timer = new Timer("Timer");
                     long delay = 3 * 1000L;
                     timer.schedule(task, delay);
-
                 } else if (coronaEdible) {
                     System.out.println("Corona gegessen");
                     iterator.remove();
-                } else if (player.getLives() == 1 && !coronaEdible) {
+                } else if (player.getLives() == 0 && !coronaEdible) {
                     System.out.println("Spielende");
                     gameModelListener.finishGame(score);
                 }
@@ -379,13 +381,8 @@ public class GameModel extends PanelModel {
             if (nomNomCount == 180 && vacCount == 0) {
                 gameModelListener.finishGame(score);
             }
-
-        } else if (gameMap.get(player.getCords()).isHasToiletPaper()) {
-            System.out.println("TP getroffen");
-            player.setLives(player.getLives() + 1);
-            //TODO remove ToiletPaper
-
-        } else if (gameMap.get(player.getCords()).isHasVac()) {
+        }
+        if (gameMap.get(player.getCords()).isHasVac()) {
             gameMap.put(getPlayer().getCords(), gameMap.get(getPlayer().getCords()).setHasVac(false));
             vacCount--;
             System.out.println("Number of Vacs: " + vacCount);
@@ -416,6 +413,11 @@ public class GameModel extends PanelModel {
 
             long delay = 15 * 1000L;
             timer.schedule(task, delay);
+        }
+        if(gameMap.get(player.getCords()).isHasToiletPaper()) {
+            player.setLives(player.getLives() + 1);
+            gameMap.replace(tPaper.getCoords(), gameMap.get(tPaper.getCoords()).setHasToiletPaper(false));
+            tPaper = null;
         }
     }
 
@@ -473,7 +475,7 @@ public class GameModel extends PanelModel {
     }
 
     public void requestTurn(PlayerDirection dir) {
-          player.setPlannedDirection(dir);
+        player.setPlannedDirection(dir);
 
 //        if (doesNotCollidePlayer(dir)) {
 //            //playerTurnRequest = dir;
@@ -497,7 +499,7 @@ public class GameModel extends PanelModel {
         gameModelListener.onScoreChanged(score);
     }
 
-    private void updateLives(){
+    private void updateLives() {
         gameModelListener.onLivesChanged(player.getLives());
     }
 

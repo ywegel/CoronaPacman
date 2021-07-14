@@ -134,7 +134,7 @@ public class GamePanel extends PanelView implements GameModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pauseB.setVisible(false);
-                viewListener.pauseGame();
+                viewListener.notifyPauseGame();
                 pauseP.setVisible(true);
             }
         });
@@ -143,7 +143,7 @@ public class GamePanel extends PanelView implements GameModelListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pauseP.setVisible(false);
-                viewListener.continueGame();
+                viewListener.notifyContinueGame();
                 pauseB.setVisible(true);
             }
         });
@@ -161,7 +161,7 @@ public class GamePanel extends PanelView implements GameModelListener {
             public void actionPerformed(ActionEvent e) {
                 pauseP.setVisible(false);
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
-                viewListener.exitGame();
+                viewListener.notifyExitGame();
             }
         });
 
@@ -211,13 +211,13 @@ public class GamePanel extends PanelView implements GameModelListener {
             }
         }
 
-        for (int i = 0; i < Dimensions.MAP_WIDTH + 1; i++) {
+/*        for (int i = 0; i < Dimensions.MAP_WIDTH + 1; i++) {
             g2d.drawLine(Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 0 + Dimensions.MAP_OFFSET_Y / 2, Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 1500 + +Dimensions.MAP_OFFSET_Y / 2);
         }
 
         for (int i = 0; i < Dimensions.MAP_HEIGHT; i++) {
             g2d.drawLine(0 + halfScreen + Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2, 1000 + halfScreen + +Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2);
-        }
+        }*/
 
         //Spieler
         g2d.drawImage(model.getPlayer().getImg(model.getPlayerAnimationState()), model.getPlayer().getX() + halfScreen, model.getPlayer().getY(), this);
@@ -243,7 +243,7 @@ public class GamePanel extends PanelView implements GameModelListener {
 
     @Override
     public void finishGame(int score) {
-        viewListener.exitGame();
+        viewListener.notifyExitGame();
         viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, score));
     }
 

@@ -4,14 +4,12 @@ public class MapChunkValues {
     private boolean hasDot;
     private boolean hasToiletPaper;
     private boolean hasVac;
-    private boolean hasCorona;
     private PlayerMovableDir playerMovableDir;
 
-    public MapChunkValues(boolean hasDot, boolean hasToiletPaper, boolean hasVac, boolean hasCorona, PlayerMovableDir playerMovableDir) {
+    public MapChunkValues(boolean hasDot, boolean hasToiletPaper, boolean hasVac, PlayerMovableDir playerMovableDir) {
         this.hasDot = hasDot;
         this.hasToiletPaper = hasToiletPaper;
         this.hasVac = hasVac;
-        this.hasCorona = hasCorona;
         this.playerMovableDir = playerMovableDir;
     }
 
@@ -33,20 +31,13 @@ public class MapChunkValues {
         return hasToiletPaper;
     }
 
-    public void setHasToiletPaper(boolean hasToiletPaper) {
+    public MapChunkValues setHasToiletPaper(boolean hasToiletPaper) {
         this.hasToiletPaper = hasToiletPaper;
+        return this;
     }
 
     public boolean isHasVac() {
         return hasVac;
-    }
-
-    public boolean isHasCorona() {
-        return hasCorona;
-    }
-
-    public void setHasCorona(boolean hasCorona) {
-        this.hasCorona = hasCorona;
     }
 
     public PlayerMovableDir getPlayerMovableDir() {

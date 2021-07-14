@@ -20,7 +20,6 @@ public class View implements ModelListener {
 
     private StartPanel startPanel;
     private GamePanel gamePanel;
-    private PausePanel pausePanel;
     private EndPanel endPanel;
     private CreditsPanel creditsPanel;
     private RulesPanel rulesPanel;
@@ -41,7 +40,6 @@ public class View implements ModelListener {
     private void initPanels() {
         startPanel = new StartPanel(model.getStartModel(), viewListener);
         gamePanel = new GamePanel(model.getGameModel(),viewListener);
-        pausePanel = new PausePanel(model.getPauseModel());
     }
 
     private JFrame initFrame() {

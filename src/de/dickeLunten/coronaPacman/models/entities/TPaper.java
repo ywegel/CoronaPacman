@@ -1,6 +1,8 @@
 package de.dickeLunten.coronaPacman.models.entities;
 
+import util.Coord;
 import util.Data;
+import util.Dimensions;
 
 import java.awt.*;
 
@@ -8,13 +10,15 @@ public class TPaper {
 
     private int length, width, x, y;
     private Image image;
+    private Coord coords;
 
-    public TPaper(){
-        x = 0;
-        y = 0;
+    public TPaper(Coord coord){
+        x = coord.getX() * Dimensions.PIXEL_PER_CHUNK_X;
+        y = coord.getY() * Dimensions.PIXEL_PER_CHUNK_Y;
+        this.coords = coord;
         length = 50;
         width = 50;
-        image = Data.loadImageFromRes("img/toilettenpapier.png");
+        image = Data.loadImageFromRes("img/toilettenpapier.png").getScaledInstance(width, length , Image.SCALE_DEFAULT);
     }
 
     public int getLength() {
@@ -51,5 +55,9 @@ public class TPaper {
 
     public Image getImage() {
         return image;
+    }
+
+    public Coord getCoords() {
+        return coords;
     }
 }
