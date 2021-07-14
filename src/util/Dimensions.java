@@ -28,8 +28,9 @@ public class Dimensions {
     public static final int TICKS_PER_CHUNK_X = 47;
     public static final int TICKS_PER_CHUNK_Y = 53;*/
 
-    public static final int TICKS_PER_ANIMATION_SWITCH = 30;
+    public static final int TICKS_PER_ANIMATION_SWITCH = 60;
     public static final int TICKS_PER_PLAYER_ANIMATION_SWITCH = 15;
+    public static final int TICKS_PER_FAST_ANIMATION_SWITCH = 30;
 
     public static final int MAP_OFFSET_X = 33;
     public static final int MAP_OFFSET_Y = 45;

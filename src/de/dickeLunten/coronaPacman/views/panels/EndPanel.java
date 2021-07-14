@@ -33,7 +33,7 @@ public class EndPanel extends PanelView {
         this.score = bundle.get(GamePanel.KEY_SCORE);
 
         //Auslesen des HighScore Files
-        File highScoreFile = Data.loadFileFromRes("HighScore.txt");
+/*        File highScoreFile = Data.loadFileFromRes("HighScore.txt");
         System.out.println(highScoreFile.getAbsolutePath());
         highScoreFile.setWritable(true);
         try{
@@ -53,7 +53,7 @@ public class EndPanel extends PanelView {
             System.out.println("Highscore konnte nicht ausgelesen werden!");
             e.printStackTrace();
         }
-        highScoreFile.setReadOnly();
+        highScoreFile.setReadOnly();*/
 
 
         this.viewListener = viewListener;

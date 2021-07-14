@@ -79,10 +79,17 @@ public class GameModel extends PanelModel {
 
     public void gameTick(int tick) {
 
-        //switch animation Image
-        if (tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
-            coronaAnimationState = !coronaAnimationState;
+        if(coronaEdible) {
+            if (tick % Dimensions.TICKS_PER_FAST_ANIMATION_SWITCH == 0) {
+                coronaAnimationState = !coronaAnimationState;
+            }
+        }else {
+            if (tick % Dimensions.TICKS_PER_ANIMATION_SWITCH == 0) {
+                coronaAnimationState = !coronaAnimationState;
+            }
         }
+        //switch animation Image
+
         if (tick % Dimensions.TICKS_PER_PLAYER_ANIMATION_SWITCH == 0) {
             playerAnimationState = !playerAnimationState;
         }

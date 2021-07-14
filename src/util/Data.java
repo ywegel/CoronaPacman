@@ -46,7 +46,7 @@ public class Data {
             //register the font
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));  //TODO brauch man des? immer fehler und funktioniert auch ohne
+            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("crackman.ttf")));  //TODO brauch man des? immer fehler und funktioniert auch ohne
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         } catch (IOException | FontFormatException e) {
