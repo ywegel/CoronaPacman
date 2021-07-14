@@ -15,7 +15,8 @@ import java.awt.event.ActionListener;
  * Verwaltet das Startpanel.
  *
  * @author Felix Rosner
- * @version 2021.09.07
+ *
+ * @version 2021.14.07
  */
 
 public class StartPanel extends PanelView {
@@ -29,10 +30,15 @@ public class StartPanel extends PanelView {
 
     /**
      * Konstruktor der Klasse StartPanel.
+     *
      * Erzeugt ein neues StartPanel, setzt Hintergrundfarbe und Layout.
+     *
      * Erzeugt die Buttons in der Pacman SChriftart und Standartgröße.
+     *
      * ActionListener werden mit Button verknüpft.
+     *
      * @param model Model zum StartPanel.
+     *
      * @param viewListener Beobachter des StartPanels.
      */
 
@@ -49,16 +55,11 @@ public class StartPanel extends PanelView {
         addGB(new JLabel(new ImageIcon(model.getBackgroundImg()), JLabel.CENTER),0,1);
         constraints.gridwidth = 1; // span one column
 
-        //create + add startb
+
         startb = new JButton("Press ENTER to start");
         startb.setFont(Data.setPacFont());
-        //startb.setFont(new Font("Pac-Font", Font.PLAIN, 40));
-        //startb.setSize(300, 300);
-        //startb.setBackground(new Color(50, 50, 50));
         startb.setBackground(Color.DARK_GRAY);
         startb.setBorderPainted(false);
-        //startb.setFont(Data.setPacFont());
-        //startb.setFont(new Font("sans", Font.PLAIN, 70));
         startb.setForeground(Color.WHITE);
 
         startb.addActionListener(new ActionListener() {
@@ -70,13 +71,10 @@ public class StartPanel extends PanelView {
         });
 
 
-        //create + add exitb
         exitb = new JButton(("  exit  "));
         exitb.setFont(Data.setPacFont());
         exitb.setBackground(Color.DARK_GRAY);
         exitb.setForeground(Color.WHITE);
-        //exitb.setOpaque(false);
-        //exitb.setContentAreaFilled(false);
         exitb.setBorderPainted(false);
 
         exitb.addActionListener(new ActionListener() {
@@ -90,8 +88,6 @@ public class StartPanel extends PanelView {
         creditsb.setFont(Data.setPacFont());
         creditsb.setBackground(Color.DARK_GRAY);
         creditsb.setForeground(Color.WHITE);
-        //creditsb.setOpaque(false);
-        //creditsb.setContentAreaFilled(false);
         creditsb.setBorderPainted(false);
 
         creditsb.addActionListener(new ActionListener() {
@@ -106,8 +102,7 @@ public class StartPanel extends PanelView {
         rulesb.setFont(Data.setPacFont());
         rulesb.setBackground(Color.DARK_GRAY);
         rulesb.setForeground(Color.WHITE);
-        //rulesb.setOpaque(false);
-        //rulesb.setContentAreaFilled(false);
+
         rulesb.setBorderPainted(false);
 
         rulesb.addActionListener(new ActionListener() {
@@ -125,15 +120,10 @@ public class StartPanel extends PanelView {
         addGB(creditsb, 1, 2);
         addGB(rulesb, 0, 2);
 
-        //JLabel highscoreLabel = new JLabel("Highscores: ");
-        //add(highscoreLabel, BorderLayout.NORTH);
+
     }
 
-/*    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(model.getBackgroundImg(), 0, 0, null);
-    }*/
+
     /**
      * Setzt Buttons an zugewiesene Koordinaten im GridBagLayout.
      */
@@ -146,12 +136,5 @@ public class StartPanel extends PanelView {
     public void finishGame(int score){ }
 }
 
-/*
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(getClass().getResource("/froschi.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-^das selbe wie da unten*/
+
 
