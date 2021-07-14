@@ -66,35 +66,35 @@ public class Corona extends EntityModel {
         }
     }
 
-    public void move() {
+    public void move(int s) {
         switch (currentDirection) {
-            case UP -> moveUp();
-            case DOWN -> moveDown();
-            case RIGHT -> moveRight();
-            case LEFT -> moveLeft();
+            case UP -> moveUp(s);
+            case DOWN -> moveDown(s);
+            case RIGHT -> moveRight(s);
+            case LEFT -> moveLeft(s);
         }
     }
 
-    private void moveUp() {
-        y = y - 1;
+    private void moveUp(int speed) {
+        y = y - speed;
         //cords.setY(cords.getY() - 1);
         //update();
     }
 
-    private void moveDown() {
-        y = y + 1;
+    private void moveDown(int speed) {
+        y = y + speed;
         //cords.setY(cords.getY() + 1);
         //update();
     }
 
-    private void moveRight() {
-        x = x + 1;
+    private void moveRight(int speed){
+        x = x + speed;
         //cords.setX(cords.getX() + 1);
         //update();
     }
 
-    private void moveLeft() {
-        x = x - 1;
+    private void moveLeft(int speed) {
+        x = x - speed;
         //cords.setX(cords.getX() - 1);
         //update();
     }

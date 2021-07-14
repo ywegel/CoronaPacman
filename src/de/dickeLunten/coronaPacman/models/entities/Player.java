@@ -43,25 +43,25 @@ public class Player extends EntityModel {
     }
 
     private void moveUp() {
-        y--;
+        y = y - 2;
         //cords.setY(cords.getY() - 1);
         //update();
     }
 
     private void moveDown() {
-        y++;
+        y = y + 2;
         //cords.setY(cords.getY() + 1);
         //update();
     }
 
     private void moveRight() {
-        x++;
+        x = x + 2;
         //cords.setX(cords.getX() + 1);
         //update();
     }
 
     private void moveLeft() {
-        x--;
+        x = x - 2;
         //cords.setX(cords.getX() - 1);
         //update();
     }
