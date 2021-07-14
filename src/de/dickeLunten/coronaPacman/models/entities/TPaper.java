@@ -7,7 +7,6 @@ import java.awt.*;
 public class TPaper {
 
     private int length, width, x, y;
-
     private Image image;
 
     public TPaper(){

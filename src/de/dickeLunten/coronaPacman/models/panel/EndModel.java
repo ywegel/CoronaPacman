@@ -4,9 +4,9 @@ import javax.swing.*;
 
 public class EndModel {
 
-    private JPanel endp;
+    /*private JPanel endp;
     private JLabel scorel;
-    private JButton replayb;
+    private JButton replayb;*/
     private int score;
 
 
