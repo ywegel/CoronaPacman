@@ -27,7 +27,7 @@ public class GameModel extends PanelModel {
     private int vacCount;
     private boolean coronaAnimationState = false;
     private boolean playerAnimationState = false;
-    private boolean turning;
+    private boolean turning, immune;
 
     public GameModel() {
         gameMap = Data.getGameHashMap();
@@ -38,6 +38,7 @@ public class GameModel extends PanelModel {
         coronaEdible = false;
         turning = false;
         coronas = new ArrayList<Corona>();
+        immune = false;
 
         for (int i = 0; i < 4; i++) {
             coronas.add(randomCorona());
@@ -96,9 +97,10 @@ public class GameModel extends PanelModel {
 
         score++;
         updateScore();
+        updateLives();
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-        if(doesNotCollidePlayer(player.getPlannedDirection())){
+        if(doesNotCollidePlayer(player.getPlannedDirection()) && player.getPlannedDirection() != player.getCurrentDirection()){
             turning = true;
             //System.out.println(player.getPlannedDirection());
         }
@@ -111,6 +113,7 @@ public class GameModel extends PanelModel {
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
+                        turning = false;
                     }
                     break;
                 case DOWN:
@@ -120,6 +123,7 @@ public class GameModel extends PanelModel {
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
+                        turning = false;
                     }
                     break;
                 case LEFT:
@@ -129,6 +133,7 @@ public class GameModel extends PanelModel {
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
+                        turning = false;
                     }
                     break;
                 case RIGHT:
@@ -138,6 +143,7 @@ public class GameModel extends PanelModel {
                     }
                     else{
                         player.setCurrentDirection(player.getPlannedDirection());
+                        turning = false;
                     }
                     break;
             }
@@ -145,7 +151,8 @@ public class GameModel extends PanelModel {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
         //Player Movement
-        if (doesNotCollidePlayer(player.getCurrentDirection())) {
+        System.out.println(turning);
+        if (doesNotCollidePlayer(player.getCurrentDirection()) && !turning) {
             player.move();
         }
         //Player Keeps moving until centred in chunk
@@ -317,15 +324,24 @@ public class GameModel extends PanelModel {
         }*/
 
         //Collisions
-        //TODO Corona Collisions
         //TODO remove corona collide boolean from mapChunkValues
-        for (Iterator<Corona> iterator = coronas.iterator(); iterator.hasNext();) {
+        for (Iterator<Corona> iterator = coronas.iterator(); iterator.hasNext(); ) {
             Corona c = iterator.next();
             if (player.getCords().getX() == c.getCoords().getX() && player.getCords().getY() == c.getCoords().getY()) {
                 System.out.println("Mit Corona Collided");
-                if (player.getLives() > 1 && !coronaEdible) {
+                if (player.getLives() > 1 && !coronaEdible && !immune) {
                     System.out.println("Leben removed");
                     player.setLives(player.getLives() - 1);
+                    immune = true;
+                    TimerTask task = new TimerTask() {
+                        public void run() {
+                            immune = false;
+                        }
+                    };
+                    Timer timer = new Timer("Timer");
+                    long delay = 3 * 1000L;
+                    timer.schedule(task, delay);
+
                 } else if (coronaEdible) {
                     System.out.println("Corona gegessen");
                     iterator.remove();
@@ -457,7 +473,7 @@ public class GameModel extends PanelModel {
     }
 
     public void requestTurn(PlayerDirection dir) {
-        player.setPlannedDirection(dir);
+          player.setPlannedDirection(dir);
 
 //        if (doesNotCollidePlayer(dir)) {
 //            //playerTurnRequest = dir;
@@ -479,6 +495,10 @@ public class GameModel extends PanelModel {
 
     private void updateScore() {
         gameModelListener.onScoreChanged(score);
+    }
+
+    private void updateLives(){
+        gameModelListener.onLivesChanged(player.getLives());
     }
 
     private PlayerMovableDir getPlayerMovDir() {

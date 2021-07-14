@@ -46,7 +46,6 @@ public class GamePanel extends PanelView implements GameModelListener {
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NONE, new Insets(
                 0, 0, 0, 0), 0, 0);*/
 
-
         fpsCounter = new JLabel();
         fpsCounter.setText(String.valueOf(model.getFps()));
         fpsCounter.setBackground(Color.LIGHT_GRAY);
@@ -238,6 +237,9 @@ public class GamePanel extends PanelView implements GameModelListener {
     public void onScoreChanged(int score) {
         scoreView.setText(String.valueOf(score));
     }
+
+    @Override
+    public void onLivesChanged(int l){lives.setText("Lives: " + l);}
 
     @Override
     public void finishGame(int score) {

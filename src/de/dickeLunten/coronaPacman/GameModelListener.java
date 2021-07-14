@@ -7,5 +7,7 @@ public interface GameModelListener extends ModelListener{
 
     void finishGame(int score);
 
+    void onLivesChanged(int lives);
+
     void update();
 }
