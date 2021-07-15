@@ -35,13 +35,13 @@ public class RulesPanel extends PanelView{
 
         deB = new JButton("DE");
         deB.setFont(new Font("sans", Font.PLAIN, 60));
-        deB.setBackground(new Color(0,50,0));
+        deB.setBackground(new Color(50,0,0));
         deB.setForeground(Color.WHITE);
         deB.setBorderPainted(false);
 
         enB = new JButton("EN");
         enB.setFont(new Font("sans", Font.PLAIN, 60));
-        enB.setBackground(new Color(50,0,0));
+        enB.setBackground(new Color(0,50,0));
         enB.setForeground(Color.WHITE);
         enB.setBorderPainted(false);
 
@@ -82,7 +82,7 @@ public class RulesPanel extends PanelView{
         rulesL.setBackground(Color.DARK_GRAY);
         rulesL.setForeground(Color.WHITE);
         rulesL.setFont(new Font("sans", Font.PLAIN, 60));
-        rulesL.setText(model.getRulesL_DE());
+        rulesL.setText(model.getRulesL_EN());
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
