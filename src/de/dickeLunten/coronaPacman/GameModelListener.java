@@ -1,6 +1,6 @@
 package de.dickeLunten.coronaPacman;
 
-public interface GameModelListener extends ModelListener{
+public interface GameModelListener {
     void onFpsChanged(int fps);
 
     void onScoreLivesChanged(int score, int lives);

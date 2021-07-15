@@ -45,6 +45,7 @@ public class Controller implements ViewListener {
     @Override
     public void notifyContinueGame() {
         gameLoop.continueGame();
+        WAVPlayer.continueMusic();
     }
 
     @Override
@@ -58,8 +59,10 @@ public class Controller implements ViewListener {
         initGameInput(view.getGamePanel());
         gameLoop = new GameLoop(model, view);
         gameLoopThread = new Thread(gameLoop);
+        gameLoopThread.setName("GameLoop-Thread");
         gameLoopThread.start();
         musicThread = new Thread(WAVPlayer::playGameMusic);
+        musicThread.setName("Music-Thread");
         musicThread.start();
     }
 

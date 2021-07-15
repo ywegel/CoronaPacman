@@ -1,14 +1,9 @@
 package util;
 
-import java.io.File;
+import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.SourceDataLine;
 
 public class WAVPlayer {
 
@@ -28,20 +23,11 @@ public class WAVPlayer {
 
         int EXTERNAL_BUFFER_SIZE = 524288;
 
-/*        File soundFile = null;
-
-        soundFile = Data.loadFileFromRes(filename);
-
-        if (!soundFile.exists()) {
-            System.err.println("Wave file not found: " + filename);
-            return;
-        }*/
-
         InputStream soundInputStream = Data.loadFileFromResAsStream(filename);
 
-        AudioInputStream audioInputStream = null;
+        AudioInputStream audioInputStream;
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(soundInputStream);
+            audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(soundInputStream));
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -49,7 +35,7 @@ public class WAVPlayer {
 
         AudioFormat format = audioInputStream.getFormat();
 
-        SourceDataLine auline = null;
+        SourceDataLine auline;
 
         //Describe a desired line
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -102,6 +88,8 @@ public class WAVPlayer {
             auline.close();
 
             isPaused.set(true);
+
+            System.out.println(Thread.currentThread().getName() + ": Thread stopped");
         }
     }
 

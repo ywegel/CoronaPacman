@@ -2,11 +2,8 @@ package util;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Objects;
@@ -28,7 +25,6 @@ public class Data {
         try {
             InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream("crackman.ttf");
             pacFont = Font.createFont(Font.TRUETYPE_FONT, stream).deriveFont(70f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }

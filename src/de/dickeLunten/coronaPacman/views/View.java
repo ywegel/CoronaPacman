@@ -1,20 +1,15 @@
 package de.dickeLunten.coronaPacman.views;
 
-import de.dickeLunten.coronaPacman.ModelListener;
 import de.dickeLunten.coronaPacman.ViewListener;
-import de.dickeLunten.coronaPacman.controller.Controller;
 import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.Model;
-import de.dickeLunten.coronaPacman.models.panel.EndModel;
-import de.dickeLunten.coronaPacman.models.panel.GameModel;
-import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import de.dickeLunten.coronaPacman.views.panels.*;
 import util.Bundle;
 import util.Data;
 
 import javax.swing.*;
 
-public class View implements ModelListener {
+public class View {
     private final JFrame frame;
     private Model model;
 

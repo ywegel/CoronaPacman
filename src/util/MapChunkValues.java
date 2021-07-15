@@ -43,8 +43,4 @@ public class MapChunkValues {
     public PlayerMovableDir getPlayerMovableDir() {
         return playerMovableDir;
     }
-
-    public void setPlayerMovableDir(PlayerMovableDir playerMovableDir) {
-        this.playerMovableDir = playerMovableDir;
-    }
 }

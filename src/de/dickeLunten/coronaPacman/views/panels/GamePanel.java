@@ -37,16 +37,9 @@ public class GamePanel extends PanelView implements GameModelListener {
         model.setGameModelListener(this);
         setLayout(new BorderLayout());
 
-
-//------------------------------------------------------------------------------------------------------
-/*        GridBagConstraints gbc = new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NONE, new Insets(
-                0, 0, 0, 0), 0, 0);*/
-
         fpsCounter = new JLabel();
         fpsCounter.setText(String.valueOf(model.getFps()));
         fpsCounter.setBackground(Color.LIGHT_GRAY);
-//        fpsCounter.setVisible(true);
         add(fpsCounter, BorderLayout.NORTH);
 
         scoreLivesL = new JLabel();
@@ -54,25 +47,9 @@ public class GamePanel extends PanelView implements GameModelListener {
         scoreLivesL.setFont(new Font("sans", Font.PLAIN, 40));
         add(scoreLivesL);
 
-
-        /*
-        lives = new JLabel();
-        lives.setText("Lives: " + model.getPlayer().getLives());
-        lives.setFont(new Font("sans", Font.PLAIN, 40));
-        lives.setBackground(Color.LIGHT_GRAY);
-        lives.setPreferredSize(new Dimension(30,30));
-        add(lives, BorderLayout.SOUTH);
-        */
-
-//------------------------------------------------------------------------------------------------------
-
-        ////model.setGamePanel(this);
         model.setGameModelListener(this);
 
-
         setBackground(Color.LIGHT_GRAY);
-
-
 
         pauseB = new JButton(" I I ");
         pauseB.setFont(new Font("sans", Font.PLAIN, 70));
@@ -81,7 +58,6 @@ public class GamePanel extends PanelView implements GameModelListener {
         pauseB.setBorderPainted(false);
         pauseB.setVisible(true);
         add(pauseB, BorderLayout.EAST);
-
 
         pauseP = new JPanel();
         pauseP.setPreferredSize(new Dimension(1, Dimensions.getScreenResolution().getKey()));
@@ -161,18 +137,6 @@ public class GamePanel extends PanelView implements GameModelListener {
                 viewListener.notifyExitGame();
             }
         });
-
-//        JButton swb = new JButton("hi");
-//        add(swb);
-//
-//        swb.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                viewListener.onNavigate(NavigationPanels.END_PANEL, new Bundle().put(KEY_SCORE, model.getScore()));
-//            }
-//        });
-
-
     }
 
     void addGB(Component component, int x, int y) {
@@ -207,14 +171,6 @@ public class GamePanel extends PanelView implements GameModelListener {
                 }
             }
         }
-
-/*        for (int i = 0; i < Dimensions.MAP_WIDTH + 1; i++) {
-            g2d.drawLine(Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 0 + Dimensions.MAP_OFFSET_Y / 2, Dimensions.PIXEL_PER_CHUNK_X * i + halfScreen + Dimensions.MAP_OFFSET_X / 2, 1500 + +Dimensions.MAP_OFFSET_Y / 2);
-        }
-
-        for (int i = 0; i < Dimensions.MAP_HEIGHT; i++) {
-            g2d.drawLine(0 + halfScreen + Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2, 1000 + halfScreen + +Dimensions.MAP_OFFSET_X / 2, Dimensions.PIXEL_PER_CHUNK_Y * i + Dimensions.MAP_OFFSET_Y / 2);
-        }*/
 
         //Spieler
         g2d.drawImage(model.getPlayer().getImg(model.getPlayerAnimationState()), model.getPlayer().getX() + halfScreen, model.getPlayer().getY(), this);

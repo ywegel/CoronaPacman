@@ -10,12 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.net.URISyntaxException;
-import java.nio.Buffer;
 
 public class EndPanel extends PanelView {
 
@@ -23,14 +17,13 @@ public class EndPanel extends PanelView {
      *
      */
 
-    private EndModel model;
-    private JLabel scoreL;
-    private JButton replayB;
-    private JButton quitB;
-    private JButton exitB;
-    private int score;
-    private GridBagConstraints constraints = new GridBagConstraints();
-    //private int highscore;
+    private final EndModel model;
+    private final JLabel scoreL;
+    private final JButton replayB;
+    private final JButton quitB;
+    private final JButton exitB;
+    private final GridBagConstraints constraints = new GridBagConstraints();
+
 
     ViewListener viewListener;
 
@@ -43,7 +36,8 @@ public class EndPanel extends PanelView {
      */
 
     public EndPanel(EndModel model, ViewListener viewListener, Bundle bundle) {
-        this.score = bundle.get(GamePanel.KEY_SCORE);
+        this.model = model;
+        this.model.setScore(bundle.get(GamePanel.KEY_SCORE));
 
         //Auslesen des HighScore Files
 /*        File highScoreFile = Data.loadFileFromRes("HighScore.txt");
@@ -73,7 +67,6 @@ public class EndPanel extends PanelView {
 
         System.out.println("THREAD COUNT 3: " + Thread.activeCount());
 
-        this.model = model;
         this.setLayout(new GridBagLayout());
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
@@ -83,11 +76,11 @@ public class EndPanel extends PanelView {
         scoreL = new JLabel("ScoreLabel", SwingConstants.CENTER);
         scoreL.setOpaque(true);
         scoreL.setBackground(Color.DARK_GRAY);
-        if (score == 0) {
+        if (model.getScore() == 0) {
             scoreL.setText("Du bist infiziert und hast verloren  >_<");
         } else {
 
-            scoreL.setText("<html> Du hast gewonnen und " + score + " Punkte erreicht </html>");
+            scoreL.setText("<html> Du hast gewonnen und " + model.getScore() + " Punkte erreicht </html>");
         }
         scoreL.setFont(new Font("sans", Font.PLAIN, 60));
         scoreL.setForeground(Color.WHITE);

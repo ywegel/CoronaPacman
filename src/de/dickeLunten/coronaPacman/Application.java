@@ -10,8 +10,5 @@ public class Application {
 
     public Application(){
         Controller mainController = new Controller();
-
-
     }
-
 }
