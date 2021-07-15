@@ -21,13 +21,7 @@ public class TPaper {
         image = Data.loadImageFromRes("img/toilettenpapier.png").getScaledInstance(width, length , Image.SCALE_DEFAULT);
     }
 
-    public int getLength() {
-        return length;
-    }
 
-    public int getWidth() {
-        return width;
-    }
 
     public int getX() {
         return x;
@@ -35,14 +29,6 @@ public class TPaper {
 
     public int getY() {
         return y;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public void setX(int x) {

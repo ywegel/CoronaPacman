@@ -191,53 +191,6 @@ public class GameModel extends PanelModel {
         int xCord = player.getX() / Dimensions.PIXEL_PER_CHUNK_X;
         int yCord = player.getY() / Dimensions.PIXEL_PER_CHUNK_Y;
         player.setCords(new Coord(xCord, yCord));
-
-//        System.out.println("X: " + player.getCords().getX() + "; Y: " + player.getCords().getY());
-//        System.out.println("Exact Coords:  X: " + ((double) player.getX()) / Dimensions.PIXEL_PER_CHUNK_X + "; Y: " + ((double) player.getY()) / Dimensions.PIXEL_PER_CHUNK_Y);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-        /*        if (doesNotCollidePlayer(player.getCurrentDirection())) {
-            player.move();
-
-            if (getPlayer().getCurrentDirection() == PlayerDirection.UP || getPlayer().getCurrentDirection() == PlayerDirection.DOWN) {
-
-                if (player.getY() % (Dimensions.MAP_PIXEL_HEIGHT / Dimensions.MAP_HEIGHT) == 0) {
-                    player.moveChunk();
-                }
-
-            }else {
-                if (player.getX() % (Dimensions.MAP_PIXEL_WIDTH / Dimensions.MAP_WIDTH) == 0) {
-                    player.moveChunk();
-                }
-            }
-
-        }*/
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//Yannick's Version
-        /*
-
-//        boolean TPCX = (tick) % Dimensions.TICKS_PER_CHUNK_X == 0;
-//        boolean TPCY = (tick) % Dimensions.TICKS_PER_CHUNK_Y == 0;
-
-        if (doesNotCollidePlayer(getPlayer().getCurrentDirection())) {
-            player.move();
-            if (getPlayer().getCurrentDirection() == PlayerDirection.UP || getPlayer().getCurrentDirection() == PlayerDirection.DOWN) {
-                //player.increaseChunkOffsetY();
-                if (TPCY) {
-                    //player.setChunkOffsetY(0);
-                    player.moveChunk();
-                }
-            } else {
-                //player.increaseChunkOffsetX();
-                if (TPCX) {
-                    //player.setChunkOffsetX(0);
-                    player.moveChunk();
-
-                }
-            }
-        }*/
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-        //Corona Movement
         if(coronaEdible){
             coronaSpeed = 1;
         }

@@ -152,14 +152,6 @@ public class Corona extends EntityModel {
         return y;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -189,16 +181,5 @@ public class Corona extends EntityModel {
         }
     }
 
-/*    public void switchImage() {
-        isImageSwitched = !isImageSwitched;
-        if (isImageSwitched) {
-            Image cache = coronaImg0;
-            coronaImg0 = coronaImg1;
-            coronaImg1 = cache;
-        } else {
-            Image cache = coronaImg1;
-            coronaImg1 = coronaImg0;
-            coronaImg0 = cache;
-        }
-    }*/
+
 }
