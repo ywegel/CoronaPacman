@@ -187,7 +187,6 @@ public class Corona extends EntityModel {
                 return coronaImg0;
             }
         }
-
     }
 
 /*    public void switchImage() {

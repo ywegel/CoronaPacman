@@ -98,8 +98,8 @@ public class GameModel extends PanelModel {
         }
 
         score++;
-        updateScore();
-        updateLives();
+        updateScoreLives();
+
         
         if(score % 1000 == 0){
             coronas.add(randomCorona());
@@ -345,7 +345,6 @@ public class GameModel extends PanelModel {
         }*/
 
         //Collisions
-        //TODO remove corona collide boolean from mapChunkValues
         for (Iterator<Corona> iterator = coronas.iterator(); iterator.hasNext(); ) {
             Corona c = iterator.next();
             if (player.getCords().getX() == c.getCoords().getX() && player.getCords().getY() == c.getCoords().getY()) {
@@ -496,7 +495,6 @@ public class GameModel extends PanelModel {
         }
         while (!gameMap.get(new Coord(x, y)).isHasDot());
         return new Coord(x, y);
-        //TODO constant values file for map etc
     }
 
     public void requestTurn(PlayerDirection dir) {
@@ -520,13 +518,10 @@ public class GameModel extends PanelModel {
         return coronas;
     }
 
-    private void updateScore() {
-        gameModelListener.onScoreChanged(score);
+    private void updateScoreLives() {
+        gameModelListener.onScoreLivesChanged(score, player.getLives());
     }
 
-    private void updateLives() {
-        gameModelListener.onLivesChanged(player.getLives());
-    }
 
     private PlayerMovableDir getPlayerMovDir() {
         return gameMap.get(player.getCords()).getPlayerMovableDir();

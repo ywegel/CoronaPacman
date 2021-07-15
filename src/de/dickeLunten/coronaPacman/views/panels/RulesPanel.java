@@ -6,12 +6,23 @@ import de.dickeLunten.coronaPacman.models.panel.CreditsModel;
 import de.dickeLunten.coronaPacman.models.panel.RulesModel;
 import util.Bundle;
 import util.Data;
-import util.Dimensions;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * Kümmert sich um die Anzeige einer Hintergrundgeschichte zum Spiel.
+ *
+ * @author Felix Rosner
+ * @author Colin Clauss
+ * @author Yannick Wegel
+ * @author Daniel Bund
+ * @author Jake Finch
+ *
+ * @version 2021.15.07
+ */
 
 public class RulesPanel extends PanelView{
 
@@ -24,6 +35,14 @@ public class RulesPanel extends PanelView{
 
     ViewListener viewListener;
 
+    /**
+     * Sorgt für die Erzeugung des RulesPanels und die
+     * Anzeige aller Buttons und Labels
+     *
+     * @param model Das Model der RulesPanel-Klasse
+     * @param viewListener Der Beobachter der RulesPanel-Klasse
+     */
+
     public RulesPanel (RulesModel model, ViewListener viewListener){
         this.viewListener = viewListener;
         this.setLayout(new GridBagLayout());
@@ -31,7 +50,6 @@ public class RulesPanel extends PanelView{
 
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
-        //constraints.fill = GridBagConstraints.HORIZONTAL;
 
         deB = new JButton("DE");
         deB.setFont(new Font("sans", Font.PLAIN, 60));
@@ -46,6 +64,11 @@ public class RulesPanel extends PanelView{
         enB.setBorderPainted(false);
 
         deB.addActionListener(new ActionListener() {
+            /**
+             * Setzt die Sprache der Regeln auf Englisch und vertauscht die Farben des deB und enB
+             *
+             * @param e
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 deB.setBackground(new Color(0, 50, 0));
@@ -55,6 +78,11 @@ public class RulesPanel extends PanelView{
         });
 
         enB.addActionListener(new ActionListener() {
+            /**
+             * Setzt die Sprache der Regeln auf Englisch und vertauscht die Farben des deB und enB
+             *
+             * @param e neues
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 enB.setBackground(new Color(0, 50, 0));
@@ -66,7 +94,6 @@ public class RulesPanel extends PanelView{
 
 
         backb = new JButton("back");
-        //backb.setFont(new Font("sans", Font.PLAIN, 70));
         backb.setFont(Data.setPacFont());
         backb.setBackground(new Color(50,50,50));
         backb.setForeground(Color.WHITE);

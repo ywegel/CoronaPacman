@@ -7,16 +7,36 @@ import util.WAVPlayer;
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Controller und Gameloop des Spiels
+ *
+ * @author Yannick Wegel
+ * @version 2021-07-15
+ */
+
 public class GameLoop implements Runnable {
+
+    //Anzahl an Nanosekunden pro Sekunde
     private static final long NANOS_PER_SECOND = 1_000_000_000L;
 
+    //Zustand des Spiels
     private volatile boolean gameIsRunning;
     private volatile boolean gameIsPaused;
+
+    //Mutex zum Stoppen des Threads
     private final Object mutex = new Object();
 
-    private Model model;
-    private View view;
+    //Model und View des Controllers
+    private final Model model;
+    private final View view;
 
+    /**
+     * Konstruktor des Gameloop-Controllers.
+     * Erzeugt ein Gameloop-Objekt mit den Startwerten und übergibt Model und View vom Haupt-Controller
+     *
+     * @param model Model des MVC-Musters
+     * @param view  View des MVC-Musters
+     */
     public GameLoop(Model model, View view) {
         this.model = model;
         this.view = view;
@@ -24,15 +44,21 @@ public class GameLoop implements Runnable {
         gameIsPaused = false;
     }
 
+    /**
+     * Startet die loop-Methode und benachrichtigt wenn diese beendet wurde
+     */
     @Override
     public void run() {
         try {
             loop();
         } finally {
-            System.out.println(Thread.currentThread().getName() + " ");
+            System.out.println(Thread.currentThread().getName() + ": Thread and Runnable stopped");
         }
     }
 
+    /**
+     * Loop der sich um das Malen des Spiels und die Logik kümmert
+     */
     private void loop() {
         final int fps = 60;
 
@@ -58,7 +84,6 @@ public class GameLoop implements Runnable {
 
             long loopStart = System.nanoTime();
 
-            //Pass render method to java.swing thread and !!wait
             try {
                 SwingUtilities.invokeAndWait(this::render);
             } catch (InterruptedException | InvocationTargetException e) {
@@ -89,18 +114,30 @@ public class GameLoop implements Runnable {
         }
     }
 
+    /**
+     * Führt die Spiellogik aus
+     */
     private void tick(int tick) {
         model.getGameModel().gameTick(tick);
     }
 
+    /**
+     * Malt das Spiel auf das Fenster
+     */
     private void render() {
         view.getGamePanel().update();
     }
 
+    /**
+     * Pausiert das Spiel
+     */
     public void pauseGame() {
         gameIsPaused = true;
     }
 
+    /**
+     * Lässt das Spiel weiterlaufen
+     */
     public void continueGame() {
         gameIsPaused = false;
         synchronized (mutex) {
@@ -108,6 +145,9 @@ public class GameLoop implements Runnable {
         }
     }
 
+    /**
+     * Beendet das Spiel durch das Stoppen der GameLoop-Schleife
+     */
     public void exitGame() {
         gameIsRunning = false;
         synchronized (mutex) {
@@ -115,5 +155,4 @@ public class GameLoop implements Runnable {
             mutex.notifyAll();
         }
     }
-
 }

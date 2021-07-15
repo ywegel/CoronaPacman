@@ -31,7 +31,6 @@ public class Controller implements ViewListener {
     private final View view;
 
     public Controller() {
-        //TODO only initiate models when screen starts, so that every time it starts new screen!!!
         this.model = new Model(new StartModel(), new GameModel(), new EndModel(), new CreditsModel(), new RulesModel());
         this.view = new View(model, this);
         initStartInput(view.getStartPanel());

@@ -6,21 +6,39 @@ import util.Dimensions;
 
 import java.awt.*;
 
+/**
+ * Model welches alle Spielerdaten enthölt
+ *
+ * @author Colin Clauss
+ * @author Yannick Wegel
+ * @author Daniel Bund
+ * @author Felix Rosner
+ * @author Jake Finch
+ * @version 2021-07-15
+ */
 public class Player extends EntityModel {
 
-    private int height, width, x, y, chunkOffsetX, chunkOffsetY;
+    //Hoehe, Weite, X-Koordinate, Y-Koordinate und Leben des Spielers
+    private int height, width, x, y, lives;
+
+    //Momentane und Geplante Richtung des Spielers
     private PlayerDirection currentDirection = PlayerDirection.RIGHT;
     private PlayerDirection plannedDirection;
+
+    //Koordinaten des Spielers im Gitter des Spielfelds
     private Coord cords;
-    private int lives;
+
+    //Bild des Spielers
     private Image[] img;
 
+    /**
+     * Konstruktor des Players.
+     * Erzeugt ein Player-Objekt mit Standartwerten
+     */
     public Player() {
         cords = new Coord(0, 0);
         x = Dimensions.PIXEL_PER_CHUNK_X / 2;
         y = Dimensions.PIXEL_PER_CHUNK_X / 2;
-        chunkOffsetX = x;
-        chunkOffsetY = y;
         lives = 3;
         width = 64;
         height = 65;
@@ -29,10 +47,13 @@ public class Player extends EntityModel {
 
         //Player size = 641 653
         for (int i = 0; i < 8; i++) {
-            img[i] = Data.loadImageFromRes("img/SpielerAnsicht" + i + ".png").getScaledInstance(width,height,Image.SCALE_FAST);
+            img[i] = Data.loadImageFromRes("img/SpielerAnsicht" + i + ".png").getScaledInstance(width, height, Image.SCALE_FAST);
         }
     }
 
+    /**
+     * Entscheidet welche move-Methode ausgeführt wird je nach dem in welche Richtung sich der Spieler bewegen soll.
+     */
     public void move() {
         switch (currentDirection) {
             case UP -> moveUp();
@@ -42,53 +63,32 @@ public class Player extends EntityModel {
         }
     }
 
+    /**
+     * Move-Methode die den Spieler nach oben bewegt
+     */
     private void moveUp() {
         y = y - 2;
-        //cords.setY(cords.getY() - 1);
-        //update();
     }
 
+    /**
+     * Move-Methode die den Spieler nach unten bewegt
+     */
     private void moveDown() {
         y = y + 2;
-        //cords.setY(cords.getY() + 1);
-        //update();
     }
 
+    /**
+     * Move-Methode die den Spieler nach rechts bewegt
+     */
     private void moveRight() {
         x = x + 2;
-        //cords.setX(cords.getX() + 1);
-        //update();
     }
 
+    /**
+     * Move-Methode die den Spieler nach links bewegt
+     */
     private void moveLeft() {
         x = x - 2;
-        //cords.setX(cords.getX() - 1);
-        //update();
-    }
-
-    public void moveChunk() {
-        switch (currentDirection) {
-            case UP -> moveChunkUp();
-            case DOWN -> moveChunkDown();
-            case RIGHT -> moveChunkRight();
-            case LEFT -> moveChunkLeft();
-        }
-    }
-
-    private void moveChunkUp() {
-        cords.setY(cords.getY() - 1);
-    }
-
-    private void moveChunkDown() {
-        cords.setY(cords.getY() + 1);
-    }
-
-    private void moveChunkRight() {
-        cords.setX(cords.getX() + 1);
-    }
-
-    private void moveChunkLeft() {
-        cords.setX(cords.getX() - 1);
     }
 
     public void setCords(Coord cords) {
@@ -97,7 +97,6 @@ public class Player extends EntityModel {
 
     public Coord getCords() {
         return cords;
-//        return new Coord(cords.getX() + 1,cords.getY() + 1 );
     }
 
     public PlayerDirection getPlannedDirection() {
@@ -108,28 +107,12 @@ public class Player extends EntityModel {
         this.plannedDirection = plannedDirection;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public void setX(int x) {
@@ -163,29 +146,5 @@ public class Player extends EntityModel {
             case RIGHT -> img[4 + (isSwitch ? 1 : 0)];
             case LEFT -> img[6 + (isSwitch ? 1 : 0)];
         };
-    }
-
-    public int getChunkOffsetX() {
-        return chunkOffsetX;
-    }
-
-    public void setChunkOffsetX(int chunkOffsetX) {
-        this.chunkOffsetX = chunkOffsetX;
-    }
-
-    public int getChunkOffsetY() {
-        return chunkOffsetY;
-    }
-
-    public void setChunkOffsetY(int chunkOffsetY) {
-        this.chunkOffsetY = chunkOffsetY;
-    }
-
-    public void increaseChunkOffsetX() {
-        chunkOffsetX++;
-    }
-
-    public void increaseChunkOffsetY() {
-        chunkOffsetY++;
     }
 }

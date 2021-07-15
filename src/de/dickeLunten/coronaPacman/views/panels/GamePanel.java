@@ -22,8 +22,7 @@ public class GamePanel extends PanelView implements GameModelListener {
     private final ViewListener viewListener;
 
     private final JLabel fpsCounter;
-    private final JLabel scoreView;
-    private final JLabel lives;
+    private final JLabel scoreLivesL;
     private final JButton pauseB;
     private final JPanel pauseP;
     private final JLabel pauseL;
@@ -31,8 +30,6 @@ public class GamePanel extends PanelView implements GameModelListener {
     private final JButton quitB;
     private final JButton restartB;
     private GridBagConstraints constraints = new GridBagConstraints();
-
-    //TODO alle knöpfe und anzeigen links oder rechts
 
     public GamePanel(GameModel model, ViewListener viewListener) {//
         this.viewListener = viewListener;
@@ -49,23 +46,23 @@ public class GamePanel extends PanelView implements GameModelListener {
         fpsCounter = new JLabel();
         fpsCounter.setText(String.valueOf(model.getFps()));
         fpsCounter.setBackground(Color.LIGHT_GRAY);
-//        fpsCounter.setVisible(false);
+//        fpsCounter.setVisible(true);
         add(fpsCounter, BorderLayout.NORTH);
 
-        scoreView = new JLabel();
-        scoreView.setText("Score: " + String.valueOf(model.getScore()));
-        scoreView.setFont(new Font("sans", Font.PLAIN, 40));
-        add(scoreView);
+        scoreLivesL = new JLabel();
+        scoreLivesL.setText("<html>Score: " + String.valueOf(model.getScore()) + "<br />Lives: " + model.getPlayer().getLives());
+        scoreLivesL.setFont(new Font("sans", Font.PLAIN, 40));
+        add(scoreLivesL);
 
 
+        /*
         lives = new JLabel();
         lives.setText("Lives: " + model.getPlayer().getLives());
         lives.setFont(new Font("sans", Font.PLAIN, 40));
         lives.setBackground(Color.LIGHT_GRAY);
         lives.setPreferredSize(new Dimension(30,30));
         add(lives, BorderLayout.SOUTH);
-
-
+        */
 
 //------------------------------------------------------------------------------------------------------
 
@@ -234,12 +231,9 @@ public class GamePanel extends PanelView implements GameModelListener {
     }
 
     @Override
-    public void onScoreChanged(int score) {
-        scoreView.setText(String.valueOf(score));
+    public void onScoreLivesChanged(int score, int lives) {
+        scoreLivesL.setText("<html>Score: " + score + "<br /><br />Lives: " + lives + "</html>");
     }
-
-    @Override
-    public void onLivesChanged(int l){lives.setText("Lives: " + l);}
 
     @Override
     public void finishGame(int score) {

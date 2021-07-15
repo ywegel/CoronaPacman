@@ -5,7 +5,6 @@ import de.dickeLunten.coronaPacman.controller.NavigationPanels;
 import de.dickeLunten.coronaPacman.models.panel.StartModel;
 import util.Bundle;
 import util.Data;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,33 +14,40 @@ import java.awt.event.ActionListener;
  * Verwaltet das Startpanel.
  *
  * @author Felix Rosner
+ * @author Colin Clauss
+ * @author Yannick Wegel
+ * @author Daniel Bund
+ * @author Jake Finch
  *
- * @version 2021.14.07
+ * @version 2021.15.07
  */
-
 public class StartPanel extends PanelView {
-    private StartModel model;
-    private ViewListener viewListener;
-    private GridBagConstraints constraints = new GridBagConstraints();
-    private JButton startb;
-    private JButton exitb;
-    private JButton creditsb;
-    private JButton rulesb;
+
+    //Model und Viewlistener der View
+    private final StartModel model;
+    private final ViewListener viewListener;
+
+    //Layout des Startpanels
+    private final GridBagConstraints constraints = new GridBagConstraints();
+
+    //Knöpfe des StartPanels
+    private final JButton startB;
+    private final JButton exitB;
+    private final JButton creditsB;
+    private final JButton rulesB;
 
     /**
      * Konstruktor der Klasse StartPanel.
      *
      * Erzeugt ein neues StartPanel, setzt Hintergrundfarbe und Layout.
      *
-     * Erzeugt die Buttons in der Pacman SChriftart und Standartgröße.
+     * Erzeugt die Buttons in der Pacman Schriftart und Standartgröße.
      *
      * ActionListener werden mit Button verknüpft.
      *
-     * @param model Model zum StartPanel.
-     *
+     * @param model        Model zum StartPanel.
      * @param viewListener Beobachter des StartPanels.
      */
-
     public StartPanel(StartModel model, ViewListener viewListener) {
         this.model = model;
         this.viewListener = viewListener;
@@ -52,17 +58,17 @@ public class StartPanel extends PanelView {
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
         constraints.gridwidth = 3; // span three columns
-        addGB(new JLabel(new ImageIcon(model.getBackgroundImg()), JLabel.CENTER),0,1);
+        addGB(new JLabel(new ImageIcon(model.getBackgroundImg()), JLabel.CENTER), 0, 1);
         constraints.gridwidth = 1; // span one column
 
 
-        startb = new JButton("Press ENTER to start");
-        startb.setFont(Data.setPacFont());
-        startb.setBackground(Color.DARK_GRAY);
-        startb.setBorderPainted(false);
-        startb.setForeground(Color.WHITE);
+        startB = new JButton("Press ENTER to start");
+        startB.setFont(Data.setPacFont());
+        startB.setBackground(Color.DARK_GRAY);
+        startB.setBorderPainted(false);
+        startB.setForeground(Color.WHITE);
 
-        startb.addActionListener(new ActionListener() {
+        startB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
@@ -71,26 +77,26 @@ public class StartPanel extends PanelView {
         });
 
 
-        exitb = new JButton(("  exit  "));
-        exitb.setFont(Data.setPacFont());
-        exitb.setBackground(Color.DARK_GRAY);
-        exitb.setForeground(Color.WHITE);
-        exitb.setBorderPainted(false);
+        exitB = new JButton(("  exit  "));
+        exitB.setFont(Data.setPacFont());
+        exitB.setBackground(Color.DARK_GRAY);
+        exitB.setForeground(Color.WHITE);
+        exitB.setBorderPainted(false);
 
-        exitb.addActionListener(new ActionListener() {
+        exitB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
 
-        creditsb = new JButton("credits");
-        creditsb.setFont(Data.setPacFont());
-        creditsb.setBackground(Color.DARK_GRAY);
-        creditsb.setForeground(Color.WHITE);
-        creditsb.setBorderPainted(false);
+        creditsB = new JButton("credits");
+        creditsB.setFont(Data.setPacFont());
+        creditsB.setBackground(Color.DARK_GRAY);
+        creditsB.setForeground(Color.WHITE);
+        creditsB.setBorderPainted(false);
 
-        creditsb.addActionListener(new ActionListener() {
+        creditsB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.CREDITS_PANEL, Bundle.emptyBundle());
@@ -98,14 +104,14 @@ public class StartPanel extends PanelView {
             }
         });
 
-        rulesb = new JButton(" rules ");
-        rulesb.setFont(Data.setPacFont());
-        rulesb.setBackground(Color.DARK_GRAY);
-        rulesb.setForeground(Color.WHITE);
+        rulesB = new JButton(" rules ");
+        rulesB.setFont(Data.setPacFont());
+        rulesB.setBackground(Color.DARK_GRAY);
+        rulesB.setForeground(Color.WHITE);
 
-        rulesb.setBorderPainted(false);
+        rulesB.setBorderPainted(false);
 
-        rulesb.addActionListener(new ActionListener() {
+        rulesB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.RULES_PANEL, Bundle.emptyBundle());
@@ -114,27 +120,25 @@ public class StartPanel extends PanelView {
         });
 
         constraints.gridwidth = 3; // span three columns
-        addGB(startb, 0, 0);
+        addGB(startB, 0, 0);
         constraints.gridwidth = 1; // span one column
-        addGB(exitb, 2, 2);
-        addGB(creditsb, 1, 2);
-        addGB(rulesb, 0, 2);
+        addGB(exitB, 2, 2);
+        addGB(creditsB, 1, 2);
+        addGB(rulesB, 0, 2);
 
 
     }
 
-
     /**
      * Setzt Buttons an zugewiesene Koordinaten im GridBagLayout.
+     *
+     * @param component Einsetzen des Components der in seiner position verändert werden soll
+     * @param x         x-Koordinate
+     * @param y         y-Koordinate
      */
-
     public void addGB(Component component, int x, int y) {
         constraints.gridx = x;
         constraints.gridy = y;
         add(component, constraints);
     }
-    public void finishGame(int score){ }
 }
-
-
-

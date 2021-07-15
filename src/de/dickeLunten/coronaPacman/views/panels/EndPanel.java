@@ -18,6 +18,11 @@ import java.net.URISyntaxException;
 import java.nio.Buffer;
 
 public class EndPanel extends PanelView {
+
+    /**
+     *
+     */
+
     private EndModel model;
     private JLabel scoreL;
     private JButton replayB;
@@ -25,9 +30,17 @@ public class EndPanel extends PanelView {
     private JButton exitB;
     private int score;
     private GridBagConstraints constraints = new GridBagConstraints();
-    private int highscore;
+    //private int highscore;
 
     ViewListener viewListener;
+
+    /**
+     * Erzeugt das EndPanel, in dem der Endscore angegeben wird
+     *
+     * @param model Das Model des EndPanels
+     * @param viewListener Der Beobachter des EndPanels
+     * @param bundle Objekt der Util-Klasse bundle, in der hier der score transportiert wird
+     */
 
     public EndPanel(EndModel model, ViewListener viewListener, Bundle bundle) {
         this.score = bundle.get(GamePanel.KEY_SCORE);
@@ -65,6 +78,7 @@ public class EndPanel extends PanelView {
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
+        setBackground(Color.GRAY);
 
         scoreL = new JLabel("ScoreLabel", SwingConstants.CENTER);
         scoreL.setOpaque(true);
@@ -72,7 +86,8 @@ public class EndPanel extends PanelView {
         if (score == 0) {
             scoreL.setText("Du bist infiziert und hast verloren  >_<");
         } else {
-            scoreL.setText("<html> Du hast gewonnen und " + score + " Punkte erreicht <br />  Highscore: " + highscore + "</html>");
+
+            scoreL.setText("<html> Du hast gewonnen und " + score + " Punkte erreicht </html>");
         }
         scoreL.setFont(new Font("sans", Font.PLAIN, 60));
         scoreL.setForeground(Color.WHITE);
@@ -110,6 +125,11 @@ public class EndPanel extends PanelView {
 
 
         replayB.addActionListener(new ActionListener() {
+            /**
+             * Wechselt zum GamePanel
+             *
+             * @param e  neues ActionEvent
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.GAME_PANEL, Bundle.emptyBundle());
@@ -119,6 +139,11 @@ public class EndPanel extends PanelView {
 
 
         quitB.addActionListener(new ActionListener() {
+            /**
+             * Wechselt zum StartPanel
+             *
+             * @param e neues ActionEvent
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewListener.onNavigate(NavigationPanels.START_PANEL, Bundle.emptyBundle());
@@ -126,6 +151,11 @@ public class EndPanel extends PanelView {
         });
 
         exitB.addActionListener(new ActionListener() {
+            /**
+             * Beendet das Programm
+             *
+             * @param e neues ActionEvent
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -134,7 +164,13 @@ public class EndPanel extends PanelView {
 
     }
 
-    //Methode für GridBagLayout
+    /**
+     * Fügt
+     *
+     * @param component Button/Label, das zum GridBagLayout hinzugefügt werden soll
+     * @param x x-Wert im GridBagLayout
+     * @param y y-Wert im GridBagLayout
+     */
     void addGB(Component component, int x, int y) {
         constraints.gridx = x;
         constraints.gridy = y;

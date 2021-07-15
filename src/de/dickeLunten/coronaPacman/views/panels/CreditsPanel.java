@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class CreditsPanel extends PanelView{
 
     private final CreditsModel model;
@@ -19,6 +20,8 @@ public class CreditsPanel extends PanelView{
     private final JLabel creditsL;
 
     ViewListener viewListener;
+
+
 
     public CreditsPanel(CreditsModel model, ViewListener viewListener){
         this.model = model;
@@ -50,6 +53,7 @@ public class CreditsPanel extends PanelView{
         addGB(creditsL, 0, 0);
         addGB(backB, 0, 1);
     }
+
 
     void addGB(Component component, int x, int y) {
         constraints.gridx = x;
