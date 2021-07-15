@@ -1,9 +1,6 @@
 package de.dickeLunten.coronaPacman.models;
 
-import de.dickeLunten.coronaPacman.models.entities.Player;
 import de.dickeLunten.coronaPacman.models.panel.*;
-
-import javax.xml.stream.events.StartDocument;
 
 public class Model {
     StartModel startModel;
