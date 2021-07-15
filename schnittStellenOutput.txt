@@ -1,0 +1,245 @@
+Application.java
+static void main(String[])
+
+
+Controller.java
+void notifyPauseGame()
+void notifyContinueGame()
+void notifyExitGame()
+void notifyGameStarted()
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void onNavigate(NavigationPanels, Bundle)
+
+
+GameLoop.java
+void run()
+void pauseGame()
+void continueGame()
+void exitGame()
+
+
+NavigationPanels.java
+
+
+GameModelListener.java
+
+
+ModelListener.java
+
+
+Corona.java
+void move(int)
+void moveChunk()
+void setCurrentDirection(PlayerDirection)
+PlayerDirection getCurrentDirection()
+Coord getCoords()
+int getHeight()
+int getWidth()
+int getX()
+int getY()
+void setX(int)
+void setY(int)
+void setCoords(Coord)
+Image getImage(boolean, boolean)
+
+
+EntityModel.java
+
+
+Player.java
+void move()
+void setCords(Coord)
+Coord getCords()
+int getX()
+int getY()
+void setX(int)
+void setY(int)
+int getLives()
+void setLives(int)
+Image getImg(boolean)
+
+
+PlayerDirection.java
+
+
+TPaper.java
+int getX()
+int getY()
+void setX(int)
+void setY(int)
+Image getImage()
+Coord getCoords()
+
+
+Vac.java
+int getX()
+void setX(int)
+int getY()
+void setY(int)
+Coord getCords()
+Image getImage()
+
+
+Model.java
+
+
+CreditsModel.java
+String getCreditslTXT()
+
+
+EndModel.java
+int getScore()
+void setScore(int)
+
+
+GameModel.java
+boolean doesNotCollidePlayer(PlayerDirection)
+boolean doesNotCollideCorona(Corona)
+void gameTick(int)
+void run()
+void run()
+void requestTurn(PlayerDirection)
+boolean isCoronaEdible()
+ArrayList<Corona> getCovList()
+Player getPlayer()
+int getScore()
+int getFps()
+void setFps(int)
+Image getMapImage()
+boolean getCoronaAnimationState()
+boolean getPlayerAnimationState()
+HashMap<Coord, MapChunkValues> getGameMap()
+ArrayList<Vac> getVacs()
+TPaper getTPaper()
+
+
+PanelModel.java
+
+
+RulesModel.java
+String getRulesL_DE()
+String getRulesL_EN()
+
+
+StartModel.java
+Image getBackgroundImg()
+
+
+ViewListener.java
+
+
+CreditsPanel.java
+void actionPerformed(ActionEvent)
+
+
+EndPanel.java
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+
+
+GamePanel.java
+static final String KEY_SCORE = "game_panel";
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void onFpsChanged(int)
+void onScoreLivesChanged(int, int)
+void finishGame(int)
+void update()
+
+
+PanelView.java
+
+
+RulesPanel.java
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+
+
+StartPanel.java
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void actionPerformed(ActionEvent)
+void addGB(Component, int, int)
+
+
+View.java
+void onNavigate(NavigationPanels, Bundle)
+StartPanel getStartPanel()
+GamePanel getGamePanel()
+
+
+Bundle.java
+<T> T get(String)
+int getSize()
+void clear()
+
+
+Coord.java
+int hashCode()
+boolean equals(Object)
+int getX()
+int getY()
+void setX(int)
+void setY(int)
+
+
+Data.java
+static Image loadImageFromRes(String)
+static InputStream loadFileFromResAsStream(String)
+static Font setPacFont()
+final static int MAP_CHUNK_SIZE = 323;
+
+
+Dimensions.java
+static final int MAP_PIXEL_WIDTH = 800;
+static final int MAP_PIXEL_HEIGHT = 1048;
+static final int MAP_WIDTH = 17;
+static final int MAP_HEIGHT = 20;
+static final Pair<Integer, Integer> MAP_DIMENSION = new Pair<>(MAP_WIDTH, MAP_HEIGHT);
+static final int PIXEL_PER_CHUNK_X = 45;
+static final int PIXEL_PER_CHUNK_Y = 49;
+static final int TICKS_PER_ANIMATION_SWITCH = 60;
+static final int TICKS_PER_PLAYER_ANIMATION_SWITCH = 15;
+static final int TICKS_PER_FAST_ANIMATION_SWITCH = 30;
+static final int MAP_OFFSET_X = 33;
+static final int MAP_OFFSET_Y = 45;
+static Pair<Integer, Integer> getScreenResolution()
+
+
+MapChunkValues.java
+boolean isHasDot()
+boolean isHasToiletPaper()
+boolean isHasVac()
+PlayerMovableDir getPlayerMovableDir()
+
+
+Pair.java
+K getKey()
+void setKey(K)
+V getValue()
+void setValue(V)
+
+
+PlayerMovableDir.java
+boolean isUp()
+boolean isDown()
+boolean isLeft()
+boolean isRight()
+
+
+WAVPlayer.java
+static void playGameMusic()
+static void killThread()
+static void pauseMusic()
+static void continueMusic()
+
+
