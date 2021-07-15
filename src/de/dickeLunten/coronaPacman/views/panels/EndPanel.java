@@ -11,11 +11,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Der User benutzt dieses Panel
+ * nachdem er gestorben ist/alle Punkte
+ * eingesammelt halt
+ *
+ * @author Daniel Bund
+ * @version 2021.15.07
+ */
+
 public class EndPanel extends PanelView {
 
-    /**
-     *
-     */
+
 
     private final EndModel model;
     private final JLabel scoreL;
@@ -158,7 +165,7 @@ public class EndPanel extends PanelView {
     }
 
     /**
-     * Fügt
+     * Fügt dem GridBagLayout ein JComponent hinzu
      *
      * @param component Button/Label, das zum GridBagLayout hinzugefügt werden soll
      * @param x x-Wert im GridBagLayout
